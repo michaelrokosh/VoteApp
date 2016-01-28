@@ -8,13 +8,23 @@ FlowRouter.route("/", {
     }
 });
 
-FlowRouter.route("/login", {
-    name: "Login",
+FlowRouter.route("/sign-in", {
+    name: "SignIn",
     subscriptions(params) {
 
     },
     action(params) {
-        renderMainLayoutWith(<C.UserLogin />);
+        renderMainLayoutWith(<C.UserSignIn />);
+    }
+});
+
+FlowRouter.route("/sign-up", {
+    name: "SignUp",
+    subscriptions(params) {
+
+    },
+    action(params) {
+        renderMainLayoutWith(<C.UserSignUp />);
     }
 });
 

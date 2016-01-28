@@ -1,4 +1,4 @@
-C.UserLogin = React.createClass({
+C.UserSignIn = React.createClass({
     mixins: [],
     PropTypes: {
 
@@ -54,7 +54,7 @@ C.UserLogin = React.createClass({
             <div className="container">
                 <div className="row">
                     <div className="col-sm-6 col-sm-offset-3">
-                        <h1>Login</h1>
+                        <h1>Sign In</h1>
 
                         <form onSubmit={this.onSubmit}>
                             <C.AuthErrors errors={this.state.errors} />

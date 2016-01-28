@@ -30,3 +30,7 @@ spacebars
 check
 less
 twbs:bootstrap
+highcharts:highcharts-meteor
+
+
+highcharts-container

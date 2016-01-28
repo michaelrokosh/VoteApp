@@ -10,6 +10,7 @@ C.MainHeader = React.createClass({
     },
     render() {
         let loginButton;
+        let signUpButton;
         let { currentUser } = this.data;
 
         if (currentUser) {
@@ -18,7 +19,10 @@ C.MainHeader = React.createClass({
             )
         } else {
             loginButton = (
-              <li><a href="/login">Login</a></li>
+              <li><a href="/sign-in">Sign In</a></li>
+            )
+            signUpButton = (
+                <li><a href="/sign-up">Sign Up</a></li>
             )
         }
 
@@ -32,13 +36,14 @@ C.MainHeader = React.createClass({
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="#">React Meteor</a>
+                        <a className="navbar-brand" href="#">VoteApp</a>
                     </div>
 
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav navbar-right">
                             <li><a href="/">Home</a></li>
-                            {loginButton}
+                            { loginButton }
+                            { signUpButton }
                         </ul>
                     </div>
                 </div>

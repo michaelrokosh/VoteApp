@@ -1,11 +1,14 @@
 C.Home = React.createClass({
     render() {
         return (
-            <div className="jumbotron">
-                <div className="container">
-                    <h1 className="text-center">React Meteor Template</h1>
-                    <p className="text-center">A starting point for React apps built on Meteor</p>
+            <div id="main">
+                <div className="jumbotron">
+                    <div className="container">
+                        <h1 className="text-center">VoteApp</h1>
+                        <p className="text-center">A reactive voting app that makes a difference</p>
+                    </div>
                 </div>
+                <C.DemoChart />
             </div>
         )
     }
