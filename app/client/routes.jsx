@@ -1,8 +1,5 @@
 FlowRouter.route("/", {
     name: 'Home',
-    subscriptions(params) {
-
-    },
     action(params) {
         renderMainLayoutWith(<C.Home />);
     }
@@ -10,9 +7,6 @@ FlowRouter.route("/", {
 
 FlowRouter.route("/sign-in", {
     name: "SignIn",
-    subscriptions(params) {
-
-    },
     action(params) {
         renderMainLayoutWith(<C.UserSignIn />);
     }
@@ -20,11 +14,18 @@ FlowRouter.route("/sign-in", {
 
 FlowRouter.route("/sign-up", {
     name: "SignUp",
-    subscriptions(params) {
-
-    },
     action(params) {
         renderMainLayoutWith(<C.UserSignUp />);
+    }
+});
+
+FlowRouter.route("/polls/:_id", {
+    name: "Poll",
+    subscriptions(params) {
+        return [Meteor.subscribe('poll', this.params._id)];
+    },
+    action(params) {
+        renderMainLayoutWith(<C.Poll />);
     }
 });
 

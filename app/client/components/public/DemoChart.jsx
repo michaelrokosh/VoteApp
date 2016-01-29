@@ -1,6 +1,5 @@
 C.DemoChart = React.createClass({
-  componentDidMount () {
-        console.log('componentWillMount', $('#demoChart'))
+    componentDidMount () {
         $('#demoChart').highcharts({
             chart: {
                 plotBackgroundColor: null,
