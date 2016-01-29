@@ -1,53 +1,55 @@
 C.MainHeader = React.createClass({
-    mixins: [ReactMeteorData],
-    getMeteorData() {
-        return {
-            currentUser: Meteor.user()
-        }
-    },
-    handleLogout() {
-        Meteor.logout();
-    },
-    render() {
-        let loginButton;
-        let signUpButton;
-        let { currentUser } = this.data;
-
-        if (currentUser) {
-            loginButton = (
-              <li><a href="#" onClick={this.handleLogout}>Logout</a></li>
-            )
-        } else {
-            loginButton = (
-              <li><a href="/sign-in">Sign In</a></li>
-            )
-            signUpButton = (
-                <li><a href="/sign-up">Sign Up</a></li>
-            )
-        }
-
-        return (
-            <nav className="navbar navbar-default">
-                <div className="container">
-                    <div className="navbar-header">
-                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span className="sr-only">Toggle navigation</span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                        </button>
-                        <a className="navbar-brand" href="#">VoteApp</a>
-                    </div>
-
-                    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul className="nav navbar-nav navbar-right">
-                            <li><a href="/">Home</a></li>
-                            { loginButton }
-                            { signUpButton }
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        )
+  mixins: [ReactMeteorData],
+  getMeteorData() {
+    return {
+      currentUser: Meteor.user()
     }
+  },
+  handleLogout() {
+    Meteor.logout();
+  },
+  render() {
+    let loginButton;
+    let signUpButton;
+    let newPoll;
+    let { currentUser } = this.data;
+
+    if (currentUser) {
+      newPoll = (
+        <li><a href="/polls/new">New Poll</a></li>
+      )
+      loginButton = (
+        <li><a href="#" onClick={this.handleLogout}>Logout</a></li>
+      )
+    } else {
+      loginButton = (
+        <li><a href="/sign-in">Sign In</a></li>
+      )
+      signUpButton = (
+        <li><a href="/sign-up">Sign Up</a></li>
+      )
+    }
+
+    return (
+      <nav>
+        <div className="nav-wrapper">
+          <div className="row">
+            <div className="col s12">
+              <a href="/" className="brand-logo">VoteApp</a>
+              <ul id="nav" className="right hide-on-med-and-down">
+                { newPoll }
+                { loginButton }
+                { signUpButton }
+              </ul>
+              <ul className="side-nav" id="mobileSidebar">
+                { newPoll }
+                { loginButton }
+                { signUpButton }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    )
+  }
 });

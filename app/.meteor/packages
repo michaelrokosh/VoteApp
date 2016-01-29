@@ -29,8 +29,9 @@ ejson
 spacebars
 check
 less
-twbs:bootstrap
 highcharts:highcharts-meteor
 
 
 highcharts-container
+materialize:materialize
+dschulz:jquery-qrcode

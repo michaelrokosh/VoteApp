@@ -1,4 +1,4 @@
-C.AuthErrors = React.createClass({
+C.FormErrors = React.createClass({
     propTypes: {
         errors: React.PropTypes.object
     },

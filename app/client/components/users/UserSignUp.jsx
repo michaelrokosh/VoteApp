@@ -16,17 +16,25 @@ C.UserSignUp = React.createClass({
     onSubmit(event) {
         event.preventDefault();
 
-        var email = $(event.target).find("[name=email]").val();
-        var password = $(event.target).find("[name=password]").val();
+        var email = event.target.email.value;
+        var password = event.target.password.value;
+        var repeatPassword = event.target.confirmpassword.value;
+        var emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         var errors = {};
 
         if (!email) {
             errors.email = "Email required"
+        } else if (!emailPattern.test(email)) {
+            errors.email = "Email is not valid"
         }
 
         if (!password) {
             errors.password = "Password required"
+        }
+
+        if (!repeatPassword || repeatPassword !== password) {
+            errors.repeatPassword = "These passwords don't match. Try again?"
         }
 
         this.setState({
@@ -56,13 +64,14 @@ C.UserSignUp = React.createClass({
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-6 col-sm-offset-3">
+                    <div className="col s6 offset-s3">
                         <h1>Sign Up</h1>
 
                         <form onSubmit={this.onSubmit}>
-                            <C.AuthErrors errors={this.state.errors} />
+                            <C.FormErrors errors={this.state.errors} />
                             <C.FormInput hasError={!!this.state.errors.email} name="Email" type="text" label="Email" />
                             <C.FormInput hasError={!!this.state.errors.password} name="Password" type="password" label="Password" />
+                            <C.FormInput hasError={!!this.state.errors.repeatPassword} name="ConfirmPassword" type="password" label="Confirm your password" />
                             <input type="submit" className="btn btn-default"/>
                         </form>
                     </div>

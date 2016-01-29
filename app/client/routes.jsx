@@ -19,10 +19,21 @@ FlowRouter.route("/sign-up", {
     }
 });
 
+FlowRouter.route("/polls/new", {
+    name: "NewPoll",
+    action(params) {
+        renderMainLayoutWith(<C.NewPoll />);
+    }
+});
+
 FlowRouter.route("/polls/:_id", {
     name: "Poll",
     subscriptions(params) {
-        return [Meteor.subscribe('poll', this.params._id)];
+        if (Meteor.isClient) {
+            this.register('poll', Meteor.subscribe('poll', params._id));
+            this.register('pollItems', Meteor.subscribe('pollItems', params._id));
+            this.register('pollItemOptions', Meteor.subscribe('pollItemOptions', params._id));
+        }
     },
     action(params) {
         renderMainLayoutWith(<C.Poll />);

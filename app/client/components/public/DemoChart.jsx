@@ -1,11 +1,16 @@
 C.DemoChart = React.createClass({
     componentDidMount () {
-        $('#demoChart').highcharts({
+        let chart = new Highcharts.Chart();
+    },
+
+    render() {
+        let chartProps = {
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                type: 'pie'
+                type: 'pie',
+                renderTo: 'demoChart'
             },
             title: {
                 text: 'What do you think about VoteApp'
@@ -42,12 +47,10 @@ C.DemoChart = React.createClass({
                     y: 7.28
                 }]
             }]
-        });
-    },
+        };
 
-    render() {
-      return (
-        <div id="demoChart"></div>
-      )
+        return (
+            <C.PieChart id="demoChart" chartProps={ chartProps }/>
+        )
     }
 });

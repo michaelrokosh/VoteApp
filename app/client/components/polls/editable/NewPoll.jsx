@@ -1,32 +1,19 @@
-C.UserSignIn = React.createClass({
+C.NewPoll = React.createClass({
     mixins: [],
-    PropTypes: {
-
-    },
     getInitialState() {
         return {
             errors: {}
         }
     },
-    getMeteorData() {
-        return {
-
-        }
-    },
     onSubmit(event) {
         event.preventDefault();
 
-        var email = $(event.target).find("[name=email]").val();
-        var password = $(event.target).find("[name=password]").val();
+        var pollName = event.target.pollname.value;
 
         var errors = {};
 
-        if (!email) {
-            errors.email = "Email required"
-        }
-
-        if (!password) {
-            errors.password = "Password required"
+        if (!pollName) {
+            errors.pollName = "Poll name required"
         }
 
         this.setState({
@@ -37,7 +24,10 @@ C.UserSignIn = React.createClass({
             return;
         }
 
-        Meteor.loginWithPassword(email, password, (err) => {
+        Polls.insert({ 
+          name: pollName,
+          userId: Meteor.userId()
+        }, (err, _id) => {
             if (err) {
                 this.setState({
                     errors: {'none': err.reason}
@@ -45,7 +35,7 @@ C.UserSignIn = React.createClass({
 
                 return;
             } else {
-                FlowRouter.go('Home');
+                FlowRouter.go('Poll', { _id: _id});
             }
         });
     },
@@ -54,17 +44,16 @@ C.UserSignIn = React.createClass({
             <div className="container">
                 <div className="row">
                     <div className="col s6 offset-s3">
-                        <h1>Sign In</h1>
+                        <h1>New Poll</h1>
 
                         <form onSubmit={this.onSubmit}>
                             <C.FormErrors errors={this.state.errors} />
-                            <C.FormInput hasError={!!this.state.errors.email} name="Email" type="text" label="Email" />
-                            <C.FormInput hasError={!!this.state.errors.password} name="Password" type="password" label="Password" />
+                            <C.FormInput hasError={!!this.state.errors.email} name="PollName" type="text" label="Poll name" />
                             <input type="submit" className="btn btn-default"/>
                         </form>
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 });
