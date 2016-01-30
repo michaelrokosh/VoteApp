@@ -27,9 +27,22 @@ if (Meteor.isServer) {
           userId: userId,
           pollId: poll._id,
           pollItemId: pollItem._id,
-          pollItemOptionId: pollItemOptionId
+          pollItemOptionId: pollItemOptionId,
+          createdAt: new Date
         });
       });
+    },
+
+    getVotes: (pollItemId) => {
+      const votes = Votes.find({ pollItemId: pollItemId }, { sort: { createdAt: -1 } }).fetch();
+      let mappedVotes = _.map(votes, function (vote) {
+        let voter = Meteor.users.findOne({ _id: vote.userId });
+        vote.voter = voter;
+        vote.pollItemOption = PollItemOptions.findOne({ _id: vote.pollItemOptionId });
+        return vote;
+      });
+
+      return mappedVotes;
     }
   });
 }

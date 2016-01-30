@@ -4,6 +4,7 @@ C.FormInput = React.createClass({
         label: React.PropTypes.string,
         type: React.PropTypes.string,
         name: React.PropTypes.string,
+        placeholder: React.PropTypes.string,
         className: React.PropTypes.string,
         value: React.PropTypes.string,
         onKeyUp: React.PropTypes.func,
@@ -13,7 +14,7 @@ C.FormInput = React.createClass({
         return true;
     },
     render() {
-        const { type, label, name, value, onKeyUp, onBlur } = this.props;
+        const { type, label, name, placeholder, value, onKeyUp, onBlur } = this.props;
         let { className } = this.props
         let inputType;
 
@@ -24,12 +25,12 @@ C.FormInput = React.createClass({
         switch (type) {
             case "textarea":
                 inputType = (
-                  <textarea type={ type } className={ className } name={ name.toLowerCase() } placeholder={ name } defaultValue={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }></textarea>
+                  <textarea type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } defaultValue={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }></textarea>
                 );
                 break;
             default:
                 inputType = (
-                  <input type={ type } className={ className } name={ name.toLowerCase() } placeholder={ name } defaultValue={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }/>
+                  <input type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } defaultValue={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }/>
                 );
                 break;
         }

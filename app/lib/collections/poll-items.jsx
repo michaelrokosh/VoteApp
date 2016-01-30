@@ -33,4 +33,30 @@ if (Meteor.isServer) {
       }
     }
   });
+
+  Meteor.methods({
+    'pollItems/toggleDisabled': (pollItemId, setDisabled) => {
+      const pollItem = PollItems.findOne({ _id: pollItemId });
+      const poll = Polls.findOne({ _id: pollItem.pollId });
+
+      if (Meteor.userId() === poll.userId) {
+        PollItems.update({ _id: pollItemId }, { $set: { disabled: setDisabled }});
+      } else {
+        throw new Meteor.Error('not-authorized');
+      }
+    }
+  });
+
+  Meteor.methods({
+    'pollItems/toggleShowResults': (pollItemId, setShowResults) => {
+      const pollItem = PollItems.findOne({ _id: pollItemId });
+      const poll = Polls.findOne({ _id: pollItem.pollId });
+
+      if (Meteor.userId() === poll.userId) {
+        PollItems.update({ _id: pollItemId }, { $set: { showResults: setShowResults }});
+      } else {
+        throw new Meteor.Error('not-authorized');
+      }
+    }
+  });
 }

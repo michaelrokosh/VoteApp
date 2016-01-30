@@ -13,12 +13,13 @@ C.Poll = React.createClass({
     if (!poll) {
       return <C.MainLoader />
     }
-    if (!currentUser || currentUser._id !== poll.userId) {
+    if (!currentUser) {
+      return <C.UserSignUp />
+    }
+    if (currentUser._id !== poll.userId) {
       return <C.PollView />
     } else {
-      return (
-        <C.EditablePoll />
-      );
+      return <C.EditablePoll />
     }
   }
 });

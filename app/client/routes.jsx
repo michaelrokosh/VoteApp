@@ -19,6 +19,16 @@ FlowRouter.route("/sign-up", {
     }
 });
 
+FlowRouter.route("/polls", {
+    name: "LatestPolls",
+    subscriptions(params) {
+        this.register('polls', Meteor.subscribe('polls'));
+    },
+    action(params) {
+        renderMainLayoutWith(<C.LatestPolls />);
+    }
+});
+
 FlowRouter.route("/polls/new", {
     name: "NewPoll",
     action(params) {
@@ -29,11 +39,9 @@ FlowRouter.route("/polls/new", {
 FlowRouter.route("/polls/:_id", {
     name: "Poll",
     subscriptions(params) {
-        if (Meteor.isClient) {
-            this.register('poll', Meteor.subscribe('poll', params._id));
-            this.register('pollItems', Meteor.subscribe('pollItems', params._id));
-            this.register('pollItemOptions', Meteor.subscribe('pollItemOptions', params._id));
-        }
+        this.register('poll', Meteor.subscribe('poll', params._id));
+        this.register('pollItems', Meteor.subscribe('pollItems', params._id));
+        this.register('pollItemOptions', Meteor.subscribe('pollItemOptions', params._id));
     },
     action(params) {
         renderMainLayoutWith(<C.Poll />);

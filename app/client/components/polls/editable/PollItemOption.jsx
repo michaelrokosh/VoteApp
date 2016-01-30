@@ -20,7 +20,7 @@ C.PollItemOption = React.createClass({
 
     return (
       <div className="poll-item-option">
-        <C.FormInput name={ pollItemOption.rank.toString() } type="text" className="poll-item-option" label={ pollItemOption.rank.toString() } onBlur={ this.updateText } value={ pollItemOption.text }/>
+        <C.FormInput name={ pollItemOption.rank.toString() } type="text" className="poll-item-option" placeholder="Option label" label={ pollItemOption.rank.toString() } onBlur={ this.updateText } value={ pollItemOption.text }/>
       </div>
     );
   }

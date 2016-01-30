@@ -26,7 +26,8 @@ C.NewPoll = React.createClass({
 
         Polls.insert({ 
           name: pollName,
-          userId: Meteor.userId()
+          userId: Meteor.userId(),
+          createdAt: new Date
         }, (err, _id) => {
             if (err) {
                 this.setState({
@@ -43,13 +44,13 @@ C.NewPoll = React.createClass({
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col s6 offset-s3">
+                    <div className="col s12 m6 offset-m3">
                         <h1>New Poll</h1>
 
                         <form onSubmit={this.onSubmit}>
                             <C.FormErrors errors={this.state.errors} />
                             <C.FormInput hasError={!!this.state.errors.email} name="PollName" type="text" label="Poll name" />
-                            <input type="submit" className="btn btn-default"/>
+                            <input type="submit" className="btn"/>
                         </form>
                     </div>
                 </div>

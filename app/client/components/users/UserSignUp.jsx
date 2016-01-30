@@ -64,7 +64,7 @@ C.UserSignUp = React.createClass({
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col s6 offset-s3">
+                    <div className="col s12 m6 offset-m3">
                         <h1>Sign Up</h1>
 
                         <form onSubmit={this.onSubmit}>

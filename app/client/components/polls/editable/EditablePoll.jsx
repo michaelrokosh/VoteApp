@@ -39,7 +39,8 @@ C.EditablePoll = React.createClass({
       userId: currentUser._id,
       pollId: poll._id,
       active: false,
-      showResults: false
+      showResults: false,
+      disabled: true
     }, function (err, pollItemId) {
       if (!err) {
         let pollItemOptions = e.target.getElementsByClassName('poll-item-option');
@@ -63,7 +64,7 @@ C.EditablePoll = React.createClass({
     return (
       <div className="container">
         <div className="row">
-          <div className="col s6 offset-s3">
+          <div className="col s12 m6 offset-m3">
             <h1 className="text-center">{ poll.name }</h1>
             {
               pollItems.map((pollItem) => {
@@ -74,8 +75,8 @@ C.EditablePoll = React.createClass({
             <form onSubmit={this.addNewPollItem}>
               <C.FormErrors errors={this.state.errors} />
               <C.FormInput hasError={!!this.state.errors.question} name="Question" type="text" label="Question" />
-              <C.FormInput hasError={!!this.state.errors.question} name="Option 1" type="text" className="poll-item-option" label="Option 1" value="+"/>
-              <C.FormInput hasError={!!this.state.errors.question} name="Option 2" type="text" className="poll-item-option" label="Option 2" value="-"/>
+              <C.FormInput hasError={!!this.state.errors.question} name="1" type="text" className="poll-item-option" label="1" value="+"/>
+              <C.FormInput hasError={!!this.state.errors.question} name="2" type="text" className="poll-item-option" label="2" value="-"/>
               <input type="submit" className="btn" value="Add"/>
             </form>
           </div>

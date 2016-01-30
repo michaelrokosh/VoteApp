@@ -8,15 +8,24 @@ C.MainHeader = React.createClass({
   handleLogout() {
     Meteor.logout();
   },
+
+  componentDidMount() {
+    $(".button-collapse").sideNav();
+  },
+
   render() {
     let loginButton;
     let signUpButton;
     let newPoll;
+    let latestPolls;
     let { currentUser } = this.data;
 
     if (currentUser) {
       newPoll = (
         <li><a href="/polls/new">New Poll</a></li>
+      )
+      latestPolls = (
+        <li><a href="/polls">Latest Polls</a></li>
       )
       loginButton = (
         <li><a href="#" onClick={this.handleLogout}>Logout</a></li>
@@ -36,13 +45,18 @@ C.MainHeader = React.createClass({
           <div className="row">
             <div className="col s12">
               <a href="/" className="brand-logo">VoteApp</a>
+              <a href="#" data-activates="mobileSidebar" className="button-collapse">
+                <i className="material-icons">menu</i>
+              </a>
               <ul id="nav" className="right hide-on-med-and-down">
                 { newPoll }
+                { latestPolls }
                 { loginButton }
                 { signUpButton }
               </ul>
               <ul className="side-nav" id="mobileSidebar">
                 { newPoll }
+                { latestPolls }
                 { loginButton }
                 { signUpButton }
               </ul>

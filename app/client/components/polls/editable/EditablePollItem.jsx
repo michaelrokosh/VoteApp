@@ -31,8 +31,35 @@ C.PollItem = React.createClass({
     return;
   },
 
+  addPollItemOption(e) {
+    Meteor.call('insertPollItemOption', this.props.pollItem._id);
+  },
+
   toggleActive(e) {
     Meteor.call('pollItems/toggleActive', this.props.pollItem._id, !this.props.pollItem.active); 
+  },
+
+  toggleDisabled(e) {
+    console.log('toggleDisabled')
+    Meteor.call('pollItems/toggleDisabled', this.props.pollItem._id, !this.props.pollItem.disabled); 
+  },
+
+  toggleShowResults(e) {
+    Meteor.call('pollItems/toggleShowResults', this.props.pollItem._id, !this.props.pollItem.showResults); 
+  },
+
+  getVotes() {
+    Meteor.call('getVotes', this.props.pollItem._id, function (err, res) {
+      console.log(err || res);
+      let message = '';
+      _.each(res, function (vote) {
+        let email = vote.voter && vote.voter.emails && vote.voter.emails[0].address;
+        let option = vote.pollItemOption.text;
+        message += email + ' - ' + option + ' - ' + vote.createdAt.toString() + '\n';
+      });
+
+      alert(message); 
+    }); 
   },
 
   render() {
@@ -44,6 +71,14 @@ C.PollItem = React.createClass({
         <form onSubmit={ this.updatePollItem }>
           <C.FormErrors errors={ this.state.errors } />
           <C.FormInput hasError={ !!this.state.errors.question } onBlur={ this.updateText } name="Question" type="text" label="Question" value={ pollItem.text }/>
+          <p>
+            <input type="checkbox" id={ "disabled-checkbox-" + pollItem._id } onChange={ this.toggleDisabled } checked={ this.props.pollItem.disabled } />
+            <label htmlFor={ "disabled-checkbox-" + pollItem._id }>Disabled</label>
+          </p>
+          <p>
+            <input type="checkbox" id={ "show-results-checkbox-" + pollItem._id } onChange={ this.toggleShowResults } checked={ this.props.pollItem.showResults } />
+            <label htmlFor={ "show-results-checkbox-" + pollItem._id }>Show Results</label>
+          </p>
           {
             pollItemOptions.map((option, i) => {
               return <C.PollItemOption pollItemOption={ option }/>
@@ -58,6 +93,12 @@ C.PollItem = React.createClass({
                 On
               </label>
             </div>
+            <a onClick={ this.addPollItemOption } className="btn-floating btn-small waves-effect waves-light add-option-btn">
+              <i className="material-icons">add</i>
+            </a>
+            <a onClick={ this.getVotes } className="btn-floating btn-small waves-effect waves-light add-option-btn">
+              <i className="material-icons">supervisor_account</i>
+            </a>
             <input type="button" className="btn red" onClick={ this.removePollItem } value="Remove"/>
           </div>
         </form>
