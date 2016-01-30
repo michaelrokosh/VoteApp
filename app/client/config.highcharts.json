@@ -1,7 +1,7 @@
 {
   "version": "4.2.1",     
   "base": "highcharts.js",
-  "adapter": "standalone-framework.js", 
+  "adapter": "jquery", 
   "modules": [
     "highcharts-3d.src.js",
     "modules/exporting.js",

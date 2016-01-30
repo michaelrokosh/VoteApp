@@ -35,3 +35,4 @@ highcharts:highcharts-meteor
 highcharts-container
 materialize:materialize
 dschulz:jquery-qrcode
+chart:chart
