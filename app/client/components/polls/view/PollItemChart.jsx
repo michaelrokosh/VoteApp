@@ -9,7 +9,7 @@ C.PollItemChart = React.createClass({
     const pollItemOptions = PollItemOptions.find({ pollItemId: this.props.pollItemId }).fetch();
     const { pollItemId } = this.props;
     const chart = this.chart || null;
-    if (chart) {
+    if (chart && pollItemOptions.length) {
       pollItemOptions.forEach(function (option, i) {
         chart.series[0].data[i] && chart.series[0].data[i].update([option.text, option.votes]);
       });
@@ -22,7 +22,10 @@ C.PollItemChart = React.createClass({
 
   componentDidMount() {
     const { pollItem, pollItemOptions } = this.data;
-    this.chart =  new Highcharts.Chart(this.chartProps());
+    if (pollItem && pollItemOptions) {
+      console.log('this.chartProps()', this.chartProps());
+      this.chart = new Highcharts.Chart(this.chartProps());
+    }
   },
 
   chartProps() {
@@ -59,6 +62,8 @@ C.PollItemChart = React.createClass({
       colorByPoint: true,
       data: []
     });
+
+    console.log('pollItemOptions', pollItemOptions);
 
     pollItemOptions.forEach(function (option) {
       series[0].data.push([option.text, option.votes]);
