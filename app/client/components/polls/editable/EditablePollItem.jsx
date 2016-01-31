@@ -40,7 +40,6 @@ C.PollItem = React.createClass({
   },
 
   toggleDisabled(e) {
-    console.log('toggleDisabled')
     Meteor.call('pollItems/toggleDisabled', this.props.pollItem._id, !this.props.pollItem.disabled); 
   },
 
@@ -70,7 +69,7 @@ C.PollItem = React.createClass({
       <div className="poll-item">
         <form onSubmit={ this.updatePollItem }>
           <C.FormErrors errors={ this.state.errors } />
-          <C.FormInput hasError={ !!this.state.errors.question } onBlur={ this.updateText } name="Question" type="text" label="Question" value={ pollItem.text }/>
+          <C.FormInput hasError={ !!this.state.errors.question } onBlur={ this.updateText } name="Question" type="text" label="Question" value={ pollItem.text } placeholder="Enter your question here"/>
           <p>
             <input type="checkbox" id={ "disabled-checkbox-" + pollItem._id } onChange={ this.toggleDisabled } checked={ this.props.pollItem.disabled } />
             <label htmlFor={ "disabled-checkbox-" + pollItem._id }>Disabled</label>
@@ -93,13 +92,18 @@ C.PollItem = React.createClass({
                 On
               </label>
             </div>
-            <a onClick={ this.addPollItemOption } className="btn-floating btn-small waves-effect waves-light add-option-btn">
-              <i className="material-icons">add</i>
-            </a>
-            <a onClick={ this.getVotes } className="btn-floating btn-small waves-effect waves-light add-option-btn">
-              <i className="material-icons">supervisor_account</i>
-            </a>
-            <input type="button" className="btn red" onClick={ this.removePollItem } value="Remove"/>
+            <div className="control-buttons">
+              <a onClick={ this.addPollItemOption } className="btn-floating btn-small waves-effect waves-light add-option-btn">
+                <i className="material-icons">add</i>
+              </a>
+              <a href={ FlowRouter.path('Chart', { pollId: pollItem.pollId, pollItemId: pollItem._id }) } className="btn-floating btn-small waves-effect waves-light add-option-btn" target="_blank">
+                <i className="material-icons">open_in_new</i>
+              </a>
+              <a onClick={ this.getVotes } className="btn-floating btn-small waves-effect waves-light add-option-btn">
+                <i className="material-icons">supervisor_account</i>
+              </a>
+            </div>
+            <input type="button" className="btn red remove-poll-item" onClick={ this.removePollItem } value="Remove"/>
           </div>
         </form>
       </div>

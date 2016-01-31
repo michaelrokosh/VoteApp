@@ -74,9 +74,9 @@ C.EditablePoll = React.createClass({
             <h4>Add new question</h4>
             <form onSubmit={this.addNewPollItem}>
               <C.FormErrors errors={this.state.errors} />
-              <C.FormInput hasError={!!this.state.errors.question} name="Question" type="text" label="Question" />
-              <C.FormInput hasError={!!this.state.errors.question} name="1" type="text" className="poll-item-option" label="1" value="+"/>
-              <C.FormInput hasError={!!this.state.errors.question} name="2" type="text" className="poll-item-option" label="2" value="-"/>
+              <C.FormInput hasError={!!this.state.errors.question} name="Question" type="text" label="Question" placeholder="Are oranges better than tangerines?" />
+              <C.FormInput hasError={!!this.state.errors.question} name="1" type="text" className="poll-item-option" label="1" placeholder="Yes" />
+              <C.FormInput hasError={!!this.state.errors.question} name="2" type="text" className="poll-item-option" label="2" placeholder="No" />
               <input type="submit" className="btn" value="Add"/>
             </form>
           </div>

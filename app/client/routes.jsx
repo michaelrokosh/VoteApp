@@ -41,10 +41,23 @@ FlowRouter.route("/polls/:_id", {
     subscriptions(params) {
         this.register('poll', Meteor.subscribe('poll', params._id));
         this.register('pollItems', Meteor.subscribe('pollItems', params._id));
-        this.register('pollItemOptions', Meteor.subscribe('pollItemOptions', params._id));
+        this.register('pollItemOptions', Meteor.subscribe('pollItemOptionsByPollId', params._id));
     },
     action(params) {
         renderMainLayoutWith(<C.Poll />);
+    }
+});
+
+FlowRouter.route("/polls/:pollId/:pollItemId/chart", {
+    name: "Chart",
+    subscriptions(params) {
+        this.register('pollItems', Meteor.subscribe('pollItems', params.pollId));
+        this.register('pollItemOptions', Meteor.subscribe('pollItemOptionsByPollItemId', params.pollItemId));
+    },
+    action(params) {
+        ReactLayout.render(C.MainLayout, {
+            content: <C.PollItemChartWrapper pollItemId={ params.pollItemId } showToOwnerOnly={ true }/>
+        });
     }
 });
 

@@ -6,26 +6,20 @@ C.PollItemView = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-    let pollItemOptions = PollItemOptions.find({ pollItemId: this.props.pollItem._id }).fetch();
+    const pollItemOptions = PollItemOptions.find({ pollItemId: this.props.pollItem._id }).fetch();
     return {
       pollItemOptions: pollItemOptions
     }
   },
 
   render() {
-    let { pollItem } = this.props;
-    let { pollItemOptions } = this.data; 
-    let chart;
-    if (pollItem.showResults) {
-      chart = <C.PollItemChart pollItem={ pollItem }/>
-    } else {
-      chart = ""
-    }
+    const { pollItem } = this.props;
+    const { pollItemOptions } = this.data; 
 
     return (
       <div className="poll-item">
         <h5>{ pollItem.text }</h5>
-        { chart }
+        <C.PollItemChartWrapper pollItemId={ pollItem._id }/>
         {
           pollItemOptions.map((option, i) => {
             return <C.PollItemOptionView pollItemOption={ option }/>
