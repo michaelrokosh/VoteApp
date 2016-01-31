@@ -96,10 +96,10 @@ C.PollItem = React.createClass({
               <a onClick={ this.addPollItemOption } className="btn-floating btn-small waves-effect waves-light add-option-btn">
                 <i className="material-icons">add</i>
               </a>
-              <a href={ FlowRouter.path('Chart', { pollId: pollItem.pollId, pollItemId: pollItem._id }) } className="btn-floating btn-small waves-effect waves-light add-option-btn" target="_blank">
+              <a href={ FlowRouter.path('Chart', { pollId: pollItem.pollId, pollItemId: pollItem._id }) } className="btn-floating btn-small waves-effect waves-light" target="_blank">
                 <i className="material-icons">open_in_new</i>
               </a>
-              <a onClick={ this.getVotes } className="btn-floating btn-small waves-effect waves-light add-option-btn">
+              <a onClick={ this.getVotes } className="btn-floating btn-small waves-effect waves-light">
                 <i className="material-icons">supervisor_account</i>
               </a>
             </div>
