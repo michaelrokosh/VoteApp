@@ -14,7 +14,7 @@ C.PollItemView = React.createClass({
 
   render() {
     const { pollItem } = this.props;
-    const { pollItemOptions } = this.data; 
+    const { pollItemOptions, isReady } = this.data; 
 
     return (
       <div className="poll-item">

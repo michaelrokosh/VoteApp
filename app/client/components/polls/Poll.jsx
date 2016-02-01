@@ -3,14 +3,15 @@ C.Poll = React.createClass({
   getMeteorData() {
     return {
       currentUser: Meteor.user(),
-      poll: Polls.findOne({ _id: FlowRouter.getParam('_id') })
+      poll: Polls.findOne({ _id: FlowRouter.getParam('_id') }),
+      isReady: FlowRouter.subsReady()
     }
   },
 
   render() {
-    const { currentUser, poll } = this.data;
+    const { currentUser, poll, isReady } = this.data;
 
-    if (!poll) {
+    if (!isReady) {
       return <C.MainLoader />
     }
     if (!currentUser) {

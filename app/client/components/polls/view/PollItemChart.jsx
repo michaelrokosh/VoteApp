@@ -11,7 +11,7 @@ C.PollItemChart = React.createClass({
     const chart = this.chart || null;
     if (chart && pollItemOptions.length) {
       pollItemOptions.forEach(function (option, i) {
-        chart.series[0].data[i] && chart.series[0].data[i].update([option.text, option.votes]);
+        chart.series[0].data[i] && chart.series[0].data[i].update([`${option.text} (${option.votes})`, option.votes]);
       });
     }
     return {
@@ -63,10 +63,8 @@ C.PollItemChart = React.createClass({
       data: []
     });
 
-    console.log('pollItemOptions', pollItemOptions);
-
     pollItemOptions.forEach(function (option) {
-      series[0].data.push([option.text, option.votes]);
+      series[0].data.push([`${option.text} (${option.votes})`, option.votes]);
     });
 
     chartProps.series = series;

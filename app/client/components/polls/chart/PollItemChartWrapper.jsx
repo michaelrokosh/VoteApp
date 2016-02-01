@@ -11,14 +11,15 @@ C.PollItemChartWrapper = React.createClass({
     return {
       pollItem: PollItems.findOne({ _id: pollItemId }),
       pollItemOptions: PollItemOptions.find({ pollItemId: pollItemId }).fetch(),
-      currentUser: Meteor.user()
+      currentUser: Meteor.user(),
+      isReady: !this.props.showToOwnerOnly || FlowRouter.subsReady()
     }
   },
 
   render() {
-    const { pollItem, pollItemOptions, currentUser } = this.data;
+    const { pollItem, pollItemOptions, currentUser, isReady } = this.data;
 
-    if (!pollItem || !pollItemOptions.length) {
+    if (!isReady) {
       return <C.MainLoader />
     }
 
