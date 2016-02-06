@@ -1,4 +1,8 @@
 C.PollView = React.createClass({
+  PropTypes: {
+    preview: React.PropTypes.boolean
+  },
+
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
@@ -25,8 +29,12 @@ C.PollView = React.createClass({
           <div className="col s12 m6 offset-m3">
             <h1 className="text-center">{ poll.name }</h1>
             {
-              activePollItems.map((pollItem) => {
-                return <C.PollItemView pollItem={ pollItem }/>
+              activePollItems.map((pollItem, i) => {
+                return (
+                  <div key={ i }>
+                    <C.PollItemView pollItem={ pollItem } preview={ !!this.props.preview }/>
+                  </div>
+                )
               })
             }
           </div>

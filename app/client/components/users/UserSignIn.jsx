@@ -51,9 +51,9 @@ C.UserSignIn = React.createClass({
     },
     render() {
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
-                    <div className="col s12 m6 offset-m3">
+                    <div className="col s12 m12">
                         <h1>Sign In</h1>
 
                         <form onSubmit={this.onSubmit}>

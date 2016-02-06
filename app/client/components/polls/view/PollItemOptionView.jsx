@@ -1,6 +1,7 @@
 C.PollItemOptionView = React.createClass({
   PropTypes: {
-    pollItemOption: React.PropTypes.object
+    pollItemOption: React.PropTypes.object,
+    preview: React.PropTypes.boolean
   },
 
   mixins: [ReactMeteorData],
@@ -18,6 +19,10 @@ C.PollItemOptionView = React.createClass({
   },
 
   vote(e) {
+    if (this.props.preview) {
+      alert('You can\'n vote in the preview mode');
+      return;
+    }
     $(e.target).closest('.poll-item').find('.vote-btn').removeClass('green');
     Meteor.call('vote', this.props.pollItemOption._id);
     $(e.target).addClass('green');

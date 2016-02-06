@@ -1,4 +1,8 @@
 C.Poll = React.createClass({
+  PropTypes: {
+    preview: React.PropTypes.boolean
+  },
+
   mixins: [ReactMeteorData],
   getMeteorData() {
     return {
@@ -14,8 +18,11 @@ C.Poll = React.createClass({
     if (!isReady) {
       return <C.MainLoader />
     }
+    if (this.props.preview) {
+      return <C.PollView preview={ true }/> 
+    }
     if (!currentUser) {
-      return <C.UserSignUp />
+      return <C.UserSignInOrSignUp />
     }
     if (currentUser._id !== poll.userId) {
       return <C.PollView />

@@ -18,13 +18,12 @@
   margin-bottom: 10px;
 }
 
-.poll-item .control-buttons {
+.poll-item .control-buttons, .poll-item .control-checkboxes > p {
   display: inline-block;
 }
 
-.poll-item .remove-poll-item {
-  margin-bottom: 10px;
-  margin-left: 10px;
+.poll-item .control-checkboxes > p {
+  margin-right: 20px;
 }
 
 .poll-item .control-buttons > a {
@@ -34,6 +33,28 @@
 
 .poll-item .control-buttons > a:last-of-type {
   margin-right: 0;
+}
+
+.preview-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.poll-item-option {
+  position: relative;
+}
+
+.remove-poll-item-option, .poll-item .remove-poll-item {
+  position: absolute;
+  right: 0;
+  bottom: 28px;
+  color: #9E9E9E;
+  cursor: pointer;
+}
+
+.remove-poll-item-option:hover, .remove-poll-item:hover {
+  color: #F44336;
 }
 
 .chart {
@@ -62,4 +83,8 @@
 
 .pull-left {
   float: left;
+}
+
+.relative {
+  position: relative;
 }

@@ -58,6 +58,14 @@ C.EditablePoll = React.createClass({
     });
   },
 
+  renderPollItem(pollItem, index) {
+    return (
+      <div key={ index }>
+        <C.PollItem pollItem={ pollItem }/>
+      </div>
+    )
+  },
+
   render() {
     const { currentUser, poll, pollItems } = this.data;
 
@@ -66,11 +74,9 @@ C.EditablePoll = React.createClass({
         <div className="row">
           <div className="col s12 m6 offset-m3">
             <h1 className="text-center">{ poll.name }</h1>
-            {
-              pollItems.map((pollItem) => {
-                return <C.PollItem pollItem={ pollItem }/>
-              })
-            }
+
+            { pollItems.map(this.renderPollItem) }
+            
             <h4>Add new question</h4>
             <form onSubmit={this.addNewPollItem}>
               <C.FormErrors errors={this.state.errors} />
@@ -81,6 +87,9 @@ C.EditablePoll = React.createClass({
             </form>
           </div>
         </div>
+        <a className="btn-floating btn-large waves-effect waves-light preview-btn" href={ FlowRouter.path('PollPreview', { _id: poll._id }) } target="_blank">
+          <i className="material-icons">visibility</i>
+        </a>
       </div>
     );
   }

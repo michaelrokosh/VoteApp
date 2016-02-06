@@ -8,13 +8,16 @@ C.FormInput = React.createClass({
     className: React.PropTypes.string,
     value: React.PropTypes.string,
     onKeyUp: React.PropTypes.func,
-    onBlur: React.PropTypes.func
+    onBlur: React.PropTypes.func,
+    onChange: React.PropTypes.func
   },
+
   shouldComponentUpdate() {
     return true;
   },
+
   render() {
-    const { type, label, name, placeholder, value, onKeyUp, onBlur } = this.props;
+    const { type, label, name, placeholder, value, onKeyUp, onBlur, onChange } = this.props;
     let { className } = this.props
     let inputType;
 
@@ -24,15 +27,27 @@ C.FormInput = React.createClass({
 
     switch (type) {
       case "textarea":
-      inputType = (
-        <textarea type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } defaultValue={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }></textarea>
-      );
-      break;
+        if (onChange) {
+          inputType = (
+            <textarea type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } onChange={ onChange } value={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }></textarea>
+          );
+        } else {
+          inputType = (
+            <textarea type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } defaultValue={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }></textarea>
+          );
+        }
+        break;
       default:
-      inputType = (
-        <input type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } defaultValue={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }/>
-      );
-      break;
+        if (onChange) {
+          inputType = (
+            <input type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } onChange={ onChange } value={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }/>
+          );
+        } else {
+          inputType = (
+            <input type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } defaultValue={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }/>
+          );
+        }
+        break;
     }
 
     return (

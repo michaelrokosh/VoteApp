@@ -1,6 +1,7 @@
 C.PollItemView = React.createClass({
   PropTypes: {
-    pollItem: React.PropTypes.object.isRequired
+    pollItem: React.PropTypes.object.isRequired,
+    preview: React.PropTypes.boolean
   },
 
   mixins: [ReactMeteorData],
@@ -13,7 +14,7 @@ C.PollItemView = React.createClass({
   },
 
   render() {
-    const { pollItem } = this.props;
+    const { pollItem, preview } = this.props;
     const { pollItemOptions, isReady } = this.data; 
 
     return (
@@ -22,7 +23,7 @@ C.PollItemView = React.createClass({
         <C.PollItemChartWrapper pollItemId={ pollItem._id }/>
         {
           pollItemOptions.map((option, i) => {
-            return <C.PollItemOptionView pollItemOption={ option }/>
+            return <C.PollItemOptionView pollItemOption={ option } preview={ !!preview } />
           })
         }
       </div>

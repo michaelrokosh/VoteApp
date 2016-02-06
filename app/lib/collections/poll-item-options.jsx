@@ -13,8 +13,39 @@ PollItemOptions.allow({
     if (Polls.findOne({ _id: doc.pollId }).userId !== userId) return false;
     if (PollItems.findOne({ _id: doc.pollItemId }).userId !== userId) return false;
     return true;
+  },
+
+  remove: function (userId, doc) {
+    if (!userId) return false;
+    if (Polls.findOne({ _id: doc.pollId }).userId !== userId) return false;
+    if (PollItems.findOne({ _id: doc.pollItemId }).userId !== userId) return false;
+    return true;
   }
 });
+
+Schemas.PollItemOption = new SimpleSchema({
+  pollId: {
+    type: String,
+    label: "Poll id",
+    denyUpdate: true
+  },
+  pollItemId: {
+    type: String,
+    label: "Poll item id",
+    denyUpdate: true
+  },
+  rank: {
+    type: Number,
+    min: 0
+  },
+  votes: {
+    type: Number,
+    min: 0,
+    denyUpdate: true
+  }
+});
+
+PollItemOptions.attachSchema(Schemas.PollItemOption);
 
 Meteor.methods({
   insertPollItemOption: (pollItemId) => {
