@@ -21,7 +21,7 @@ C.PollItem = React.createClass({
 
   updateText(e) { 
     let updatedText = e.target.value;
-    PollItems.update({ _id: this.props.pollItem._id }, { $set: { text: updatedText } });
+    PollItems.update({ _id: this.props.pollItem._id }, { $set: { text: updatedText } }, { autoConvert: false });
   },
 
   removePollItem(e) {

@@ -26,13 +26,15 @@ PollItemOptions.allow({
 Schemas.PollItemOption = new SimpleSchema({
   pollId: {
     type: String,
-    label: "Poll id",
     denyUpdate: true
   },
   pollItemId: {
     type: String,
-    label: "Poll item id",
     denyUpdate: true
+  },
+  text: {
+    type: String,
+    trim: false
   },
   rank: {
     type: Number,

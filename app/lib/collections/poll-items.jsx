@@ -39,7 +39,8 @@ Schemas.PollItem = new SimpleSchema({
     denyUpdate: true
   },
   text: {
-    type: String
+    type: String,
+    trim: false
   }
 });
 
