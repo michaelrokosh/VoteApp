@@ -74,7 +74,7 @@ C.PollItem = React.createClass({
       <div className="poll-item">
         <form onSubmit={ this.updatePollItem }>
           <C.FormErrors errors={ this.state.errors } />
-          <div className="relative">
+          <div className="poll-item-question">
             <C.FormInput hasError={ !!this.state.errors.question } onChange={ this.updateText } name="Question" type="text" label="Question" value={ this.props.pollItem.text } placeholder="Enter your question here"/>
             <i className="remove-poll-item material-icons dp48" onClick={ this.removePollItem }>delete</i>
           </div>
