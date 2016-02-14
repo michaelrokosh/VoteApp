@@ -20,28 +20,29 @@ C.PollItem = React.createClass({
   },
 
   updateText(e) { 
-    let updatedText = e.target.value;
-    PollItems.update({ _id: this.props.pollItem._id }, { $set: { text: updatedText } }, { autoConvert: false });
+    const updatedText = e.target.value;
+
+    Meteor.call('PollItems/updateText', this.props.pollItem._id, updatedText);
   },
 
   removePollItem(e) {
-    Meteor.call('pollItems/remove', this.props.pollItem._id);
+    Meteor.call('PollItems/removeById', this.props.pollItem._id);
   },
 
   addPollItemOption(e) {
-    Meteor.call('insertPollItemOption', this.props.pollItem._id);
+    Meteor.call('PollItemOptions/insert', this.props.pollItem._id);
   },
 
   toggleActive(e) {
-    Meteor.call('pollItems/toggleActive', this.props.pollItem._id, !this.props.pollItem.active); 
+    Meteor.call('PollItems/toggleActive', this.props.pollItem._id, !this.props.pollItem.active); 
   },
 
   toggleDisabled(e) {
-    Meteor.call('pollItems/toggleDisabled', this.props.pollItem._id, !this.props.pollItem.disabled); 
+    Meteor.call('PollItems/toggleDisabled', this.props.pollItem._id, !this.props.pollItem.disabled); 
   },
 
   toggleShowResults(e) {
-    Meteor.call('pollItems/toggleShowResults', this.props.pollItem._id, !this.props.pollItem.showResults); 
+    Meteor.call('PollItems/toggleShowResults', this.props.pollItem._id, !this.props.pollItem.showResults); 
   },
 
   renderPollItemOption(option, index) {

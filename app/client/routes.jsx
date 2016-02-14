@@ -38,25 +38,15 @@ FlowRouter.route("/polls/new", {
 
 FlowRouter.route("/polls/:_id", {
     name: "Poll",
-    subscriptions(params) {
-        this.register('poll', Meteor.subscribe('poll', params._id));
-        this.register('pollItems', Meteor.subscribe('pollItems', params._id));
-        this.register('pollItemOptions', Meteor.subscribe('pollItemOptionsByPollId', params._id));
-    },
     action(params) {
-        renderMainLayoutWith(<C.Poll />);
+        renderMainLayoutWith(<C.PollPage pollId={ params._id }/>);
     }
 });
 
 FlowRouter.route("/polls/:_id/preview", {
     name: "PollPreview",
-    subscriptions(params) {
-        this.register('poll', Meteor.subscribe('poll', params._id));
-        this.register('pollItems', Meteor.subscribe('pollItems', params._id));
-        this.register('pollItemOptions', Meteor.subscribe('pollItemOptionsByPollId', params._id));
-    },
     action(params) {
-        renderMainLayoutWith(<C.Poll preview={ true }/>);
+        renderMainLayoutWith(<C.PollPage pollId={ params._id } preview={ true }/>);
     }
 });
 

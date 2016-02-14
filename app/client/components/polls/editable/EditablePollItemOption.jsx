@@ -5,21 +5,23 @@ C.PollItemOption = React.createClass({
   },
 
   updateText(e) {
-    let updatedText = e.target.value;
-    PollItemOptions.update({ _id: this.props.pollItemOption._id }, { $set: { text: updatedText } }, { autoConvert: false });
+    const updatedText = e.target.value;
+
+    Meteor.call('PollItemOptions/updateText', this.props.pollItemOption._id, updatedText);
+    return;
   },
 
   removePollItem(e) {
     e.preventDefault();
 
-    PollItems.remove({ _id: this.props.pollItem._id });
+    Meteor.call('PollItemOptions/removeById', this.props.pollItem._id);
     return;
   },
 
   removePollItemOption(e) {
     e.preventDefault();
 
-    PollItemOptions.remove({ _id: this.props.pollItemOption._id });
+    Meteor.call('PollItemOptions/removeById', this.props.pollItemOption._id);
     return;
   },
 
