@@ -37,7 +37,7 @@ C.Poll = React.createClass({
         <C.PollView pollId={ this.props.pollId } preview={ true }/> 
       )
     }
-    if (currentUser && currentUser._id === poll.userId) {
+    if (poll._id === 'demoPoll' || currentUser && currentUser._id === poll.userId) {
       return (
         <C.EditablePoll pollId={ this.props.pollId } />
       )

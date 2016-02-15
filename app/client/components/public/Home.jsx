@@ -11,7 +11,10 @@ C.Home = React.createClass({
         <div className="container">
           <div className="row">
             <div className="col s12 m5">
-              <C.Poll pollId="demoPoll" />
+              <div className="relative">
+                <div className="fade"></div>
+                <C.Poll pollId="demoPoll" />
+              </div>
             </div>
             <div className="col s12 m5 offset-m2">
               <C.Poll pollId="demoPoll" preview={ true } />
