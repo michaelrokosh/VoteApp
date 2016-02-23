@@ -31,7 +31,9 @@ C.PollItemOption = React.createClass({
     return (
       <div className="poll-item-option">
         <C.FormInput name={ index.toString() } type="text" className="poll-item-option" placeholder="Option label" label={ index.toString() } onChange={ this.updateText } value={ pollItemOption.text }/>
-        <i className="remove-poll-item-option material-icons dp48" onClick={ this.removePollItemOption }>delete</i>
+        <C.Tooltipped position="bottom" text="Remove this option">
+          <i className="remove-poll-item-option material-icons dp48" onClick={ this.removePollItemOption }>delete</i>
+        </C.Tooltipped>
       </div>
     );
   }

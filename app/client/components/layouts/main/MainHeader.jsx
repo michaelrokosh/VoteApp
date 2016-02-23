@@ -10,7 +10,9 @@ C.MainHeader = React.createClass({
   },
 
   componentDidMount() {
-    $(".button-collapse").sideNav();
+    $(".button-collapse").sideNav({
+      closeOnClick: true 
+    });
   },
 
   render() {

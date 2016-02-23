@@ -1,10 +1,10 @@
 Polls = new Mongo.Collection('polls');
 
 Polls.allow({ 
-    insert: function (userId, doc) {
-        if (!userId) return false;
-        return true;
-    }
+  insert: function (userId, doc) {
+    if (!userId) return false;
+    return true;
+  }
 });
 
 Schemas.Poll = new SimpleSchema({

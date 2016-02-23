@@ -52,29 +52,6 @@ C.EditablePoll = React.createClass({
         e.target.reset();
       }
     });
-
-  //   PollItems.insert({
-  //     text: question,
-  //     userId: currentUser._id,
-  //     pollId: poll._id,
-  //     active: false,
-  //     showResults: false,
-  //     disabled: true
-  //   }, function (err, pollItemId) {
-  //     if (!err) {
-  //       let pollItemOptions = e.target.getElementsByClassName('poll-item-option');
-  //       for (let i = 0; i < pollItemOptions.length; i++) {
-  //         PollItemOptions.insert({
-  //           pollItemId: pollItemId,
-  //           pollId: poll._id,
-  //           text: pollItemOptions[i].value,
-  //           rank: i + 1,
-  //           votes: 0
-  //         });
-  //       }
-  //     }
-  //     e.target.reset();
-  //   });
   },
 
   renderPollItem(pollItem, index) {
@@ -100,11 +77,15 @@ C.EditablePoll = React.createClass({
           <C.FormInput hasError={!!this.state.errors.question} name="Question" type="text" label="Question" placeholder="Are oranges better than tangerines?" />
           <C.FormInput hasError={!!this.state.errors.question} name="1" type="text" className="poll-item-option" label="1" placeholder="Yes" />
           <C.FormInput hasError={!!this.state.errors.question} name="2" type="text" className="poll-item-option" label="2" placeholder="No" />
-          <input type="submit" className="btn" value="Add"/>
+          <C.Tooltipped text="Add new poll item">
+            <input type="submit" className="btn tooltipped" value="Add"/>
+          </C.Tooltipped>
         </form>
-        <a className="btn-floating btn-large waves-effect waves-light preview-btn" href={ FlowRouter.path('PollPreview', { _id: poll._id }) } target="_blank">
-          <i className="material-icons">visibility</i>
-        </a>
+        <C.Tooltipped position="left" text="Preview">
+          <a className="btn-floating btn-large waves-effect waves-light preview-btn" href={ FlowRouter.path('PollPreview', { _id: poll._id }) } target="_blank">
+            <i className="material-icons">visibility</i>
+          </a>
+        </C.Tooltipped>
       </div>
     );
   }

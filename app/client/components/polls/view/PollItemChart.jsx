@@ -23,7 +23,6 @@ C.PollItemChart = React.createClass({
   componentDidMount() {
     const { pollItem, pollItemOptions } = this.data;
     if (pollItem && pollItemOptions) {
-      console.log('this.chartProps()', this.chartProps());
       this.chart = new Highcharts.Chart(this.chartProps());
     }
   },

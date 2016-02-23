@@ -64,7 +64,7 @@ Meteor.methods({
       showResults: false,
       disabled: true
     }, (err, pollItemId) => {
-      if (!err && options) {
+      if (!err && options.length) {
         for (let i = 0; i < options.length; i++) {
           PollItemOptions.insert({
             userId: userId,

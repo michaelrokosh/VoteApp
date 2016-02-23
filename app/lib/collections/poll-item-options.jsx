@@ -2,29 +2,6 @@ PollItemOptions = new Mongo.Collection('poll-item-options');
 
 if (Meteor.isClient) DemoPollItemOptions = new Mongo.Collection(null);
 
-// PollItemOptions.allow({
-//   insert: function (userId, doc) {
-//     if (!userId) return false;
-//     if (Polls.findOne({ _id: doc.pollId }).userId !== userId) return false;
-//     if (PollItems.findOne({ _id: doc.pollItemId }).userId !== userId) return false;
-//     return true;
-//   },
-
-//   update: function (userId, doc) {
-//     if (!userId) return false;
-//     if (Polls.findOne({ _id: doc.pollId }).userId !== userId) return false;
-//     if (PollItems.findOne({ _id: doc.pollItemId }).userId !== userId) return false;
-//     return true;
-//   },
-
-//   remove: function (userId, doc) {
-//     if (!userId) return false;
-//     if (Polls.findOne({ _id: doc.pollId }).userId !== userId) return false;
-//     if (PollItems.findOne({ _id: doc.pollItemId }).userId !== userId) return false;
-//     return true;
-//   }
-// });
-
 Schemas.PollItemOption = new SimpleSchema({
   pollId: {
     type: String,
@@ -42,6 +19,10 @@ Schemas.PollItemOption = new SimpleSchema({
   rank: {
     type: Number,
     min: 0
+  },
+  userId: {
+    type: String,
+    denyUpdate: true
   },
   votes: {
     type: Number,
@@ -68,7 +49,6 @@ Meteor.methods({
 
     const lastPollItemOption = PollItemOptions.findOne({ pollItemId: pollItemId }, { sort: { rank: -1 } });
     const lastRank = lastPollItemOption ? lastPollItemOption.rank : 0;
-
     PollItemOptions.insert({
       userId: userId,
       pollId: poll._id,

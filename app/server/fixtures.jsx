@@ -1,4 +1,8 @@
 Meteor.startup(function () {
+  Polls.remove({ _id: 'demoPoll' });
+  PollItems.remove({ pollId: 'demoPoll' });
+  PollItemOptions.remove({ pollId: 'demoPoll' });
+
   if (!Polls.findOne({ _id: 'demoPoll' })) {
     Polls.insert({
       _id: 'demoPoll',
@@ -13,7 +17,7 @@ Meteor.startup(function () {
       active: true,
       disabled: false,
       showResults: true,
-      text: "Are You an Early Bird or a Night Owl",
+      text: "Are You an Early Bird or a Night Owl?",
       userId: 'demoUser'
     });
 
@@ -23,7 +27,7 @@ Meteor.startup(function () {
       pollItemId: "demoPollItem",
       rank: 1,
       text: "Early Bird",
-      votes: 2,
+      votes: 15,
       userId: 'demoUser'
     });
 
@@ -33,7 +37,7 @@ Meteor.startup(function () {
       pollItemId: "demoPollItem",
       rank: 2,
       text: "Night Owl",
-      votes: 3,
+      votes: 21,
       userId: 'demoUser'
     });
   }

@@ -25,7 +25,6 @@ C.PollItemChartWrapper = React.createClass({
 
     if (this.props.showToOwnerOnly) {
       if (currentUser._id === pollItem.userId) {
-        console.log('render pollItemOptions',pollItemOptions);
         return <C.PollItemChart pollItemId={ pollItem._id }/>;
       } else {
         return (
@@ -35,7 +34,6 @@ C.PollItemChartWrapper = React.createClass({
     } 
 
     if (pollItem.showResults) {
-      console.log('render pollItemOptions',pollItemOptions);
       return <C.PollItemChart pollItemId={ pollItem._id }/>;
     } else {
       return (
