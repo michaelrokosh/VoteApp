@@ -1,7 +1,7 @@
 C.Home = React.createClass({
   render() {
     return (
-      <div id="main">
+      <div>
         <div className="jumbotron">
           <div className="container">
             <h1 className="text-center">VoteApp</h1>
@@ -22,6 +22,6 @@ C.Home = React.createClass({
           </div>
         </div>
       </div>
-      )
+    )
   }
 });

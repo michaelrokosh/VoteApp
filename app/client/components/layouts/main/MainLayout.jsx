@@ -3,9 +3,9 @@ C.MainLayout = React.createClass({
         return (
             <div>
                 {this.props.header}
-
-                {this.props.content}
-
+                <div id="main">
+                  {this.props.content}
+                </div>
                 {this.props.footer}
             </div>
         )

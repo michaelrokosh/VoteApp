@@ -23,7 +23,11 @@ C.PollItemView = React.createClass({
         <C.PollItemChartWrapper pollItemId={ pollItem._id }/>
         {
           pollItemOptions.map((option, i) => {
-            return <C.PollItemOptionView pollItemOption={ option } preview={ !!preview } />
+            return (
+              <div key={ i }>
+                <C.PollItemOptionView pollItemOption={ option } preview={ !!preview } />
+              </div>
+            )
           })
         }
       </div>
