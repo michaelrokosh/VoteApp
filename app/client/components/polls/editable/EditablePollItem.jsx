@@ -25,6 +25,12 @@ C.PollItem = React.createClass({
     Meteor.call('PollItems/updateText', this.props.pollItem._id, updatedText);
   },
 
+  handleKeyUp(e) {
+    if (e.which === 13) {
+      this.updateText(e);
+    }
+  },
+
   removePollItem(e) {
     Meteor.call('PollItems/removeById', this.props.pollItem._id);
   },
@@ -76,7 +82,7 @@ C.PollItem = React.createClass({
         <form onSubmit={ this.updatePollItem }>
           <C.FormErrors errors={ this.state.errors } />
           <div className="poll-item-question">
-            <C.FormInput hasError={ !!this.state.errors.question } onChange={ this.updateText } name="Question" type="text" label="Question" value={ this.props.pollItem.text } placeholder="Enter your question here"/>
+            <C.FormInput hasError={ !!this.state.errors.question } onKeyUp={ this.handleKeyUp } onBlur={ this.updateText } name="Question" type="text" label="Question" value={ this.props.pollItem.text } placeholder="Enter your question here"/>
             <C.Tooltipped position="bottom" text="Remove this question">
               <i className="remove-poll-item material-icons dp48" onClick={ this.removePollItem }>delete</i>
             </C.Tooltipped>

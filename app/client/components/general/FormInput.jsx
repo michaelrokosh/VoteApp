@@ -8,6 +8,8 @@ C.FormInput = React.createClass({
     className: React.PropTypes.string,
     value: React.PropTypes.string,
     onKeyUp: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func,
+    onKeyPress: React.PropTypes.func,
     onBlur: React.PropTypes.func,
     onChange: React.PropTypes.func
   },
@@ -17,7 +19,7 @@ C.FormInput = React.createClass({
   },
 
   render() {
-    const { type, label, name, placeholder, value, onKeyUp, onBlur, onChange } = this.props;
+    const { type, label, name, placeholder, value, onKeyUp, onKeyDown, onKeyPress, onBlur, onChange } = this.props;
     let { className } = this.props
     let inputType;
 
@@ -29,22 +31,22 @@ C.FormInput = React.createClass({
       case "textarea":
         if (onChange) {
           inputType = (
-            <textarea type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } onChange={ onChange } value={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }></textarea>
+            <textarea type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } onChange={ onChange } value={ value } onKeyUp={ onKeyUp } onKeyDown={ onKeyDown } onKeyPress={ onKeyPress } onBlur={ onBlur }></textarea>
           );
         } else {
           inputType = (
-            <textarea type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } defaultValue={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }></textarea>
+            <textarea type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } defaultValue={ value } onKeyUp={ onKeyUp } onKeyDown={ onKeyDown } onKeyPress={ onKeyPress } onBlur={ onBlur }></textarea>
           );
         }
         break;
       default:
         if (onChange) {
           inputType = (
-            <input type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } onChange={ onChange } value={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }/>
+            <input type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } onChange={ onChange } value={ value } onKeyUp={ onKeyUp } onKeyDown={ onKeyDown } onKeyPress={ onKeyPress } onBlur={ onBlur }/>
           );
         } else {
           inputType = (
-            <input type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } defaultValue={ value } onKeyUp={ onKeyUp } onBlur={ onBlur }/>
+            <input type={ type } className={ className } name={ name.toLowerCase() } placeholder={ placeholder } defaultValue={ value } onKeyUp={ onKeyUp } onKeyDown={ onKeyDown } onKeyPress={ onKeyPress } onBlur={ onBlur }/>
           );
         }
         break;
