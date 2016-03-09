@@ -62,11 +62,17 @@ if (Meteor.isServer) {
   let initializing = true;
   Votes.find().observe({
     added: function (doc) {
-      if (!initializing) PollItemOptions.update({ _id: doc.pollItemOptionId }, { $inc: { votes: 1 }});
+      if (!initializing) {
+        Polls.update({ _id: doc.pollId }, { $inc: { votesTotal: 1 }});
+        PollItemOptions.update({ _id: doc.pollItemOptionId }, { $inc: { votes: 1 }});
+      }
     },
 
     removed: function (oldDoc) {
-      if (!initializing) PollItemOptions.update({ _id: oldDoc.pollItemOptionId }, { $inc: { votes: -1 }});
+      if (!initializing) {
+        Polls.update({ _id: oldDoc.pollId }, { $inc: { votesTotal: -1 }});
+        PollItemOptions.update({ _id: oldDoc.pollItemOptionId }, { $inc: { votes: -1 }});
+      }
     }
   });
   initializing = false;

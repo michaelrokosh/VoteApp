@@ -15,6 +15,10 @@ Schemas.Poll = new SimpleSchema({
   name: {
     type: String
   },
+  votesTotal: {
+    type: Number,
+    min: 0
+  },
   createdAt: {
     type: Date,
     min: 0,

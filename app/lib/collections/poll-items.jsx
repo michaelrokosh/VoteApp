@@ -41,6 +41,11 @@ Schemas.PollItem = new SimpleSchema({
   text: {
     type: String,
     trim: false
+  },
+  description: {
+    type: String,
+    trim: false,
+    optional: true
   }
 });
 
@@ -89,11 +94,28 @@ Meteor.methods({
       throw new Meteor.Error('not-found');
     }
 
-    if (!Meteor.userId() === pollItem.userId) {
+    if (Meteor.userId() !== pollItem.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
     PollItems.update({ _id: pollItemId }, { $set: { text: updatedText } }, { autoConvert: false });
+  },
+
+  'PollItems/updateDescription': (pollItemId, updatedDescription) => {
+    check(pollItemId, String);
+    check(updatedDescription, String);
+
+    const pollItem = PollItems.findOne({ _id: pollItemId });
+
+    if (!pollItem) {
+      throw new Meteor.Error('not-found');
+    }
+
+    if (Meteor.userId() !== pollItem.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    PollItems.update({ _id: pollItemId }, { $set: { description: updatedDescription } }, { autoConvert: false });
   },
 
   'PollItems/toggleActive': (pollItemId, setActive) => {

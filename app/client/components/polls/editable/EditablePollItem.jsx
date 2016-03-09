@@ -31,6 +31,18 @@ C.PollItem = React.createClass({
     }
   },
 
+  updateDescription(e) {
+    const updatedDescription = e.target.value;
+
+    Meteor.call('PollItems/updateDescription', this.props.pollItem._id, updatedDescription);
+  },
+
+  handleDescriptionKeyUp(e) {
+    if (e.which === 13) {
+      this.updateDescription(e);
+    }
+  },
+
   removePollItem(e) {
     Meteor.call('PollItems/removeById', this.props.pollItem._id);
   },
@@ -86,6 +98,9 @@ C.PollItem = React.createClass({
             <C.Tooltipped position="bottom" text="Remove this question">
               <i className="remove-poll-item material-icons dp48" onClick={ this.removePollItem }>delete</i>
             </C.Tooltipped>
+          </div>
+          <div className="poll-item-description">
+            <C.FormInput type="textarea" className="materialize-textarea" hasError={ !!this.state.errors.description } onKeyUp={ this.handleDescriptionKeyUp } onBlur={ this.updateDescription } name="Description" label="Description" value={ this.props.pollItem.description } placeholder="Enter your description here"/>
           </div>
           <div className="control-checkboxes">
             <p>

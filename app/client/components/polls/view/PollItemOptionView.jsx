@@ -30,10 +30,15 @@ C.PollItemOptionView = React.createClass({
 
   render() {
     const { pollItemOption } = this.props;
-    const { pollItem } = this.data;
+    const { pollItem, vote } = this.data;
+    let buttonClass = 'waves-effect waves-light btn-large vote-btn';
     let buttonLabel = pollItem.showResults ?  `${pollItemOption.text} (${pollItemOption.votes})` : pollItemOption.text;
+    if (vote) {
+      buttonClass += ' green';
+    }
+    
     return (
-      <button className="waves-effect waves-light btn-large vote-btn" disabled={ pollItem.disabled } onClick={ this.vote }>{ buttonLabel }</button>
+      <button className={ buttonClass } disabled={ pollItem.disabled } onClick={ this.vote }>{ buttonLabel }</button>
     );
   }
 });

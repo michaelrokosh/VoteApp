@@ -7,17 +7,20 @@ C.LatestPolls = React.createClass({
   },
 
   renderPoll(poll, index) {
-    let className = 'poll-item card white col s12 m5'
-    if (index % 2 !== 0) className += ' offset-m2';
-
     return (
-      <div className={ className } key={ index }>
-        <div className="card-content black-text">
-          <span className="card-title">{ poll.name }</span>
-        </div>
-        <div className="card-action">
-          <a href={ FlowRouter.path('Poll', { _id: poll._id }) }>Go</a>
-          <small className="pull-right">{ poll.createdAt && moment(poll.createdAt).fromNow() }</small>
+      <div className="col s12 m12">
+        <div className="poll-item-card card white" key={ index }>
+          <div className="card-content black-text">
+            <span className="card-title">{ poll.name }</span>
+            <div className="poll-item-card-description black-text">
+              <p>{ poll.description ? poll.description : 'No description...' }</p>
+              <p>Votes: { poll.votesTotal ? poll.votesTotal : 0 }</p>
+            </div>
+          </div>
+          <div className="card-action">
+            <a href={ FlowRouter.path('Poll', { _id: poll._id }) }>Go</a>
+            <small className="pull-right">{ poll.createdAt && moment(poll.createdAt).fromNow() }</small>
+          </div>
         </div>
       </div>
     )
@@ -29,7 +32,7 @@ C.LatestPolls = React.createClass({
     return (
       <div className="container">
         <div className="row">
-          <div className="col s12 m6 offset-m3">
+          <div className="col s12 m12">
             <div className="row">
             { polls.map(this.renderPoll) }
             </div>

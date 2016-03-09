@@ -38,3 +38,5 @@ dschulz:jquery-qrcode
 chart:chart
 momentjs:moment
 aldeed:schema-deny
+q42:react-markdown
+percolate:migrations

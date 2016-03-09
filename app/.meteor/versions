@@ -69,7 +69,10 @@ npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
 ordered-dict@1.0.4
+perak:markdown@1.0.5
+percolate:migrations@0.9.8
 promise@0.5.1
+q42:react-markdown@0.0.3
 raix:eventemitter@0.1.3
 random@1.0.5
 rate-limit@1.0.0

@@ -27,6 +27,7 @@ C.NewPoll = React.createClass({
         Polls.insert({ 
           name: pollName,
           userId: Meteor.userId(),
+          votesTotal: 0,
           createdAt: new Date
         }, (err, _id) => {
             if (err) {
