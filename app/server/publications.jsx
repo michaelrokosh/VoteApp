@@ -1,3 +1,7 @@
+Meteor.publish('currentUser', function () {
+  return Meteor.users.find({ _id: this.userId });
+});
+
 Meteor.publish('poll', function (pollId) {
   return Polls.find({ _id: pollId });
 });

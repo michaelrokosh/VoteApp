@@ -5,16 +5,24 @@ C.PollPage = React.createClass({
   },
 
   mixins: [ReactMeteorData],
+
   getMeteorData() {
+    const currentUserHandle = Meteor.subscribe('currentUser');
+    
     return {
-      currentUser: Meteor.user()
+      currentUser: Meteor.user(),
+      isReady: currentUserHandle.ready()
     }
   },
 
   render() {
+    if (!this.data.isReady) {
+      return <C.MainLoader />
+    }
     if (!this.data.currentUser) {
       return <C.UserSignInOrSignUp />
     }
+
     return (
       <div className="container">
         <div className="row">
