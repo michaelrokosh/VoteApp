@@ -19,6 +19,9 @@ Schemas.Poll = new SimpleSchema({
     type: Number,
     min: 0
   },
+  isPrivate: {
+    type: Boolean
+  },
   createdAt: {
     type: Date,
     min: 0,
@@ -27,3 +30,21 @@ Schemas.Poll = new SimpleSchema({
 });
 
 Polls.attachSchema(Schemas.Poll);
+
+Meteor.methods({
+  'Polls/togglePrivate': (pollId) => {
+    check(pollId, String);
+
+    const poll = Polls.findOne({ _id: pollId });
+
+    if (!poll) {
+      throw new Meteor.Error('not-found');
+    }
+
+    if (Meteor.userId() !== poll.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Polls.update({ _id: pollId }, { $set: { isPrivate: !poll.isPrivate } });
+  }
+});

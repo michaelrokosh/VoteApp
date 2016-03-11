@@ -19,12 +19,16 @@ C.MainHeader = React.createClass({
     let loginButton;
     let signUpButton;
     let newPoll;
+    let myPolls;
     let latestPolls;
     let { currentUser } = this.data;
 
     if (currentUser) {
       newPoll = (
         <li><a href="/polls/new">New Poll</a></li>
+      )
+      myPolls = (
+        <li><a href={ "/" + currentUser._id + "/polls" }>My Polls</a></li>
       )
       latestPolls = (
         <li><a href="/polls">Public Polls</a></li>
@@ -52,6 +56,7 @@ C.MainHeader = React.createClass({
               </a>
               <ul id="nav" className="right hide-on-med-and-down">
                 { newPoll }
+                { myPolls }
                 { latestPolls }
                 { loginButton }
                 { signUpButton }

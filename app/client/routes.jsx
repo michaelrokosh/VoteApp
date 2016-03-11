@@ -36,6 +36,16 @@ FlowRouter.route("/polls/new", {
     }
 });
 
+FlowRouter.route("/:_id/polls/", {
+    name: "UserPolls",
+    subscriptions(params) {
+        this.register('polls', Meteor.subscribe('userPolls', params._id));
+    },
+    action(params) {
+        renderMainLayoutWith(<C.LatestPolls userId={ params._id } />);
+    }
+});
+
 FlowRouter.route("/polls/:_id", {
     name: "Poll",
     action(params) {

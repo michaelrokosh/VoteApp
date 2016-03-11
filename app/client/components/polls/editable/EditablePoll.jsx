@@ -54,6 +54,10 @@ C.EditablePoll = React.createClass({
     });
   },
 
+  togglePrivatePoll(e) {
+    Meteor.call('Polls/togglePrivate', this.data.poll._id);
+  },
+
   renderPollItem(pollItem, index) {
     return (
       <div key={ index }>
@@ -68,7 +72,14 @@ C.EditablePoll = React.createClass({
     return (
       <div className="editable-poll">
         <h1 className="text-center">{ poll.name }</h1>
-
+        <p>
+          <C.Tooltipped position="bottom" text="Private/public poll">
+            <span>
+              <input type="checkbox" id="togglePrivatePoll" onChange={ this.togglePrivatePoll } checked={ poll.isPrivate } />
+              <label htmlFor="togglePrivatePoll">Private</label>
+            </span>
+          </C.Tooltipped>
+        </p>
         { pollItems.map(this.renderPollItem) }
         
         <h4>Add new question</h4>

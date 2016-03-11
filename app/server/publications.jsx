@@ -7,7 +7,11 @@ Meteor.publish('poll', function (pollId) {
 });
 
 Meteor.publish('polls', function () {
-  return Polls.find();
+  return Polls.find({ isPrivate: false });
+});
+
+Meteor.publish('userPolls', function (userId) {
+  return Polls.find({ userId: userId });
 });
 
 Meteor.publish('pollItems', function (pollId) {
@@ -45,7 +49,7 @@ Meteor.publish('votesByPollItemId', function (pollItemId) {
   if (this.userId !== pollItem.userId) {
     this.ready();
   }
-  
+
   const self = this;
   const subHandle = Votes.find({ pollItemId: pollItemId }).observeChanges({
     added: function (id, fields) {

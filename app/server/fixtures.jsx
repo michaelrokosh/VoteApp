@@ -9,6 +9,7 @@ Meteor.startup(function () {
       userId: 'demoUser',
       name: 'Demo',
       votesTotal: 0,
+      isPrivate: false,
       createdAt: new Date
     });
 
