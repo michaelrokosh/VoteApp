@@ -23,10 +23,16 @@ C.PollView = React.createClass({
 
   render() {
     const { currentUser, poll, activePollItems } = this.data;
-
+    let infoContainer;
+    if (activePollItems.length === 0) {
+      infoContainer = (
+        <p>No active items...</p>
+      )
+    }
     return (
       <div className="poll-view">
         <h1 className="text-center">{ poll.name }</h1>
+        { infoContainer }
         {
           activePollItems.map((pollItem, i) => {
             return (
