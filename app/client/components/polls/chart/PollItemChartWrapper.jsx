@@ -11,7 +11,7 @@ C.PollItemChartWrapper = React.createClass({
       pollItem: PollItems.findOne({ _id: pollItemId }),
       pollItemOptions: PollItemOptions.find({ pollItemId: pollItemId }).fetch(),
       currentUser: Meteor.user(),
-      isReady: !this.props.showToOwnerOnly || FlowRouter.subsReady()
+      isReady: FlowRouter.subsReady()
     }
   },
 
@@ -22,13 +22,13 @@ C.PollItemChartWrapper = React.createClass({
       return <C.MainLoader />
     }
 
-    if (currentUser && pollItem && currentUser._id === pollItem.userId) {
+    if (currentUser && currentUser._id === pollItem.userId) {
       return <C.PollItemChart pollItemId={ pollItem._id }/>;
-    } else if (pollItem && pollItem.showResults) {
+    } else if (pollItem.showResults) {
       return <C.PollItemChart pollItemId={ pollItem._id }/>;
     } else {
       return (
-        <small>Results are hidden</small>
+        <h3>Results are hidden</h3>
       )
     }
 
