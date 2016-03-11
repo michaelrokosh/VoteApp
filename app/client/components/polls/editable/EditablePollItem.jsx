@@ -8,7 +8,7 @@ C.PollItem = React.createClass({
   getMeteorData() {
     Meteor.subscribe('votesByPollItemId')
     return {
-      votes: Votes.find({ pollItemId: this.props.pollItem._id }).fetch(),
+      votes: Votes.find({ pollItemId: this.props.pollItem._id }, { sort: { createdAt: 1 } }).fetch(),
       pollItemOptions: PollItemOptions.find({ pollItemId: this.props.pollItem._id }).fetch(),
       pollItem: PollItems.findOne({ _id: this.props.pollItem._id })
     }
@@ -22,7 +22,7 @@ C.PollItem = React.createClass({
   },
 
   componentDidMount() {
-    // $('.modal-trigger').leanModal();
+    $('.modal-trigger').leanModal();
   },
 
   updateText(e) { 
@@ -94,10 +94,10 @@ C.PollItem = React.createClass({
   renderVotes(vote, index) {
     const pollItemOption = PollItemOptions.findOne({ _id: vote.pollItemOptionId });
     return (
-      <li className="collection-item avatar">
-        <i className="material-icons circle red">play_arrow</i>
+      <li className="collection-item avatar" key={ index }>
+        <i className="material-icons circle grey">perm_identity</i>
         <span className="title">{ pollItemOption && pollItemOption.text }</span>
-        <p>First Line</p>
+        <p>{ moment(vote.createdAt).fromNow() }</p>
       </li>
     )
   },
@@ -175,7 +175,7 @@ C.PollItem = React.createClass({
 
         <div id="showVotes" className="modal bottom-sheet">
           <div className="modal-content">
-            <h4>Modal Header</h4>
+            <h4>Votes</h4>
             <ul className="collection">
               { votes.map(this.renderVotes) }
             </ul>
