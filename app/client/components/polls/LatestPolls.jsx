@@ -8,8 +8,8 @@ C.LatestPolls = React.createClass({
 
   renderPoll(poll, index) {
     return (
-      <div className="col s12 m12">
-        <div className="poll-item-card card white" key={ index }>
+      <div className="col s12 m12" key={ index }>
+        <div className="poll-item-card card white">
           <div className="card-content black-text">
             <span className="card-title">{ poll.name }</span>
             <div className="poll-item-card-description black-text">

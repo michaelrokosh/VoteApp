@@ -6,7 +6,9 @@ C.PollItem = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
+    Meteor.subscribe('votesByPollItemId')
     return {
+      votes: Votes.find({ pollItemId: this.props.pollItem._id }).fetch(),
       pollItemOptions: PollItemOptions.find({ pollItemId: this.props.pollItem._id }).fetch(),
       pollItem: PollItems.findOne({ _id: this.props.pollItem._id })
     }
@@ -17,6 +19,10 @@ C.PollItem = React.createClass({
       errors: {},
       active: this.props.pollItem.active
     }
+  },
+
+  componentDidMount() {
+    // $('.modal-trigger').leanModal();
   },
 
   updateText(e) { 
@@ -71,22 +77,33 @@ C.PollItem = React.createClass({
     )
   },
 
-  // getVotes() {
-  //   Meteor.call('getVotes', this.props.pollItem._id, function (err, res) {
-  //     console.log(err || res);
-  //     let message = '';
-  //     _.each(res, function (vote) {
-  //       let email = vote.voter && vote.voter.emails && vote.voter.emails[0].address;
-  //       let option = vote.pollItemOption.text;
-  //       message += email + ' - ' + option + ' - ' + vote.createdAt.toString() + '\n';
-  //     });
+  getVotes() {
+    Meteor.call('getVotes', this.props.pollItem._id, function (err, res) {
+      console.log(err || res);
+      let message = '';
+      _.each(res, function (vote) {
+        let email = vote.voter && vote.voter.emails && vote.voter.emails[0].address;
+        let option = vote.pollItemOption.text;
+        message += email + ' - ' + option + ' - ' + vote.createdAt.toString() + '\n';
+      });
 
-  //     alert(message); 
-  //   }); 
-  // },
+      // alert(message); 
+    }); 
+  },
+
+  renderVotes(vote, index) {
+    const pollItemOption = PollItemOptions.findOne({ _id: vote.pollItemOptionId });
+    return (
+      <li className="collection-item avatar">
+        <i className="material-icons circle red">play_arrow</i>
+        <span className="title">{ pollItemOption && pollItemOption.text }</span>
+        <p>First Line</p>
+      </li>
+    )
+  },
 
   render() {
-    let { pollItemOptions } = this.data;
+    let { pollItemOptions, votes } = this.data;
     let { pollItem } = this.props;
 
     return (
@@ -145,15 +162,25 @@ C.PollItem = React.createClass({
                   <i className="material-icons">open_in_new</i>
                 </a>
               </C.Tooltipped>
-              {/* 
-                <a onClick={ this.getVotes } className="btn-floating btn-small waves-effect waves-light">
+              <C.Tooltipped position="bottom" text="Show votes">
+                <a onClick={ this.getVotes } className="btn-floating btn-small waves-effect waves-light modal-trigger" href="#showVotes">
                   <i className="material-icons">supervisor_account</i>
                 </a>
-              */}
+              </C.Tooltipped>
+            
             </div>
             {/* <input type="button" className="btn red remove-poll-item" onClick={ this.removePollItem } value="Remove"/>*/}
           </div>
         </form>
+
+        <div id="showVotes" className="modal bottom-sheet">
+          <div className="modal-content">
+            <h4>Modal Header</h4>
+            <ul className="collection">
+              { votes.map(this.renderVotes) }
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

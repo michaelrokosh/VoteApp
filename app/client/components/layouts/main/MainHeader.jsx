@@ -27,7 +27,7 @@ C.MainHeader = React.createClass({
         <li><a href="/polls/new">New Poll</a></li>
       )
       latestPolls = (
-        <li><a href="/polls">Latest Polls</a></li>
+        <li><a href="/polls">Public Polls</a></li>
       )
       loginButton = (
         <li><a href="#" onClick={this.handleLogout}>Logout</a></li>

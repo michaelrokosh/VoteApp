@@ -36,3 +36,7 @@ Meteor.publish('vote', function (pollItemOptionId) {
     userId: this.userId
   });
 });
+
+Meteor.publish('votesByPollItemId', (pollItemId) => {
+  return Votes.find({ pollItemId: pollItemId });
+});

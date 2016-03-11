@@ -45,10 +45,11 @@ C.PollItemChart = React.createClass({
       },
       plotOptions: {
         pie: {
-          allowPointSelect: true,
+          allowPointSelect: false,
           cursor: 'pointer',
           dataLabels: {
-            enabled: true
+            enabled: false,
+            distance: -50
           },
           showInLegend: true
         }

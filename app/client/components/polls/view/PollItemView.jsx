@@ -20,13 +20,13 @@ C.PollItemView = React.createClass({
     return (
       <div className="poll-item">
         <h5>{ pollItem.text }</h5>
-        <p><Markdown>{ pollItem.description }</Markdown></p>
+        <Markdown>{ pollItem.description || "" }</Markdown>
         <C.PollItemChartWrapper pollItemId={ pollItem._id }/>
         {
           pollItemOptions.map((option, i) => {
             return (
               <div key={ i }>
-                <C.PollItemOptionView pollItemOption={ option } preview={ !!preview } />
+                <C.PollItemOptionView pollItemOption={ option } preview={ !!preview } index={ i } />
               </div>
             )
           })

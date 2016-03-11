@@ -1,7 +1,6 @@
 C.PollItemChartWrapper = React.createClass({
   PropTypes: {
-    pollItemId: React.PropTypes.string.required,
-    showToOwnerOnly: React.PropTypes.boolean
+    pollItemId: React.PropTypes.string.required
   },
 
   mixins: [ReactMeteorData],
@@ -23,15 +22,15 @@ C.PollItemChartWrapper = React.createClass({
       return <C.MainLoader />
     }
 
-    if (this.props.showToOwnerOnly) {
-      if (currentUser._id === pollItem.userId) {
-        return <C.PollItemChart pollItemId={ pollItem._id }/>;
-      } else {
-        return (
-          <h1 className="text-center">Not authorized</h1>
-        )
-      }
-    } 
+    if (currentUser._id === pollItem.userId) {
+      return <C.PollItemChart pollItemId={ pollItem._id }/>;
+    } else if (pollItem.showResults) {
+      return <C.PollItemChart pollItemId={ pollItem._id }/>;
+    } else {
+      return (
+        <small>Results are hidden</small>
+      )
+    }
 
     if (pollItem.showResults) {
       return <C.PollItemChart pollItemId={ pollItem._id }/>;
