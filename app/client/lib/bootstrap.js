@@ -1,11 +1,11 @@
 Meteor.startup(function () {
   HIGHCHARTS_COLORS = [
-    '#FF5722', 
     '#43A047', 
+    '#F44336', 
     '#EC407A', 
     '#9C27B0', 
-    '#673AB7', 
-    '#F44336', 
+    '#673AB7',
+    '#FF5722', 
     '#3F51B5', 
     '#2196F3', 
     '#009688', 

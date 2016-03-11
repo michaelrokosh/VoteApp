@@ -56,9 +56,9 @@ FlowRouter.route("/polls/:pollId/:pollItemId/chart", {
         this.register('pollItems', Meteor.subscribe('pollItems', params.pollId));
         this.register('pollItemOptions', Meteor.subscribe('pollItemOptionsByPollItemId', params.pollItemId));
     },
-    action(params) {
+    action(params, queryParams) {
         ReactLayout.render(C.ChartLayout, {
-            content: <C.PollItemChartWrapper pollItemId={ params.pollItemId }/>
+            content: <C.PollItemChartWrapper pollItemId={ params.pollItemId } params={ queryParams }/>
         });
     }
 });

@@ -1,6 +1,7 @@
 C.PollItemChart = React.createClass({
   PropTypes: {
-    pollItemId: React.PropTypes.string.required
+    pollItemId: React.PropTypes.string.required,
+    params: React.PropTypes.object
   },
 
   mixins: [ReactMeteorData],
@@ -29,6 +30,15 @@ C.PollItemChart = React.createClass({
 
   chartProps() {
     const { pollItem, pollItemOptions } = this.data;
+    const { params } = this.props;
+    let showLabels = false;
+    let showLegend = true;
+    let labelsDistance = 0;
+    if (params) {
+      if (params.labels === '1') showLabels = true;
+      if (params.legend === '0') showLegend = false;
+      if (params.labelsDistance) labelsDistance = parseInt(params.labelsDistance);
+    }
     let chartProps = {
       chart: {
         plotBackgroundColor: null,
@@ -48,10 +58,10 @@ C.PollItemChart = React.createClass({
           allowPointSelect: false,
           cursor: 'pointer',
           dataLabels: {
-            enabled: false,
-            distance: -50
+            enabled: showLabels,
+            distance: labelsDistance
           },
-          showInLegend: true
+          showInLegend: showLegend
         }
       }
     };
