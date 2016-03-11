@@ -7,6 +7,22 @@ C.LatestPolls = React.createClass({
   },
 
   renderPoll(poll, index) {
+    const togglePrivatePoll = () => {
+      Meteor.call('Polls/togglePrivate', poll._id);
+    };
+
+    let privateToggleContainer;
+    if (Meteor.userId() === poll.userId) {
+      privateToggleContainer = (
+        <C.Tooltipped position="bottom" text="Private/public poll">
+          <span>
+            <input type="checkbox" id="togglePrivatePoll" onChange={ togglePrivatePoll } checked={ poll.isPrivate } />
+            <label htmlFor="togglePrivatePoll">Private</label>
+          </span>
+        </C.Tooltipped>
+      )
+    }
+
     return (
       <div className="col s12 m12" key={ index }>
         <div className="poll-item-card card white">
@@ -19,6 +35,7 @@ C.LatestPolls = React.createClass({
           </div>
           <div className="card-action">
             <a href={ FlowRouter.path('Poll', { _id: poll._id }) }>Go</a>
+            { privateToggleContainer }
             <small className="pull-right">{ poll.createdAt && moment(poll.createdAt).fromNow() }</small>
           </div>
         </div>
