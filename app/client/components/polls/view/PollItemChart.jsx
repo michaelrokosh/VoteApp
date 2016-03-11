@@ -47,6 +47,7 @@ C.PollItemChart = React.createClass({
         type: 'pie',
         renderTo: 'chart-' + pollItem._id
       },
+      exporting: { enabled: false },
       title: {
         text: ''
       },
