@@ -9,6 +9,7 @@ C.NewPoll = React.createClass({
         event.preventDefault();
 
         var pollName = event.target.pollname.value;
+        var isPrivate = event.target.togglePrivatePoll.checked;
 
         var errors = {};
 
@@ -28,6 +29,7 @@ C.NewPoll = React.createClass({
           name: pollName,
           userId: Meteor.userId(),
           votesTotal: 0,
+          isPrivate: true,
           createdAt: new Date
         }, (err, _id) => {
             if (err) {
@@ -51,7 +53,17 @@ C.NewPoll = React.createClass({
                         <form onSubmit={this.onSubmit}>
                             <C.FormErrors errors={this.state.errors} />
                             <C.FormInput hasError={!!this.state.errors.email} name="PollName" type="text" label="Poll name" />
-                            <input type="submit" className="btn"/>
+                            <div className="pull-left">
+                                <C.Tooltipped position="bottom" text="Private/public poll">
+                                  <span>
+                                    <input type="checkbox" id="togglePrivatePoll" />
+                                    <label htmlFor="togglePrivatePoll">Private</label>
+                                  </span>
+                                </C.Tooltipped>
+                            </div>
+                            <div className="pull-right">
+                                <input type="submit" className="btn"/>
+                            </div>
                         </form>
                     </div>
                 </div>
