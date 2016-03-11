@@ -24,7 +24,7 @@ C.PollItemChartWrapper = React.createClass({
 
     if (currentUser && pollItem && currentUser._id === pollItem.userId) {
       return <C.PollItemChart pollItemId={ pollItem._id }/>;
-    } else if (pollItem.showResults) {
+    } else if (pollItem && pollItem.showResults) {
       return <C.PollItemChart pollItemId={ pollItem._id }/>;
     } else {
       return (
