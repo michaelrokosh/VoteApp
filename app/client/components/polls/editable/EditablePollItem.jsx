@@ -6,7 +6,7 @@ C.PollItem = React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-    Meteor.subscribe('votesByPollItemId')
+    Meteor.subscribe('votesByPollItemId', this.props.pollItem._id);
     return {
       votes: Votes.find({ pollItemId: this.props.pollItem._id }, { sort: { createdAt: 1 } }).fetch(),
       pollItemOptions: PollItemOptions.find({ pollItemId: this.props.pollItem._id }).fetch(),
@@ -95,9 +95,9 @@ C.PollItem = React.createClass({
     const pollItemOption = PollItemOptions.findOne({ _id: vote.pollItemOptionId });
     return (
       <li className="collection-item avatar" key={ index }>
-        <i className="material-icons circle grey">perm_identity</i>
+        <i className="material-icons circle grey">done</i>
         <span className="title">{ pollItemOption && pollItemOption.text }</span>
-        <p>{ moment(vote.createdAt).fromNow() }</p>
+        <p>{ vote.email } - { moment(vote.createdAt).fromNow() }</p>
       </li>
     )
   },
@@ -157,17 +157,16 @@ C.PollItem = React.createClass({
                   <i className="material-icons">add</i>
                 </a>
               </C.Tooltipped>
-              <C.Tooltipped position="bottom" text="Open the chart">
-                <a href={ FlowRouter.path('Chart', { pollId: pollItem.pollId, pollItemId: pollItem._id }) } className="btn btn-small waves-effect grey waves-light" target="_blank">
-                  <i className="material-icons">open_in_new</i>
-                </a>
-              </C.Tooltipped>
               <C.Tooltipped position="bottom" text="Show votes">
                 <a onClick={ this.getVotes } className="btn-floating btn-small waves-effect waves-light modal-trigger" href="#showVotes">
                   <i className="material-icons">supervisor_account</i>
                 </a>
               </C.Tooltipped>
-            
+              <C.Tooltipped position="bottom" text="Open the chart">
+                <a href={ FlowRouter.path('Chart', { pollId: pollItem.pollId, pollItemId: pollItem._id }) } className="btn btn-small waves-effect grey waves-light" target="_blank">
+                  <i className="material-icons">open_in_new</i>
+                </a>
+              </C.Tooltipped>            
             </div>
             {/* <input type="button" className="btn red remove-poll-item" onClick={ this.removePollItem } value="Remove"/>*/}
           </div>
