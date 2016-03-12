@@ -158,7 +158,7 @@ C.PollItem = React.createClass({
                 </a>
               </C.Tooltipped>
               <C.Tooltipped position="bottom" text="Show votes">
-                <a onClick={ this.getVotes } className="btn-floating btn-small waves-effect waves-light modal-trigger" href="#showVotes">
+                <a onClick={ this.getVotes } className="btn-floating btn-small waves-effect waves-light modal-trigger" href={ "#showVotes" + pollItem._id }>
                   <i className="material-icons">supervisor_account</i>
                 </a>
               </C.Tooltipped>
@@ -172,7 +172,7 @@ C.PollItem = React.createClass({
           </div>
         </form>
 
-        <div id="showVotes" className="modal bottom-sheet">
+        <div id={ "showVotes" + pollItem._id } className="modal bottom-sheet">
           <div className="modal-content">
             <h4>Votes</h4>
             <ul className="collection">
