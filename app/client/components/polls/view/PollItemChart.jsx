@@ -62,7 +62,7 @@ C.PollItemChart = React.createClass({
             enabled: showLabels,
             distance: labelsDistance
           },
-          showInLegend: showLegend
+          showInLegend: false
         }
       }
     };

@@ -33,7 +33,7 @@ C.PollItemChartWrapper = React.createClass({
     }
 
     if (currentUser && currentUser._id === pollItem.userId || pollItem.showResults) {
-      return <C.PollItemChart pollItemId={ pollItem._id } params= { params }/>;
+      return <C.PollItemChart pollItemId={ pollItem._id } params={ params }/>;
     } else {
       return (
         <h3>Results are hidden</h3>
