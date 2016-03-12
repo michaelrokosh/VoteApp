@@ -24,19 +24,19 @@ C.PollItemChartWrapper = React.createClass({
       return <C.MainLoader />
     }
 
-    if (currentUser && currentUser._id === pollItem.userId || pollItem.showResults) {
-      return <C.PollItemChart pollItemId={ pollItem._id } params= { params }/>;
-    } else {
-      return (
-        <h3>Results are hidden</h3>
-      )
-    }
-
     if (pollItem.showResults) {
       return <C.PollItemChart pollItemId={ pollItem._id }/>;
     } else {
       return (
         <small>Results are hidden</small>
+      )
+    }
+
+    if (currentUser && currentUser._id === pollItem.userId || pollItem.showResults) {
+      return <C.PollItemChart pollItemId={ pollItem._id } params= { params }/>;
+    } else {
+      return (
+        <h3>Results are hidden</h3>
       )
     }
   }
