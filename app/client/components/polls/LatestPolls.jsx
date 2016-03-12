@@ -16,8 +16,8 @@ C.LatestPolls = React.createClass({
       privateToggleContainer = (
         <C.Tooltipped position="bottom" text="Private/public poll">
           <span>
-            <input type="checkbox" id="togglePrivatePoll" onChange={ togglePrivatePoll } checked={ poll.isPrivate } />
-            <label htmlFor="togglePrivatePoll">Private</label>
+            <input type="checkbox" id={ "togglePrivatePoll-" + poll._id } onChange={ togglePrivatePoll } checked={ poll.isPrivate } />
+            <label htmlFor={ "togglePrivatePoll-" + poll._id }>Private</label>
           </span>
         </C.Tooltipped>
       )
