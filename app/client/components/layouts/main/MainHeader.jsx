@@ -63,6 +63,7 @@ C.MainHeader = React.createClass({
               </ul>
               <ul className="side-nav" id="mobileSidebar">
                 { newPoll }
+                { myPolls }
                 { latestPolls }
                 { loginButton }
                 { signUpButton }
