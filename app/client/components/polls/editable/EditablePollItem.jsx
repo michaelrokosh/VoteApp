@@ -22,7 +22,11 @@ C.PollItem = React.createClass({
   },
 
   componentDidMount() {
-    $('.modal-trigger').leanModal();
+    $('.modal-trigger').leanModal({
+      complete: function () {
+        $('.lean-overlay').remove();
+      }
+    });
   },
 
   updateText(e) { 
