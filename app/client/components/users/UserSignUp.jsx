@@ -18,23 +18,28 @@ C.UserSignUp = React.createClass({
 
         var email = event.target.email.value;
         var password = event.target.password.value;
+        var username = event.target.username.value;
         var repeatPassword = event.target.confirmpassword.value;
         var emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         var errors = {};
 
         if (!email) {
-            errors.email = "Email required"
+            errors.email = "Email required";
         } else if (!emailPattern.test(email)) {
-            errors.email = "Email is not valid"
+            errors.email = "Email is not valid";
+        }
+
+        if (!username) {
+            errors.username = "Username required";
         }
 
         if (!password) {
-            errors.password = "Password required"
+            errors.password = "Password required";
         }
 
         if (!repeatPassword || repeatPassword !== password) {
-            errors.repeatPassword = "These passwords don't match. Try again?"
+            errors.repeatPassword = "These passwords don't match. Try again?";
         }
 
         this.setState({
@@ -46,6 +51,7 @@ C.UserSignUp = React.createClass({
         }
 
         Accounts.createUser({
+            username: username,
             email: email, 
             password: password
         }, (err) => {
@@ -69,7 +75,8 @@ C.UserSignUp = React.createClass({
 
                         <form onSubmit={this.onSubmit}>
                             <C.FormErrors errors={this.state.errors} />
-                            <C.FormInput hasError={!!this.state.errors.email} name="Email" type="text" label="Email" />
+                            <C.FormInput hasError={!!this.state.errors.email} name="Email" type="email" label="Email" />
+                            <C.FormInput hasError={!!this.state.errors.username} name="Username" type="text" label="Username (other users will see it)" />
                             <C.FormInput hasError={!!this.state.errors.password} name="Password" type="password" label="Password" />
                             <C.FormInput hasError={!!this.state.errors.repeatPassword} name="ConfirmPassword" type="password" label="Confirm your password" />
                             <input type="submit" className="btn btn-default"/>

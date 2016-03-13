@@ -7,6 +7,7 @@ C.MainHeader = React.createClass({
   },
   handleLogout() {
     Meteor.logout();
+    FlowRouter.go('Home');
   },
 
   componentDidMount() {
@@ -20,28 +21,32 @@ C.MainHeader = React.createClass({
     let signUpButton;
     let newPoll;
     let myPolls;
-    let latestPolls;
+    let userProfile;
+    let publicPolls;
     let { currentUser } = this.data;
 
     if (currentUser) {
       newPoll = (
-        <li><a href="/polls/new">New Poll</a></li>
+        <li><a href={ FlowRouter.path('NewPoll') }>New Poll</a></li>
       )
       myPolls = (
-        <li><a href={ "/" + currentUser._id + "/polls" }>My Polls</a></li>
+        <li><a href={ FlowRouter.path('UserPolls', { username: currentUser.username }) }>My Polls</a></li>
       )
-      latestPolls = (
-        <li><a href="/polls">Public Polls</a></li>
+      publicPolls = (
+        <li><a href={ FlowRouter.path('PublicPolls') }>Public Polls</a></li>
+      )
+      userProfile = (
+        <li><a href={ FlowRouter.path('UserProfile', { username: currentUser.username }) }>Profile</a></li>
       )
       loginButton = (
-        <li><a href="#" onClick={this.handleLogout}>Logout</a></li>
+        <li><a href="#" onClick={ this.handleLogout }>Logout</a></li>
       )
     } else {
       loginButton = (
-        <li><a href="/sign-in">Sign In</a></li>
+        <li><a href={ FlowRouter.path('SignIn') }>Sign In</a></li>
       )
       signUpButton = (
-        <li><a href="/sign-up">Sign Up</a></li>
+        <li><a href={ FlowRouter.path('SignUp') }>Sign Up</a></li>
       )
     }
 
@@ -57,14 +62,16 @@ C.MainHeader = React.createClass({
               <ul id="nav" className="right hide-on-med-and-down">
                 { newPoll }
                 { myPolls }
-                { latestPolls }
+                { publicPolls }
+                { userProfile }
                 { loginButton }
                 { signUpButton }
               </ul>
               <ul className="side-nav" id="mobileSidebar">
                 { newPoll }
                 { myPolls }
-                { latestPolls }
+                { publicPolls }
+                { userProfile }
                 { loginButton }
                 { signUpButton }
               </ul>

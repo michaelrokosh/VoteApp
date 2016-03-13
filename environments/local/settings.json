@@ -1,4 +1,9 @@
 {
   "public": {},
-  "private": {}
+  "private": {},
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://praxie:6662559999@ds011379.mlab.com:11379/voteapp"
+    }
+  }
 }

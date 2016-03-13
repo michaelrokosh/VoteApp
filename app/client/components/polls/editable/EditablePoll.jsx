@@ -5,11 +5,22 @@ C.EditablePoll = React.createClass({
 
   mixins: [ReactMeteorData],
   getMeteorData() {
-    return {
-      currentUser: Meteor.user(),
-      poll: Polls.findOne({ _id: this.props.pollId }),
-      pollItems: PollItems.find({ pollId: this.props.pollId }).fetch()
+    const pollHandle = Meteor.subscribe('poll', this.props.pollId);
+    const pollItemsHandle = Meteor.subscribe('pollItems', this.props.pollId);
+    const pollItemOptionsHandle = Meteor.subscribe('pollItemOptionsByPollId', this.props.pollId);
+    let data = {
+      isReady: false
+    };
+    
+    if (pollHandle.ready() && pollItemsHandle.ready() && pollItemOptionsHandle.ready()) {
+      data.poll = Polls.findOne({ _id: this.props.pollId });
+      data.pollItems = PollItems.find({ pollId: this.props.pollId }).fetch();
+      data.pollItemOptions = PollItemOptions.find({ pollId: this.props.pollId }).fetch();
+      data.isReady = true;
+      data.currentUser = Meteor.user();
     }
+
+    return data;
   },
 
   getInitialState() {
@@ -63,7 +74,11 @@ C.EditablePoll = React.createClass({
   },
 
   render() {
-    const { currentUser, poll, pollItems } = this.data;
+    const { currentUser, poll, pollItems, isReady } = this.data;
+
+    if (!isReady) {
+      return <C.MainLoader />
+    }
 
     return (
       <div className="editable-poll">

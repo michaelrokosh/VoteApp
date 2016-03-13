@@ -20,7 +20,7 @@ FlowRouter.route("/sign-up", {
 });
 
 FlowRouter.route("/polls", {
-    name: "LatestPolls",
+    name: "PublicPolls",
     subscriptions(params) {
         this.register('polls', Meteor.subscribe('polls'));
     },
@@ -36,10 +36,20 @@ FlowRouter.route("/polls/new", {
     }
 });
 
-FlowRouter.route("/:_id/polls/", {
+FlowRouter.route("/:username", {
+    name: "UserProfile",
+    subscriptions(params) {
+        this.register('user', Meteor.subscribe('userByUsername', params.username));
+    },
+    action(params) {
+        renderMainLayoutWith(<C.UserProfilePage username={ params.username } />);
+    }
+});
+
+FlowRouter.route("/:username/polls/", {
     name: "UserPolls",
     subscriptions(params) {
-        this.register('polls', Meteor.subscribe('userPolls', params._id));
+        this.register('polls', Meteor.subscribe('userPollsByUsername', params.username));
     },
     action(params) {
         renderMainLayoutWith(<C.LatestPolls userId={ params._id } />);
@@ -49,14 +59,21 @@ FlowRouter.route("/:_id/polls/", {
 FlowRouter.route("/polls/:_id", {
     name: "Poll",
     action(params) {
-        renderMainLayoutWith(<C.PollPage pollId={ params._id }/>);
+        renderMainLayoutWith(<C.PollViewPage pollId={ params._id } />);
+    }
+});
+
+FlowRouter.route("/polls/:_id/edit", {
+    name: "EditPoll",
+    action(params) {
+        renderMainLayoutWith(<C.EditablePollPage pollId={ params._id } />);
     }
 });
 
 FlowRouter.route("/polls/:_id/preview", {
     name: "PollPreview",
     action(params) {
-        renderMainLayoutWith(<C.PollPage pollId={ params._id } preview={ true }/>);
+        renderMainLayoutWith(<C.PollPage pollId={ params._id } preview={ true } />);
     }
 });
 

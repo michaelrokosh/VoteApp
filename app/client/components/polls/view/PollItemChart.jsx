@@ -40,6 +40,10 @@ C.PollItemChart = React.createClass({
       if (params.labelsDistance) labelsDistance = parseInt(params.labelsDistance);
     }
     let chartProps = {
+      credits: {
+        text: 'VoteApp.xyz',
+        href: 'http://voteapp.xyz'
+      },
       chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,

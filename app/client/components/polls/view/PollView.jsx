@@ -1,29 +1,39 @@
 C.PollView = React.createClass({
   PropTypes: {
-    preview: React.PropTypes.boolean,
     pollId: React.PropTypes.string
   },
 
-  mixins: [ReactMeteorData],
+  mixins: [ReactMeteorData], 
   getMeteorData() {
-    return {
-      currentUser: Meteor.user(),
-      poll: Polls.findOne({ _id: this.props.pollId }),
-      activePollItems: PollItems.find({ 
+    const pollHandle = Meteor.subscribe('poll', this.props.pollId);
+    const pollItemsHandle = Meteor.subscribe('pollItems', this.props.pollId);
+    const pollItemOptionsHandle = Meteor.subscribe('pollItemOptionsByPollId', this.props.pollId);
+    let data = {
+      isReady: false
+    };
+    
+    if (pollHandle.ready() && pollItemsHandle.ready() && pollItemOptionsHandle.ready()) {
+      data.poll = Polls.findOne({ _id: this.props.pollId });
+      data.activePollItems = PollItems.find({ 
         pollId: this.props.pollId,
         active: true
-      }).fetch()
+      }).fetch(),
+      // data.pollItemOptions = PollItemOptions.find({ pollId: this.props.pollId }).fetch();
+      data.isReady = true;
+      data.currentUser = Meteor.user();
     }
-  },
 
-  getInitialState() {
-    return {
-    }
+    return data;
   },
 
   render() {
-    const { currentUser, poll, activePollItems } = this.data;
+    const { currentUser, poll, activePollItems, isReady } = this.data;
     let infoContainer;
+
+    if (!isReady) {
+      return <C.MainLoader />
+    }
+
     if (activePollItems.length === 0) {
       infoContainer = (
         <p>No active items...</p>
@@ -37,7 +47,7 @@ C.PollView = React.createClass({
           activePollItems.map((pollItem, i) => {
             return (
               <div key={ i }>
-                <C.PollItemView pollItem={ pollItem } preview={ !!this.props.preview }/>
+                <C.PollItemView pollItem={ pollItem } />
               </div>
             )
           })

@@ -1,0 +1,35 @@
+C.EditablePollPage = React.createClass({
+  PropTypes: {
+    pollId: React.PropTypes.string
+  },
+
+  mixins: [ReactMeteorData],
+
+  getMeteorData() {
+    const currentUserHandle = Meteor.subscribe('currentUser');
+    
+    return {
+      currentUser: Meteor.user(),
+      isReady: currentUserHandle.ready()
+    }
+  },
+
+  render() {
+    if (!this.data.isReady) {
+      return <C.MainLoader />
+    }
+    if (!this.data.currentUser) {
+      return <C.UserSignInOrSignUp />
+    }
+
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col s12 m6 offset-m3">
+            <C.EditablePoll pollId={ this.props.pollId } />
+          </div>
+        </div>
+      </div>
+    )
+  }
+});

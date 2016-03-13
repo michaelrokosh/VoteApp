@@ -1,8 +1,16 @@
 C.LatestPolls = React.createClass({
+  PropTypes: {
+    userId: React.PropTypes.string
+  },
+
   mixins: [ReactMeteorData],
   getMeteorData() {
+    let pollsSelector = {};
+    const userId = this.props.userId;
+    if (userId) pollsSelector.userId = this.props.userId;
+
     return {
-      polls: Polls.find({}, { sort: { createdAt: -1 } }).fetch()
+      polls: Polls.find(pollsSelector, { sort: { createdAt: -1 } }).fetch()
     }
   },
 
@@ -12,15 +20,17 @@ C.LatestPolls = React.createClass({
     };
 
     let privateToggleContainer;
+    let editButton;
     if (Meteor.userId() === poll.userId) {
       privateToggleContainer = (
         <C.Tooltipped position="bottom" text="Private/public poll">
           <span>
-            <input type="checkbox" id={ "togglePrivatePoll-" + poll._id } onChange={ togglePrivatePoll } checked={ poll.isPrivate } />
-            <label htmlFor={ "togglePrivatePoll-" + poll._id }>Private</label>
+            <input type="checkbox" id={ "togglePrivatePoll" + poll._id } onChange={ togglePrivatePoll } checked={ poll.isPrivate } />
+            <label htmlFor={ "togglePrivatePoll" + poll._id }>Private</label>
           </span>
         </C.Tooltipped>
-      )
+      );
+      editButton = <a href={ FlowRouter.path('EditPoll', { _id: poll._id }) }>Edit</a>;
     }
 
     return (
@@ -34,7 +44,8 @@ C.LatestPolls = React.createClass({
             </div>
           </div>
           <div className="card-action">
-            <a href={ FlowRouter.path('Poll', { _id: poll._id }) }>Go</a>
+            <a href={ FlowRouter.path('Poll', { _id: poll._id }) }>Open</a>
+            { editButton }
             { privateToggleContainer }
             <small className="pull-right">{ poll.createdAt && moment(poll.createdAt).fromNow() }</small>
           </div>

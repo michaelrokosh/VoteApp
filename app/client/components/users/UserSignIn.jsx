@@ -16,13 +16,13 @@ C.UserSignIn = React.createClass({
     onSubmit(event) {
         event.preventDefault();
 
-        var email = $(event.target).find("[name=email]").val();
+        var emailOrUsername = $(event.target).find("[name=emailorusername]").val();
         var password = $(event.target).find("[name=password]").val();
 
         var errors = {};
 
-        if (!email) {
-            errors.email = "Email required"
+        if (!emailOrUsername) {
+            errors.emailOrUsername = "Email/username is required"
         }
 
         if (!password) {
@@ -37,7 +37,7 @@ C.UserSignIn = React.createClass({
             return;
         }
 
-        Meteor.loginWithPassword(email, password, (err) => {
+        Meteor.loginWithPassword(emailOrUsername, password, (err) => {
             if (err) {
                 this.setState({
                     errors: {'none': err.reason}
@@ -58,7 +58,7 @@ C.UserSignIn = React.createClass({
 
                         <form onSubmit={this.onSubmit}>
                             <C.FormErrors errors={this.state.errors} />
-                            <C.FormInput hasError={!!this.state.errors.email} name="Email" type="text" label="Email" />
+                            <C.FormInput hasError={!!this.state.errors.emailOrUsername} name="EmailOrUsername" type="text" label="Email/Username" />
                             <C.FormInput hasError={!!this.state.errors.password} name="Password" type="password" label="Password" />
                             <input type="submit" className="btn btn-default"/>
                         </form>
