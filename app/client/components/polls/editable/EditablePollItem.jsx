@@ -95,6 +95,10 @@ C.PollItem = React.createClass({
     }); 
   },
 
+  handleChartTypeChange(e) {
+    Meteor.call('PollItems/updateChartType', this.props.pollItem._id, e.target.value);
+  },
+
   renderVotes(vote, index) {
     const pollItemOption = PollItemOptions.findOne({ _id: vote.pollItemOptionId });
     return (
@@ -122,6 +126,14 @@ C.PollItem = React.createClass({
           </div>
           <div className="poll-item-description">
             <C.FormInput type="textarea" className="materialize-textarea" hasError={ !!this.state.errors.description } onKeyUp={ this.handleDescriptionKeyUp } onBlur={ this.updateDescription } name="Description" label="Description" value={ this.props.pollItem.description } placeholder="Enter your description here"/>
+          </div>
+          <div className="chart-type">
+            <label>Chart type</label>
+            <select className="chart-type-select" value={ pollItem.chartType } onChange={ this.handleChartTypeChange }>
+              <option value="" disabled>Choose a chart type</option>
+              <option value="pie" data-icon="images/sample-1.jpg" className="circle">Pie</option>
+              <option value="bars" data-icon="images/office.jpg" className="circle">Bars</option>
+            </select>
           </div>
           <div className="control-checkboxes">
             <p>

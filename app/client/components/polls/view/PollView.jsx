@@ -41,7 +41,7 @@ C.PollView = React.createClass({
     }
     return (
       <div className="poll-view">
-        <h1 className="text-center">{ poll.name }</h1>
+        <h2 className="text-center">{ poll.name }</h2>
         { infoContainer }
         {
           activePollItems.map((pollItem, i) => {

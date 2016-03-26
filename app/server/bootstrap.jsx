@@ -36,6 +36,17 @@ Meteor.startup(() => {
     const pollItemId = 'demoPollItem';
     const pollItem = PollItems.findOne(pollItemId);
 
+    if (pollItem.chartType === 'pie') {
+      PollItems.update({ _id: pollItemId }, { $set: { chartType: 'bars' } });
+    } else {
+      PollItems.update({ _id: pollItemId }, { $set: { chartType: 'pie' } });
+    }
+  }, 4000);
+
+  Meteor.setInterval(() => {
+    const pollItemId = 'demoPollItem';
+    const pollItem = PollItems.findOne(pollItemId);
+
     PollItems.update({ _id: pollItemId }, { $set: { disabled: true } });
 
     Meteor.setTimeout(() => {

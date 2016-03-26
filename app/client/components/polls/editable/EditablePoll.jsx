@@ -82,7 +82,7 @@ C.EditablePoll = React.createClass({
 
     return (
       <div className="editable-poll">
-        <h1 className="text-center">{ poll.name }</h1>
+        <h2 className="text-center">{ poll.name }</h2>
 
         { pollItems.map(this.renderPollItem) }
         

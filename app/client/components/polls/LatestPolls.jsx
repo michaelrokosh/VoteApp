@@ -39,15 +39,14 @@ C.LatestPolls = React.createClass({
           <div className="card-content black-text">
             <span className="card-title">{ poll.name }</span>
             <div className="poll-item-card-description black-text">
-              <p>{ poll.description ? poll.description : 'No description...' }</p>
-              <p>Votes: { poll.votesTotal ? poll.votesTotal : 0 }</p>
+              <p>{ poll.description ? poll.description : '' }</p>
+              <small className="created-at">{ poll.createdAt && moment(poll.createdAt).fromNow() }</small>
             </div>
           </div>
           <div className="card-action">
             <a href={ FlowRouter.path('Poll', { _id: poll._id }) }>Open</a>
             { editButton }
             { privateToggleContainer }
-            <small className="pull-right">{ poll.createdAt && moment(poll.createdAt).fromNow() }</small>
           </div>
         </div>
       </div>

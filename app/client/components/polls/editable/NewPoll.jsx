@@ -39,7 +39,7 @@ C.NewPoll = React.createClass({
 
                 return;
             } else {
-                FlowRouter.go('Poll', { _id: _id});
+                FlowRouter.go('EditPoll', { _id: _id});
             }
         });
     },

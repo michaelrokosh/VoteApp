@@ -21,7 +21,8 @@ Meteor.startup(function () {
       showResults: true,
       text: "Are You an Early Bird or a Night Owl?",
       description: '![Early Bird Vs. Night Owl](https://cloud.githubusercontent.com/assets/2095940/13651470/23d74ef2-e650-11e5-95ea-13c9324bac5d.jpg)',
-      userId: 'demoUser'
+      userId: 'demoUser',
+      chartType: 'pie'
     });
 
     PollItemOptions.insert({

@@ -1,4 +1,4 @@
-C.PieChart = React.createClass({
+C.BarsChart = React.createClass({
   PropTypes: {
     pollItemId: React.PropTypes.string.required,
     params: React.PropTypes.object
@@ -12,7 +12,7 @@ C.PieChart = React.createClass({
     const chart = this.chart || null;
     if (chart && pollItemOptions.length) {
       pollItemOptions.forEach(function (option, i) {
-        chart.series[0].data[i] && chart.series[0].data[i].update([`${option.text} (${option.votes})`, option.votes]);
+        chart.series[i].data[i] && chart.series[i].data[i].update([`${option.text} (${option.votes})`, option.votes]);
       });
     }
     return {
@@ -39,6 +39,7 @@ C.PieChart = React.createClass({
       if (params.legend === '0') showLegend = false;
       if (params.labelsDistance) labelsDistance = parseInt(params.labelsDistance);
     }
+
     let chartProps = {
       credits: {
         text: 'VoteApp.xyz',
@@ -48,7 +49,7 @@ C.PieChart = React.createClass({
         plotBackgroundColor: null,
         plotBorderWidth: null,
         plotShadow: false,
-        type: 'pie',
+        type: 'bar',
         renderTo: 'chart-' + pollItem._id
       },
       exporting: { enabled: false },
@@ -56,33 +57,42 @@ C.PieChart = React.createClass({
         text: ''
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: ''
+      },
+      yAxis: {
+        min: 0,
+        title: {
+            text: ''
+        }
       },
       plotOptions: {
-        pie: {
-          allowPointSelect: false,
-          cursor: 'pointer',
-          dataLabels: {
-            enabled: showLabels,
-            distance: labelsDistance
-          },
+        series: {
+          stacking: 'normal'
+        },
+        bar: {
           showInLegend: false
         }
       }
     };
 
     let series = [];
-    series.push({
-      name: 'Votes',
-      colorByPoint: true,
-      data: []
-    });
+    let categories = [];
 
-    pollItemOptions.forEach(function (option) {
-      series[0].data.push([`${option.text} (${option.votes})`, option.votes]);
-    });
+    for (var i = 0; i < pollItemOptions.length; i++) {
+      categories[i] = pollItemOptions[i].text;
+      let data = Array.apply(null, Array(pollItemOptions.length)).map(Number.prototype.valueOf, 0);
+      data[i] = pollItemOptions[i].votes;
+      series[i] = {
+        name: pollItemOptions[i].text,
+        data: data
+      };
+    }
 
     chartProps.series = series;
+    chartProps.xAxis = {
+      categories: categories
+    };
+
     return chartProps;
   },
 

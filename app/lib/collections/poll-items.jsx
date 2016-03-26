@@ -46,6 +46,9 @@ Schemas.PollItem = new SimpleSchema({
     type: String,
     trim: false,
     optional: true
+  },
+  chartType: {
+    type: String
   }
 });
 
@@ -164,6 +167,19 @@ Meteor.methods({
       });
     } else {
       throw new Meteor.Error('not-authorized');
+    }
+  },
+
+  'PollItems/updateChartType': function (pollItemId, type) {
+    check(pollItemId, String);
+    if (type !== 'pie' && type !== 'bars') {
+      throw new Meteor.Error('unknown-chart-type');
+    }
+
+    const pollItem = PollItems.findOne({ _id: pollItemId });
+    const poll = Polls.findOne({ _id: pollItem.pollId });
+    if (Meteor.userId() === poll.userId) {
+      PollItems.update({ _id: pollItemId }, { $set: { chartType: type } });
     }
   }
 });

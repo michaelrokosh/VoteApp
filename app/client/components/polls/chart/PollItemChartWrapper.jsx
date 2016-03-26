@@ -19,13 +19,20 @@ C.PollItemChartWrapper = React.createClass({
   render() {
     const { pollItem, pollItemOptions, currentUser, isReady } = this.data;
     const { params } = this.props;
+    let chartComponent;
 
     if (!isReady) {
       return <C.MainLoader />
     }
 
+    if (pollItem.chartType === 'bars') {
+      chartComponent = <C.BarsChart pollItemId={ pollItem._id } params={ params }/>;
+    } else {
+      chartComponent = <C.PieChart pollItemId={ pollItem._id } params={ params }/>;
+    }
+
     if (pollItem.showResults) {
-      return <C.PollItemChart pollItemId={ pollItem._id }/>;
+      return chartComponent;
     } else {
       return (
         <small>Results are hidden</small>
@@ -33,7 +40,7 @@ C.PollItemChartWrapper = React.createClass({
     }
 
     if (currentUser && currentUser._id === pollItem.userId || pollItem.showResults) {
-      return <C.PollItemChart pollItemId={ pollItem._id } params={ params }/>;
+      return chartComponent;
     } else {
       return (
         <h3>Results are hidden</h3>

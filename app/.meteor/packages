@@ -33,10 +33,11 @@ highcharts:highcharts-meteor
 
 
 highcharts-container
-materialize:materialize
 dschulz:jquery-qrcode
 chart:chart
 momentjs:moment
 aldeed:schema-deny
 q42:react-markdown
 percolate:migrations
+fourseven:scss
+materialize:materialize
