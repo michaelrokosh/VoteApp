@@ -56,7 +56,10 @@ C.MainHeader = React.createClass({
         <div className="nav-wrapper green darken-1">
           <div className="row">
             <div className="col s12">
-              <a href="/" className="brand-logo">VoteApp</a>
+              <a href="/" className="brand-logo">
+                <i className="material-icons dp48">thumbs_up_down</i>
+                <span className="hide-on-med-and-down">VoteApp</span>
+              </a>
               <a href="#" data-activates="mobileSidebar" className="button-collapse">
                 <i className="material-icons">menu</i>
               </a>
