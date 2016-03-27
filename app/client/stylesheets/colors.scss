@@ -1,0 +1,29 @@
+.btn, .btn-floating {
+  background-color: #43A047;
+}
+
+.switch label input[type=checkbox]:checked + .lever {
+  background-color: #A0D7A2;
+}
+
+.switch label input[type=checkbox]:checked + .lever:after {
+  background-color: #43A047;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+  color: #43A047;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
+  color: #0A7C0E;
+}
+
+[type="checkbox"]:checked + label:before {
+  border-right: 2px solid #43A047;
+  border-bottom: 2px solid #43A047;
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #43A047;
+  box-shadow: 0 1px 0 0 #43A047;
+}

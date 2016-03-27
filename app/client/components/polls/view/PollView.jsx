@@ -31,8 +31,11 @@ C.PollView = React.createClass({
     let infoContainer;
 
     if (!isReady) {
+      Session.set('isLoading', true);
       return <C.MainLoader />
     }
+
+    Session.set('isLoading', false);
 
     if (activePollItems.length === 0) {
       infoContainer = (

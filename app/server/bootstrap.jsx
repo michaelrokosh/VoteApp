@@ -41,7 +41,7 @@ Meteor.startup(() => {
     } else {
       PollItems.update({ _id: pollItemId }, { $set: { chartType: 'pie' } });
     }
-  }, 4000);
+  }, 5000);
 
   Meteor.setInterval(() => {
     const pollItemId = 'demoPollItem';

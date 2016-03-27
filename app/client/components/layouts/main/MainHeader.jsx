@@ -52,7 +52,8 @@ C.MainHeader = React.createClass({
 
     return (
       <nav>
-        <div className="nav-wrapper">
+        <C.LoaderLine />
+        <div className="nav-wrapper green darken-1">
           <div className="row">
             <div className="col s12">
               <a href="/" className="brand-logo">VoteApp</a>

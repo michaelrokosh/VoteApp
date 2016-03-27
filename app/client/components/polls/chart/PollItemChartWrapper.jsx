@@ -22,8 +22,11 @@ C.PollItemChartWrapper = React.createClass({
     let chartComponent;
 
     if (!isReady) {
+      Session.set('isLoading', true);
       return <C.MainLoader />
     }
+
+    Session.set('isLoading', false);
 
     if (pollItem.chartType === 'bars') {
       chartComponent = <C.BarsChart pollItemId={ pollItem._id } params={ params }/>;

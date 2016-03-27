@@ -1,5 +1,5 @@
 #main {
-  min-height: calc(~"100vh - 64px");
+  min-height: calc(100vh - 64px);
   padding: 30px 0;
 }
 
@@ -20,6 +20,10 @@ select {
 
 #mainLoader {
   padding: 10%;
+}
+
+nav .nav-wrapper {
+  margin-top: 4px;
 }
 
 .poll-item {

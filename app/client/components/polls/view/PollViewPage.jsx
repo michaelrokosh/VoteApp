@@ -16,8 +16,11 @@ C.PollViewPage = React.createClass({
 
   render() {
     if (!this.data.isReady) {
+      Session.set('isLoading', true);
       return <C.MainLoader />
     }
+
+    Session.set('isLoading', false);
     if (!this.data.currentUser) {
       return <C.UserSignInOrSignUp />
     }

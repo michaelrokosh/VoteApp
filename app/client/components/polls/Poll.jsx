@@ -30,8 +30,11 @@ C.Poll = React.createClass({
     const { currentUser, poll, isReady } = this.data;
 
     if (!isReady) {
+      Session.set('isLoading', true);
       return <C.MainLoader />
     }
+
+    Session.set('isLoading', false);
     if (this.props.preview) {
       return (
         <C.PollView pollId={ this.props.pollId } preview={ true }/> 

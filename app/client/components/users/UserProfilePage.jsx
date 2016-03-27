@@ -17,8 +17,11 @@ C.UserProfilePage = React.createClass({
     const { user, isReady } = this.data;
 
     if (!isReady) {
+      Session.set('isLoading', true);
       return <C.MainLoader />
     }
+
+    Session.set('isLoading', false);
 
     return (
       <div className="container">
