@@ -1,4 +1,4 @@
-C.LatestPolls = React.createClass({
+C.PublicPolls = React.createClass({
   PropTypes: {
     userId: React.PropTypes.string
   },
@@ -10,7 +10,8 @@ C.LatestPolls = React.createClass({
     if (userId) pollsSelector.userId = this.props.userId;
 
     return {
-      polls: Polls.find(pollsSelector, { sort: { createdAt: -1 } }).fetch()
+      polls: Polls.find(pollsSelector, { sort: { createdAt: -1 } }).fetch(),
+      isReady: FlowRouter.subsReady()
     }
   },
 
@@ -54,8 +55,16 @@ C.LatestPolls = React.createClass({
   },
 
   render() {
-    const { polls } = this.data;
+    const { polls, isReady } = this.data;
     let infoContainer;
+
+    if (!isReady) {
+      Session.set('isLoading', true);
+      return <C.MainLoader />
+    }
+
+    Session.set('isLoading', false);
+
     if (polls.length === 0) {
       infoContainer = (
         <p>No polls...</p>

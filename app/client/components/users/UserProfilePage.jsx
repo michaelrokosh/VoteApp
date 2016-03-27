@@ -28,7 +28,7 @@ C.UserProfilePage = React.createClass({
         <div className="row">
           <div className="col s12 m12">
             <h1 className="text-center">{ user.username }</h1>   
-            <C.LatestPolls userId={ user._id } /> 
+            <C.PublicPolls userId={ user._id } /> 
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@ FlowRouter.route("/polls", {
         this.register('polls', Meteor.subscribe('polls'));
     },
     action(params) {
-        renderMainLayoutWith(<C.LatestPolls />);
+        renderMainLayoutWith(<C.PublicPolls />);
     }
 });
 
@@ -52,7 +52,7 @@ FlowRouter.route("/:username/polls/", {
         this.register('polls', Meteor.subscribe('userPollsByUsername', params.username));
     },
     action(params) {
-        renderMainLayoutWith(<C.LatestPolls userId={ params._id } />);
+        renderMainLayoutWith(<C.PublicPolls userId={ params._id } />);
     }
 });
 
