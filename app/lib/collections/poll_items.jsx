@@ -1,4 +1,4 @@
-PollItems = new Mongo.Collection('poll-items');
+const PollItems = new Mongo.Collection('poll-items');
 
 // PollItems.allow({
 //   insert: function (userId, doc) {
@@ -183,3 +183,6 @@ Meteor.methods({
     }
   }
 });
+
+
+export default PollItems;

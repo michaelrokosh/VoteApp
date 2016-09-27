@@ -1,4 +1,4 @@
-PollItemOptions = new Mongo.Collection('poll-item-options');
+const PollItemOptions = new Mongo.Collection('poll-item-options');
 
 if (Meteor.isClient) DemoPollItemOptions = new Mongo.Collection(null);
 
@@ -92,3 +92,5 @@ Meteor.methods({
     }
   }
 });
+
+export default PollItemOptions;

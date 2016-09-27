@@ -1,4 +1,7 @@
 import { Meteor } from 'meteor/meteor';
+import Polls from '../../lib/collections/polls.jsx';
+import PollItems from '../../lib/collections/poll_items.jsx';
+import PollItemOptions from '../../lib/collections/poll_item_options.jsx';
 
 export default () => {
   Meteor.startup(function () {

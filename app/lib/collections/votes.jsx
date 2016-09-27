@@ -1,4 +1,4 @@
-Votes = new Mongo.Collection('votes');
+const Votes = new Mongo.Collection('votes');
 
 Schemas.Vote = new SimpleSchema({
   userId: {
@@ -77,3 +77,5 @@ if (Meteor.isServer) {
   });
   initializing = false;
 }
+
+export default Votes;

@@ -1,4 +1,4 @@
-Polls = new Mongo.Collection('polls');
+const Polls = new Mongo.Collection('polls');
 
 Polls.allow({ 
   insert: function (userId, doc) {
@@ -48,3 +48,5 @@ Meteor.methods({
     Polls.update({ _id: pollId }, { $set: { isPrivate: !poll.isPrivate } });
   }
 });
+
+export default Polls;

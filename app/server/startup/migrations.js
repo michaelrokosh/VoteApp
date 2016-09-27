@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Migrations } from 'meteor/percolate:migrations';
+import Polls from '../../lib/collections/polls.jsx';
 
 export default () => {
   Migrations.add({

@@ -1,5 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Migrations } from 'meteor/percolate:migrations';
+import { Accounts } from 'meteor/accounts-base';
+import PollItems from '../../lib/collections/poll_items.jsx';
+import PollItemOptions from '../../lib/collections/poll_item_options.jsx';
 
 export default () => {
   Meteor.startup(() => {
