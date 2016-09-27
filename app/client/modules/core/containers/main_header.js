@@ -9,6 +9,7 @@ export const composer = ({context}, onData) => {
 }
 
 export const depsMapper = (context, actions) => ({
+	handleLogout: actions.auth.handleLogout,
 	context: () => context
 })
 

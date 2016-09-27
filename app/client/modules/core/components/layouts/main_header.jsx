@@ -2,11 +2,6 @@ import React from 'react';
 import LoaderLine from './loader_line.jsx';
 
 class MainHeader extends React.Component {
-  handleLogout() {
-    Meteor.logout();
-    FlowRouter.go('Home');
-  }
-
   componentDidMount() {
     $(".button-collapse").sideNav({
       closeOnClick: true 
@@ -20,7 +15,7 @@ class MainHeader extends React.Component {
     let myPolls;
     let userProfile;
     let publicPolls;
-    let { isUser } = this.props;
+    let { isUser, handleLogout } = this.props;
 
     if(isUser) {
       newPoll = (

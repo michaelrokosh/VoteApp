@@ -2,6 +2,7 @@ import React from 'react';
 import { mount } from 'react-mounter';
 
 import MainLayout from './components/layouts/main_layout.jsx';
+import UserSignInPage from '../auth/components/user_sign_in/user_sign_in_page.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
     const MainLayoutCtx = injectDeps(MainLayout);
@@ -15,12 +16,14 @@ export default function (injectDeps, {FlowRouter}) {
         }
     });
 
-    // FlowRouter.route("/sign-in", {
-    //     name: "SignIn",
-    //     action(params) {
-    //         mount(<C.UserSignInPage />);
-    //     }
-    // });
+    FlowRouter.route("/sign_in", {
+        name: "SignIn",
+        action(params) {
+            mount(MainLayoutCtx, {
+                content: <UserSignInPage />
+            });
+        }
+    });
 
     // FlowRouter.route("/sign-up", {
     //     name: "SignUp",
