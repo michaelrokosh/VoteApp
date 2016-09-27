@@ -1,6 +1,6 @@
-import bootstrap from './bootstrap.jsx';
-import fixtures from './fixtures.jsx';
-import migrations from './migrations.jsx';
+import bootstrap from './bootstrap.js';
+import fixtures from './fixtures.js';
+import migrations from './migrations.js';
 
 export default () => {
 	bootstrap();
