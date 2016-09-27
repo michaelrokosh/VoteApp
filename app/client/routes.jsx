@@ -1,21 +1,24 @@
+import React from 'react';
+import {mount} from 'react-mounter';
+
 FlowRouter.route("/", {
     name: 'Home',
     action(params) {
-        renderMainLayoutWith(<C.Home />);
+        mount(<C.Home />);
     }
 });
 
 FlowRouter.route("/sign-in", {
     name: "SignIn",
     action(params) {
-        renderMainLayoutWith(<C.UserSignInPage />);
+        mount(<C.UserSignInPage />);
     }
 });
 
 FlowRouter.route("/sign-up", {
     name: "SignUp",
     action(params) {
-        renderMainLayoutWith(<C.UserSignUpPage />);
+        mount(<C.UserSignUpPage />);
     }
 });
 
@@ -25,14 +28,14 @@ FlowRouter.route("/polls", {
         this.register('polls', Meteor.subscribe('polls'));
     },
     action(params) {
-        renderMainLayoutWith(<C.PublicPolls />);
+        mount(<C.PublicPolls />);
     }
 });
 
 FlowRouter.route("/polls/new", {
     name: "NewPoll",
     action(params) {
-        renderMainLayoutWith(<C.NewPoll />);
+        mount(<C.NewPoll />);
     }
 });
 
@@ -42,7 +45,7 @@ FlowRouter.route("/:username", {
         this.register('user', Meteor.subscribe('userByUsername', params.username));
     },
     action(params) {
-        renderMainLayoutWith(<C.UserProfilePage username={ params.username } />);
+        mount(<C.UserProfilePage username={ params.username } />);
     }
 });
 
@@ -52,14 +55,14 @@ FlowRouter.route("/:username/polls/", {
         this.register('polls', Meteor.subscribe('userPollsByUsername', params.username));
     },
     action(params) {
-        renderMainLayoutWith(<C.PublicPolls userId={ params._id } />);
+        mount(<C.PublicPolls userId={ params._id } />);
     }
 });
 
 FlowRouter.route("/polls/:_id", {
     name: "Poll",
     action(params) {
-        renderMainLayoutWith(<C.PollViewPage pollId={ params._id } />);
+        mount(<C.PollViewPage pollId={ params._id } />);
     }
 });
 
