@@ -1,5 +1,5 @@
 import React from 'react';
-import MainHeader from './main_header.jsx';
+import MainHeader from '../../containers/main_header.js';
 import MainFooter from './main_footer.jsx';
 
 const MainLayout = ({content}) => (

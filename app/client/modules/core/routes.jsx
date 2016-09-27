@@ -1,11 +1,11 @@
 import React from 'react';
-import {mount} from 'react-mounter';
+import { mount } from 'react-mounter';
 
 import MainLayout from './components/layouts/main_layout.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
     const MainLayoutCtx = injectDeps(MainLayout);
-    console.log(MainLayoutCtx);
+
     FlowRouter.route("/", {
         name: 'Home',
         action(params) {

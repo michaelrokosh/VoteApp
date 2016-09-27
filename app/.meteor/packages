@@ -8,6 +8,8 @@
 kadira:flow-router-ssr
 aldeed:collection2
 matb33:collection-hooks
+blaze-html-templates
+jquery
 dburles:collection-helpers
 underscore@1.0.9
 http@1.2.9
@@ -30,6 +32,7 @@ momentjs:moment
 aldeed:schema-deny
 percolate:migrations
 fourseven:scss
+dschulz:jquery-qrcode
 materialize:materialize
 standard-minifier-css@1.2.0
 standard-minifier-js@1.2.0

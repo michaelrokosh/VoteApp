@@ -1,12 +1,7 @@
 import React from 'react';
+import LoaderLine from './loader_line.jsx';
 
 class MainHeader extends React.Component {
-  // mixins: [ReactMeteorData],
-  // getMeteorData() {
-  //   return {
-  //     currentUser: Meteor.user()
-  //   }
-  // },
   handleLogout() {
     Meteor.logout();
     FlowRouter.go('Home');
@@ -25,9 +20,9 @@ class MainHeader extends React.Component {
     let myPolls;
     let userProfile;
     let publicPolls;
-    let { currentUser } = this.data;
+    let { isUser } = this.props;
 
-    if (currentUser) {
+    if(isUser) {
       newPoll = (
         <li><a href={ FlowRouter.path('NewPoll') }>New Poll</a></li>
       )
@@ -54,7 +49,7 @@ class MainHeader extends React.Component {
 
     return (
       <nav>
-        <C.LoaderLine />
+        <LoaderLine />
         <div className="nav-wrapper green darken-1">
           <div className="row">
             <div className="col s12">
