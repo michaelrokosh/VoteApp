@@ -3,13 +3,14 @@ import { mount } from 'react-mounter';
 
 import MainLayout from './components/layouts/main_layout.jsx';
 import UserSignInPage from '../auth/components/user_sign_in/user_sign_in_page.jsx';
+import UserSignUpPage from '../auth/components/user_sign_up/user_sign_up_page.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
     const MainLayoutCtx = injectDeps(MainLayout);
 
     FlowRouter.route("/", {
         name: 'Home',
-        action(params) {
+        action() {
             mount(MainLayoutCtx , {
                 content: <h1>Hi!</h1>
             })
@@ -18,19 +19,21 @@ export default function (injectDeps, {FlowRouter}) {
 
     FlowRouter.route("/sign_in", {
         name: "SignIn",
-        action(params) {
+        action() {
             mount(MainLayoutCtx, {
                 content: <UserSignInPage />
             });
         }
     });
 
-    // FlowRouter.route("/sign-up", {
-    //     name: "SignUp",
-    //     action(params) {
-    //         mount(<C.UserSignUpPage />);
-    //     }
-    // });
+    FlowRouter.route("/sign_up", {
+        name: "SignUp",
+        action() {
+            mount(MainLayoutCtx, {
+              content: <UserSignUpPage />
+            });
+        }
+    });
 
     // FlowRouter.route("/polls", {
     //     name: "PublicPolls",

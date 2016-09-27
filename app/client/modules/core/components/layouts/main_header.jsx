@@ -15,23 +15,23 @@ class MainHeader extends React.Component {
     let myPolls;
     let userProfile;
     let publicPolls;
-    let { isUser, handleLogout } = this.props;
+    let { user, HandleLogout } = this.props;
 
-    if(isUser) {
+    if(user) {
       newPoll = (
         <li><a href={ FlowRouter.path('NewPoll') }>New Poll</a></li>
       )
       myPolls = (
-        <li><a href={ FlowRouter.path('UserPolls', { username: currentUser.username }) }>My Polls</a></li>
+        <li><a href={ FlowRouter.path('UserPolls', { username: user.username }) }>My Polls</a></li>
       )
       publicPolls = (
         <li><a href={ FlowRouter.path('PublicPolls') }>Public Polls</a></li>
       )
       userProfile = (
-        <li><a href={ FlowRouter.path('UserProfile', { username: currentUser.username }) }>Profile</a></li>
+        <li><a href={ FlowRouter.path('UserProfile', { username: user.username }) }>Profile</a></li>
       )
       loginButton = (
-        <li><a href="#" onClick={ this.handleLogout }>Logout</a></li>
+        <li><a onClick={ HandleLogout }>Logout</a></li>
       )
     } else {
       loginButton = (

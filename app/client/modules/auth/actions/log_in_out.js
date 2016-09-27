@@ -1,5 +1,5 @@
 export default {
-	handleLogout({Meteor}) {
+	HandleLogout({Meteor, FlowRouter}) {
 	    Meteor.logout();
 	    FlowRouter.go('Home');
 	},
@@ -20,7 +20,7 @@ export default {
             errors.password = "Password required"
         }
 
-      	LocalState.set('AuthErrors', errors);
+      	LocalState.set('SignInErrors', errors);
 
         if (! _.isEmpty(errors)) {
             return;
@@ -29,7 +29,7 @@ export default {
         Meteor.loginWithPassword(emailOrUsername, password, (err) => {
             if (err) {
             	errors.serverResponse = err.reason;
-               	LocalState.set('AuthErrors', errors);
+               	LocalState.set('SignInErrors', errors);
                 return;
             } else {
                 FlowRouter.go('Home');

@@ -4,12 +4,12 @@ import MainHeader from '../components/layouts/main_header.jsx';
 
 export const composer = ({context}, onData) => {
 	const {Meteor} = context();
-	const isUser = Meteor.userId() ? true : false;
-	onData(null, {isUser});
+	const user = Meteor.user();
+	onData(null, {user});
 }
 
 export const depsMapper = (context, actions) => ({
-	handleLogout: actions.auth.handleLogout,
+	HandleLogout: actions.auth.HandleLogout,
 	context: () => context
 })
 

@@ -2,7 +2,6 @@ import React from 'react';
 
 class FormErrors extends React.Component {
     render() {
-        console.log(this.props);
         if (this.props.errors) {
             return (
                 <ul className="list-group">
