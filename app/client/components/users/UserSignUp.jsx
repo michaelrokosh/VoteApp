@@ -1,4 +1,6 @@
-C.UserSignUp = React.createClass({
+import React from 'react';
+
+UserSignUp = React.createClass({
     mixins: [],
     PropTypes: {
 
@@ -8,11 +10,7 @@ C.UserSignUp = React.createClass({
             errors: {}
         }
     },
-    getMeteorData() {
-        return {
 
-        }
-    },
     onSubmit(event) {
         event.preventDefault();
 

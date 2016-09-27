@@ -1,4 +1,6 @@
-C.MainLoader = React.createClass({
+import React from 'react';
+
+MainLoader = React.createClass({
   render() {
     return (
       <div id="mainLoader" className="container text-center">

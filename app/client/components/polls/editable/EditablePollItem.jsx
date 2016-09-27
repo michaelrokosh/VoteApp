@@ -1,18 +1,20 @@
-C.PollItem = React.createClass({
+import React from 'react';
+
+PollItem = React.createClass({
   PropTypes: {
     pollItem: React.PropTypes.object.isRequired
   },
 
-  mixins: [ReactMeteorData],
+  // mixins: [ReactMeteorData],
 
-  getMeteorData() {
-    Meteor.subscribe('votesByPollItemId', this.props.pollItem._id);
-    return {
-      votes: Votes.find({ pollItemId: this.props.pollItem._id }, { sort: { createdAt: 1 } }).fetch(),
-      pollItemOptions: PollItemOptions.find({ pollItemId: this.props.pollItem._id }).fetch(),
-      pollItem: PollItems.findOne({ _id: this.props.pollItem._id })
-    }
-  },
+  // getMeteorData() {
+  //   Meteor.subscribe('votesByPollItemId', this.props.pollItem._id);
+  //   return {
+  //     votes: Votes.find({ pollItemId: this.props.pollItem._id }, { sort: { createdAt: 1 } }).fetch(),
+  //     pollItemOptions: PollItemOptions.find({ pollItemId: this.props.pollItem._id }).fetch(),
+  //     pollItem: PollItems.findOne({ _id: this.props.pollItem._id })
+  //   }
+  // },
 
   getInitialState() {
     return {

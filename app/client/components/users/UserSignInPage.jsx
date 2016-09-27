@@ -1,4 +1,6 @@
-C.UserSignInPage = React.createClass({
+import React from 'react';
+
+UserSignInPage = React.createClass({
   render() {
     return (
       <div className="container">

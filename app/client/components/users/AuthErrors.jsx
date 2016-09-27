@@ -1,4 +1,6 @@
-C.FormErrors = React.createClass({
+import React from 'react';
+
+FormErrors = React.createClass({
     propTypes: {
         errors: React.PropTypes.object
     },

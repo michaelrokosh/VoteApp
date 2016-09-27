@@ -6,7 +6,6 @@
 
 
 kadira:flow-router-ssr
-meteorhacks:flow-layout
 aldeed:collection2
 matb33:collection-hooks
 dburles:collection-helpers
@@ -36,3 +35,4 @@ standard-minifier-css@1.2.0
 standard-minifier-js@1.2.0
 shell-server@0.2.1
 ecmascript
+reactive-dict

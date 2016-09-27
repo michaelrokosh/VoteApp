@@ -1,30 +1,32 @@
-C.PollView = React.createClass({
+import React from 'react';
+
+PollView = React.createClass({
   PropTypes: {
     pollId: React.PropTypes.string
   },
 
-  mixins: [ReactMeteorData], 
-  getMeteorData() {
-    const pollHandle = Meteor.subscribe('poll', this.props.pollId);
-    const pollItemsHandle = Meteor.subscribe('pollItems', this.props.pollId);
-    const pollItemOptionsHandle = Meteor.subscribe('pollItemOptionsByPollId', this.props.pollId);
-    let data = {
-      isReady: false
-    };
+  // mixins: [ReactMeteorData], 
+  // getMeteorData() {
+  //   const pollHandle = Meteor.subscribe('poll', this.props.pollId);
+  //   const pollItemsHandle = Meteor.subscribe('pollItems', this.props.pollId);
+  //   const pollItemOptionsHandle = Meteor.subscribe('pollItemOptionsByPollId', this.props.pollId);
+  //   let data = {
+  //     isReady: false
+  //   };
     
-    if (pollHandle.ready() && pollItemsHandle.ready() && pollItemOptionsHandle.ready()) {
-      data.poll = Polls.findOne({ _id: this.props.pollId });
-      data.activePollItems = PollItems.find({ 
-        pollId: this.props.pollId,
-        active: true
-      }).fetch(),
-      // data.pollItemOptions = PollItemOptions.find({ pollId: this.props.pollId }).fetch();
-      data.isReady = true;
-      data.currentUser = Meteor.user();
-    }
+  //   if (pollHandle.ready() && pollItemsHandle.ready() && pollItemOptionsHandle.ready()) {
+  //     data.poll = Polls.findOne({ _id: this.props.pollId });
+  //     data.activePollItems = PollItems.find({ 
+  //       pollId: this.props.pollId,
+  //       active: true
+  //     }).fetch(),
+  //     // data.pollItemOptions = PollItemOptions.find({ pollId: this.props.pollId }).fetch();
+  //     data.isReady = true;
+  //     data.currentUser = Meteor.user();
+  //   }
 
-    return data;
-  },
+  //   return data;
+  // },
 
   render() {
     const { currentUser, poll, activePollItems, isReady } = this.data;

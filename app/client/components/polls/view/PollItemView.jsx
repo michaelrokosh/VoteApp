@@ -1,17 +1,19 @@
-C.PollItemView = React.createClass({
+import React from 'react';
+
+PollItemView = React.createClass({
   PropTypes: {
     pollItem: React.PropTypes.object.isRequired,
     preview: React.PropTypes.boolean
   },
 
-  mixins: [ReactMeteorData],
+  // mixins: [ReactMeteorData],
 
-  getMeteorData() {
-    const pollItemOptions = PollItemOptions.find({ pollItemId: this.props.pollItem._id }).fetch();
-    return {
-      pollItemOptions: pollItemOptions
-    }
-  },
+  // getMeteorData() {
+  //   const pollItemOptions = PollItemOptions.find({ pollItemId: this.props.pollItem._id }).fetch();
+  //   return {
+  //     pollItemOptions: pollItemOptions
+  //   }
+  // },
 
   render() {
     const { pollItem, preview } = this.props;

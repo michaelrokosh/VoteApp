@@ -1,4 +1,6 @@
-C.MainFooter = React.createClass({
+import React from 'react';
+
+MainFooter = React.createClass({
     render() {
         return (
           <footer className="page-footer green darken-1">

@@ -1,4 +1,6 @@
 import { Meteor } from 'meteor/meteor';
+import Votes from '../../lib/collections/votes.jsx';
+import PollItems from '../../lib/collections/poll_items.jsx';
 
 export default () => {
   Meteor.publish('vote', function (pollItemOptionId) {

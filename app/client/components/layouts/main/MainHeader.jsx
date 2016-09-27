@@ -1,10 +1,12 @@
-C.MainHeader = React.createClass({
-  mixins: [ReactMeteorData],
-  getMeteorData() {
-    return {
-      currentUser: Meteor.user()
-    }
-  },
+import React from 'react';
+
+MainHeader = React.createClass({
+  // mixins: [ReactMeteorData],
+  // getMeteorData() {
+  //   return {
+  //     currentUser: Meteor.user()
+  //   }
+  // },
   handleLogout() {
     Meteor.logout();
     FlowRouter.go('Home');

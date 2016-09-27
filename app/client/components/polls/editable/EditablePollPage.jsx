@@ -1,18 +1,20 @@
-C.EditablePollPage = React.createClass({
+import React from 'react';
+
+EditablePollPage = React.createClass({
   PropTypes: {
     pollId: React.PropTypes.string
   },
 
-  mixins: [ReactMeteorData],
+  // mixins: [ReactMeteorData],
 
-  getMeteorData() {
-    const currentUserHandle = Meteor.subscribe('currentUser');
+  // getMeteorData() {
+  //   const currentUserHandle = Meteor.subscribe('currentUser');
     
-    return {
-      currentUser: Meteor.user(),
-      isReady: currentUserHandle.ready()
-    }
-  },
+  //   return {
+  //     currentUser: Meteor.user(),
+  //     isReady: currentUserHandle.ready()
+  //   }
+  // },
 
   render() {
     if (!this.data.isReady) {

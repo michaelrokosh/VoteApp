@@ -1,25 +1,27 @@
-C.PieChart = React.createClass({
+import React from 'react';
+
+PieChart = React.createClass({
   PropTypes: {
     pollItemId: React.PropTypes.string.required,
     params: React.PropTypes.object
   },
 
-  mixins: [ReactMeteorData],
+  // mixins: [ReactMeteorData],
 
-  getMeteorData() {
-    const pollItemOptions = PollItemOptions.find({ pollItemId: this.props.pollItemId }).fetch();
-    const { pollItemId } = this.props;
-    const chart = this.chart || null;
-    if (chart && pollItemOptions.length) {
-      pollItemOptions.forEach(function (option, i) {
-        chart.series[0].data[i] && chart.series[0].data[i].update([`${option.text} (${option.votes})`, option.votes]);
-      });
-    }
-    return {
-      pollItemOptions: pollItemOptions,
-      pollItem: PollItems.findOne({ _id: pollItemId })
-    }
-  },
+  // getMeteorData() {
+  //   const pollItemOptions = PollItemOptions.find({ pollItemId: this.props.pollItemId }).fetch();
+  //   const { pollItemId } = this.props;
+  //   const chart = this.chart || null;
+  //   if (chart && pollItemOptions.length) {
+  //     pollItemOptions.forEach(function (option, i) {
+  //       chart.series[0].data[i] && chart.series[0].data[i].update([`${option.text} (${option.votes})`, option.votes]);
+  //     });
+  //   }
+  //   return {
+  //     pollItemOptions: pollItemOptions,
+  //     pollItem: PollItems.findOne({ _id: pollItemId })
+  //   }
+  // },
 
   componentDidMount() {
     const { pollItem, pollItemOptions } = this.data;

@@ -1,4 +1,6 @@
-C.PollItemOption = React.createClass({
+import React from 'react';
+
+PollItemOption = React.createClass({
   PropTypes: {
     pollItemOption: React.PropTypes.object,
     index: React.PropTypes.number

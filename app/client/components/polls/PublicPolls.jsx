@@ -1,19 +1,21 @@
-C.PublicPolls = React.createClass({
+import React from 'react';
+
+PublicPolls = React.createClass({
   PropTypes: {
     userId: React.PropTypes.string
   },
 
-  mixins: [ReactMeteorData],
-  getMeteorData() {
-    let pollsSelector = {};
-    const userId = this.props.userId;
-    if (userId) pollsSelector.userId = this.props.userId;
+  // mixins: [ReactMeteorData],
+  // getMeteorData() {
+  //   let pollsSelector = {};
+  //   const userId = this.props.userId;
+  //   if (userId) pollsSelector.userId = this.props.userId;
 
-    return {
-      polls: Polls.find(pollsSelector, { sort: { createdAt: -1 } }).fetch(),
-      isReady: FlowRouter.subsReady()
-    }
-  },
+  //   return {
+  //     polls: Polls.find(pollsSelector, { sort: { createdAt: -1 } }).fetch(),
+  //     isReady: FlowRouter.subsReady()
+  //   }
+  // },
 
   renderPoll(poll, index) {
     const togglePrivatePoll = () => {

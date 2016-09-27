@@ -1,4 +1,6 @@
-C.ChartLayout = React.createClass({
+import React from 'react';
+
+ChartLayout = React.createClass({
   render() {
     return (
       <div id="chart">

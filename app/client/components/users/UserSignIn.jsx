@@ -1,4 +1,6 @@
-C.UserSignIn = React.createClass({
+import React from 'react';
+
+UserSignIn = React.createClass({
     mixins: [],
     PropTypes: {
 

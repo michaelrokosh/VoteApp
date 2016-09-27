@@ -1,4 +1,6 @@
-C.Tooltipped = React.createClass({
+import React from 'react';
+
+Tooltipped = React.createClass({
   PropTypes: {
     text: React.PropTypes.string.isRequired,
     position: React.PropTypes.string,

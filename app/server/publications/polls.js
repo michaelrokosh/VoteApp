@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import Polls from '../../lib/collections/polls.jsx';
 
 export default () => {
   Meteor.publish('poll', function (pollId) {

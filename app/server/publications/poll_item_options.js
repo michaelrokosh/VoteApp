@@ -1,4 +1,6 @@
 import { Meteor } from 'meteor/meteor';
+import PollItemOptions from '../../lib/collections/poll_item_options.jsx';
+
 
 export default () => {
   Meteor.publish('pollItemOptionsByPollId', function (pollId) {

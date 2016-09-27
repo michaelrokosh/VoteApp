@@ -1,10 +1,12 @@
-C.LoaderLine = React.createClass({
-  mixins: [ReactMeteorData],
-  getMeteorData() {
-    return {
-      isLoading: Session.get('isLoading')
-    }
-  },
+import React from 'react';
+
+LoaderLine = React.createClass({
+  //mixins: [ReactMeteorData],
+  // getMeteorData() {
+  //   return {
+  //     isLoading: Session.get('isLoading')
+  //   }
+  // },
 
   render() {
     const isLoading = this.data.isLoading;

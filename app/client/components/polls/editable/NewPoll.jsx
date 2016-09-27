@@ -1,4 +1,6 @@
-C.NewPoll = React.createClass({
+import React from 'react';
+
+NewPoll = React.createClass({
     mixins: [],
     getInitialState() {
         return {

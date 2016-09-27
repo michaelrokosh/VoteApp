@@ -1,17 +1,19 @@
-C.UserProfilePage = React.createClass({
+import React from 'react';
+
+UserProfilePage = React.createClass({
   mixins: [],
   PropTypes: {
     username: React.PropTypes.string
   },
 
-  mixins: [ReactMeteorData],
-  getMeteorData() {
-    const pollsHandler = Meteor.subscribe('userPollsByUsername', this.props.username);
-    return {
-      user: Meteor.users.findOne({ username: this.props.username }),
-      isReady: FlowRouter.subsReady() && pollsHandler.ready()
-    }
-  },
+  // mixins: [ReactMeteorData],
+  // getMeteorData() {
+  //   const pollsHandler = Meteor.subscribe('userPollsByUsername', this.props.username);
+  //   return {
+  //     user: Meteor.users.findOne({ username: this.props.username }),
+  //     isReady: FlowRouter.subsReady() && pollsHandler.ready()
+  //   }
+  // },
 
   render() {
     const { user, isReady } = this.data;

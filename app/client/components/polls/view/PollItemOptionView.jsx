@@ -1,23 +1,25 @@
-C.PollItemOptionView = React.createClass({
+import React from 'react';
+
+PollItemOptionView = React.createClass({
   PropTypes: {
     pollItemOption: React.PropTypes.object,
     preview: React.PropTypes.boolean,
     index: React.PropTypes.number
   },
 
-  mixins: [ReactMeteorData],
+  // mixins: [ReactMeteorData],
 
-  getMeteorData() {
-    Meteor.subscribe('vote', this.props.pollItemOption._id);
+  // getMeteorData() {
+  //   Meteor.subscribe('vote', this.props.pollItemOption._id);
 
-    return {
-      pollItem: PollItems.findOne({ _id: this.props.pollItemOption.pollItemId }),
-      vote: Votes.findOne({ 
-        userId: Meteor.userId(),
-        pollItemOptionId: this.props.pollItemOption._id 
-      })
-    }
-  },
+  //   return {
+  //     pollItem: PollItems.findOne({ _id: this.props.pollItemOption.pollItemId }),
+  //     vote: Votes.findOne({ 
+  //       userId: Meteor.userId(),
+  //       pollItemOptionId: this.props.pollItemOption._id 
+  //     })
+  //   }
+  // },
 
   vote(e) {
     if (this.props.preview) {
