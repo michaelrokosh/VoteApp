@@ -1,4 +1,4 @@
-const PollItemOptions = new Mongo.Collection('poll-item-options');
+const PollItemOptions = new Mongo.Collection('pollItemOptions');
 
 if (Meteor.isClient) DemoPollItemOptions = new Mongo.Collection(null);
 

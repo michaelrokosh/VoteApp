@@ -1,9 +1,9 @@
 import React from 'react';
 
 PollViewPage = React.createClass({
-  PropTypes: {
-    pollId: React.PropTypes.string
-  },
+  // PropTypes: {
+  //   pollId: React.PropTypes.string
+  // },
 
   // mixins: [ReactMeteorData],
 

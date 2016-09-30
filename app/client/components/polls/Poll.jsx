@@ -29,27 +29,29 @@ Poll = React.createClass({
   // },
 
   render() {
-    const { currentUser, poll, isReady } = this.data;
+   // const { currentUser, poll, isReady } = this.data;
 
-    if (!isReady) {
-      Session.set('isLoading', true);
-      return <C.MainLoader />
-    }
+  //   if (!isReady) {
+  //     Session.set('isLoading', true);
+  //     return <C.MainLoader />
+  //   }
 
-    Session.set('isLoading', false);
-    if (this.props.preview) {
-      return (
-        <C.PollView pollId={ this.props.pollId } preview={ true }/> 
-      )
-    }
-    if (poll._id === 'demoPoll' || currentUser && currentUser._id === poll.userId) {
-      return (
-        <C.EditablePoll pollId={ this.props.pollId } />
-      )
-    } else {
-      return (
-        <C.PollView pollId={ this.props.pollId } />
-      )
-    }
-  }
+  //   Session.set('isLoading', false);
+  //   if (this.props.preview) {
+  //     return (
+  //       <C.PollView pollId={ this.props.pollId } preview={ true }/> 
+  //     )
+  //   }
+  //   if (poll._id === 'demoPoll' || currentUser && currentUser._id === poll.userId) {
+  //     return (
+  //       <C.EditablePoll pollId={ this.props.pollId } />
+  //     )
+  //   } else {
+  //     return (
+  //       <C.PollView pollId={ this.props.pollId } />
+  //     )
+  //   }
+  // }
+  return null
+}
 });

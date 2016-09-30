@@ -1,4 +1,4 @@
-const PollItems = new Mongo.Collection('poll-items');
+const PollItems = new Mongo.Collection('pollItems');
 
 // PollItems.allow({
 //   insert: function (userId, doc) {

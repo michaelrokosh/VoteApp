@@ -16,7 +16,7 @@ class MainHeader extends React.Component {
     let userProfile;
     let publicPolls;
     let { user, HandleLogout } = this.props;
-
+    
     if(user) {
       newPoll = (
         <li><a href={ FlowRouter.path('NewPoll') }>New Poll</a></li>

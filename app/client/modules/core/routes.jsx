@@ -4,6 +4,9 @@ import { mount } from 'react-mounter';
 import MainLayout from './components/layouts/main_layout.jsx';
 import UserSignInPage from '../auth/components/user_sign_in/user_sign_in_page.jsx';
 import UserSignUpPage from '../auth/components/user_sign_up/user_sign_up_page.jsx';
+import HomePage from '../core/components/public/home_page.jsx';
+import NewPoll from '../polls/containers/new_poll.js';
+import EditPollPage from '../polls/components/edit_poll/edit_poll_page.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
     const MainLayoutCtx = injectDeps(MainLayout);
@@ -12,7 +15,7 @@ export default function (injectDeps, {FlowRouter}) {
         name: 'Home',
         action() {
             mount(MainLayoutCtx , {
-                content: <h1>Hi!</h1>
+                content: <HomePage />
             })
         }
     });
@@ -35,6 +38,24 @@ export default function (injectDeps, {FlowRouter}) {
         }
     });
 
+    FlowRouter.route("/polls/new", {
+        name: "NewPoll",
+        action() {
+            mount(MainLayoutCtx, {
+                content: <NewPoll />
+            });
+        }
+    });
+    
+    FlowRouter.route("/polls/edit/:_id", {
+        name: "EditPoll",
+        action() {
+            mount(MainLayoutCtx, {
+                content: <EditPollPage />
+            });
+        }
+    });
+    
     // FlowRouter.route("/polls", {
     //     name: "PublicPolls",
     //     subscriptions(params) {
@@ -45,12 +66,6 @@ export default function (injectDeps, {FlowRouter}) {
     //     }
     // });
 
-    // FlowRouter.route("/polls/new", {
-    //     name: "NewPoll",
-    //     action(params) {
-    //         mount(<C.NewPoll />);
-    //     }
-    // });
 
     // FlowRouter.route("/:username", {
     //     name: "UserProfile",
@@ -79,12 +94,6 @@ export default function (injectDeps, {FlowRouter}) {
     //     }
     // });
 
-    // FlowRouter.route("/polls/:_id/edit", {
-    //     name: "EditPoll",
-    //     action(params) {
-    //         renderMainLayoutWith(<C.EditablePollPage pollId={ params._id } />);
-    //     }
-    // });
 
     // FlowRouter.route("/polls/:_id/preview", {
     //     name: "PollPreview",

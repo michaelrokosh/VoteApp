@@ -5,6 +5,10 @@ import MainHeader from '../components/layouts/main_header.jsx';
 export const composer = ({context}, onData) => {
 	const {Meteor} = context();
 	const user = Meteor.user();
+	if(!user) {
+		onData(null, {});
+	}
+
 	onData(null, {user});
 }
 
