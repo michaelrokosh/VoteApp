@@ -1,8 +1,8 @@
 import React from 'react';
 
+import FormErrors from '../../../core/components/general/form_errors.jsx';
+import FormInput from '../../../core/components/general/form_input.jsx';
 import Tooltipped from '../../../core/components/general/tooltipped.jsx';
-import FormInput from '../../../core/components/general/form_errors.jsx';
-import FormErrors from '../../../core/components/general/form_input.jsx';
 import EditPollItemOptions from './edit_poll_item_options.jsx';
 
 class EditPollItem extends React.Component {
@@ -65,11 +65,8 @@ class EditPollItem extends React.Component {
       toggleShowResult,
       handleChartTypeChange 
     } = this.props;
-    
-    const  errors  = {
-        description: '',
-        question: ''
-    }
+
+    const  errors = {}
     
     return (
       <div className="poll-item">
@@ -78,11 +75,11 @@ class EditPollItem extends React.Component {
           <div className="poll-item-question">
             <FormInput 
               hasError={ !!errors.question } 
-              onKeyUp={ this.handleKeyUp.bind(this) } 
-              onBlur={ this.updateText.bind(this) } 
               name="Question" 
               type="text" 
               label="Question" 
+              onKeyUp={ this.handleKeyUp.bind(this) } 
+              onBlur={ this.updateText.bind(this) } 
               value={ pollItem.text } 
               placeholder="Enter your question here"
             />
@@ -94,6 +91,7 @@ class EditPollItem extends React.Component {
               </i>
             </Tooltipped>
           </div>
+
           <div className="poll-item-description">
             <FormInput 
               type="textarea" 

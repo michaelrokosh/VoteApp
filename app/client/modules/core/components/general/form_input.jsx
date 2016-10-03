@@ -33,7 +33,7 @@ class FormInput extends React.Component {
             <textarea 
               type={ type } 
               className={ className } 
-              name={ name } 
+              name={ name.toLowerCase() } 
               placeholder={ placeholder } 
               onChange={ onChange } 
               value={ value } 
@@ -48,7 +48,7 @@ class FormInput extends React.Component {
             <textarea 
               type={ type } 
               className={ className } 
-              name={ name } 
+              name={ name.toLowerCase() } 
               placeholder={ placeholder } 
               defaultValue={ value } 
               onKeyUp={ onKeyUp } 
@@ -65,7 +65,7 @@ class FormInput extends React.Component {
             <input 
               type={ type } 
               className={ className } 
-              name={ name } 
+              name={ name.toLowerCase() } 
               placeholder={ placeholder } 
               onChange={ onChange } 
               value={ value } 
@@ -80,7 +80,7 @@ class FormInput extends React.Component {
             <input 
               type={ type } 
               className={ className } 
-              name={ name } 
+              name={ name.toLowerCase() } 
               placeholder={ placeholder } 
               defaultValue={ value } 
               onKeyUp={ onKeyUp } 
@@ -95,7 +95,7 @@ class FormInput extends React.Component {
 
     return (
       <div>
-        { label === "none" ? "" : <label htmlFor={ name } className="control-label">{ label }</label> }
+        { label === "none" ? "" : <label htmlFor={ name.toLowerCase() } className="control-label">{ label }</label> }
         { inputType }
       </div>
     )

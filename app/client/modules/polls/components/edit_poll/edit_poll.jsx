@@ -21,7 +21,7 @@ class EditPoll extends React.Component {
 
   render() {
     const { poll, pollItems, isReady, addNewPollItem, errors } = this.props;
-    
+
     return (
       <div className="editable-poll">
         <h2 className="text-center">{ poll.name }</h2>
