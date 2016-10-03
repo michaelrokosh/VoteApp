@@ -9,8 +9,9 @@ import NewPoll from '../polls/containers/new_poll.js';
 import EditPollPage from '../polls/components/edit_poll/edit_poll_page.jsx';
 import PollViewPage from '../polls/components/poll_view/poll_view_page.jsx';
 import PollsPreview from '../polls/containers/polls_preview.js';
+import UserProfilePage from '../user/components/user_profile_page.jsx';
 
-export default function (injectDeps, {FlowRouter}) {
+export default function (injectDeps, {FlowRouter, Meteor}) {
     const MainLayoutCtx = injectDeps(MainLayout);
 
     FlowRouter.route("/", {
@@ -77,6 +78,15 @@ export default function (injectDeps, {FlowRouter}) {
         }
     });
 
+    FlowRouter.route("/:username", {
+        name: "UserProfile",
+        action(params) {
+            mount(MainLayoutCtx, {
+                content: <UserProfilePage username={ params.username } />
+            })
+        }
+    });
+
     // FlowRouter.route("/polls/:_id", {
     //     name: "Poll",
     //     action() {
@@ -89,15 +99,6 @@ export default function (injectDeps, {FlowRouter}) {
 
 
 
-    // FlowRouter.route("/:username", {
-    //     name: "UserProfile",
-    //     subscriptions(params) {
-    //         this.register('user', Meteor.subscribe('userByUsername', params.username));
-    //     },
-    //     action(params) {
-    //         mount(<C.UserProfilePage username={ params.username } />);
-    //     }
-    // });
 
 
 
