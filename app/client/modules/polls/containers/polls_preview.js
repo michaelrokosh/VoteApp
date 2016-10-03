@@ -1,6 +1,6 @@
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core';
 
-import PollsPreview from '../components/poll_preview/polls_preview.jsx'
+import PollsPreview from '../components/polls_preview/polls_preview.jsx'
 
 export const composer = (props, onData) => {
 	const { Meteor, FlowRouter, Collections } = props.context();
@@ -16,11 +16,13 @@ export const composer = (props, onData) => {
 			const polls = Collections.Polls.find(selector, { sort: {createdAt: -1} }).fetch();
 			onData(null, { polls, userId });
 		}
-	} else {
-		if(Meteor.subscribe('polls').redy()) {
-			const polls = Collections.find({}, { sort: {createdAt: -1} }).fetch();
-			onData(null, { polls, forUser })
+	} else if(type === 'publicPolls') {
+		if(Meteor.subscribe('polls').ready()) {
+			const polls = Collections.Polls.find({}, { sort: {createdAt: -1} }).fetch();
+			onData(null, { polls })
 		}
+	} else {
+		return;
 	}
 
 } 

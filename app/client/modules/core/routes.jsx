@@ -67,6 +67,16 @@ export default function (injectDeps, {FlowRouter}) {
         }
     });
     
+    FlowRouter.route("/polls", {
+        name: "PublicPolls",
+     
+        action() {
+            mount(MainLayoutCtx, {
+                content: <PollsPreview type="publicPolls" />
+            });
+        }
+    });
+
     // FlowRouter.route("/polls/:_id", {
     //     name: "Poll",
     //     action() {
@@ -77,15 +87,6 @@ export default function (injectDeps, {FlowRouter}) {
     // });
     
 
-    // FlowRouter.route("/polls", {
-    //     name: "PublicPolls",
-    //     subscriptions(params) {
-    //         this.register('polls', Meteor.subscribe('polls'));
-    //     },
-    //     action(params) {
-    //         mount(<C.PublicPolls />);
-    //     }
-    // });
 
 
     // FlowRouter.route("/:username", {
