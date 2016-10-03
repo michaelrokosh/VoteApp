@@ -18,9 +18,7 @@ PublicPolls = React.createClass({
   // },
 
   renderPoll(poll, index) {
-    const togglePrivatePoll = () => {
-      Meteor.call('Polls/togglePrivate', poll._id);
-    };
+  
 
     let privateToggleContainer;
     let editButton;

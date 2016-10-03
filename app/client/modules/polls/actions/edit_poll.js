@@ -30,5 +30,9 @@ export default {
 	       	LocalState.set('AddNewPollItemErrors', errors)
 	      }
 	    });
-	}	
+	},
+
+	togglePrivatePoll({ Meteor }, pollId) {
+      Meteor.call('Polls/togglePrivate', pollId);
+    }
 }

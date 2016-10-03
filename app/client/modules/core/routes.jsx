@@ -8,6 +8,7 @@ import HomePage from '../core/components/public/home_page.jsx';
 import NewPoll from '../polls/containers/new_poll.js';
 import EditPollPage from '../polls/components/edit_poll/edit_poll_page.jsx';
 import PollViewPage from '../polls/components/poll_view/poll_view_page.jsx';
+import PollsPreview from '../polls/containers/polls_preview.js';
 
 export default function (injectDeps, {FlowRouter}) {
     const MainLayoutCtx = injectDeps(MainLayout);
@@ -57,6 +58,15 @@ export default function (injectDeps, {FlowRouter}) {
         }
     });
     
+    FlowRouter.route("/:username/polls/", {
+        name: "UserPolls",
+        action() {
+            mount(MainLayoutCtx, {
+                content: <PollsPreview type="userPolls" />
+            })
+        }
+    });
+    
     // FlowRouter.route("/polls/:_id", {
     //     name: "Poll",
     //     action() {
@@ -66,12 +76,6 @@ export default function (injectDeps, {FlowRouter}) {
     //     }
     // });
     
-    FlowRouter.route("/:username/polls/", {
-        name: "UserPolls",
-        action() {
-            mount(<PublicPolls />);
-        }
-    });
 
     // FlowRouter.route("/polls", {
     //     name: "PublicPolls",
