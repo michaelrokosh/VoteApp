@@ -11,27 +11,27 @@ export default {
 	},
 
  	updateDescription({ Meteor },  e, pollItemId) {
-   		const updatedDescription = e.target.value;
-    	Meteor.call('PollItems/updateDescription', pollItemId, updatedDescription);
-  	},
+   	const updatedDescription = e.target.value;
+    Meteor.call('PollItems/updateDescription', pollItemId, updatedDescription);
+  },
 
-  	handleDescriptionKeyUp({}, e, pollItemId) {
-    	if (e.which === 13) {
-      		this.updateDescription(e, pollItemId);
-    	}
-  	},
+  handleDescriptionKeyUp({}, e, pollItemId) {
+  	if (e.which === 13) {
+     		this.updateDescription(e, pollItemId);
+   	}
+  },
 
-  	removePollItem({ Meteor }, pollItemId) {
-    	Meteor.call('PollItems/removeById', pollItemId);
-  	},
+	removePollItem({ Meteor }, pollItemId) {
+  	Meteor.call('PollItems/removeById', pollItemId);
+	},
 
-  	addPollItemOption({ Meteor }, e, pollItemId) {
-    	Meteor.call('PollItemOptions/insert', pollItemId);
-  	},
+	addPollItemOption({ Meteor }, pollItemId) {
+  	Meteor.call('PollItemOptions/insert', pollItemId);
+	},
 
-  	toggleActive({ Meteor }, pollItem) {
-    	Meteor.call('PollItems/toggleActive', pollItem._id, !pollItem.active); 
-  	},
+	toggleActive({ Meteor }, pollItem) {
+  	Meteor.call('PollItems/toggleActive', pollItem._id, !pollItem.active); 
+	},
 
   toggleDisabled({ Meteor }, e, pollItem) {
   	Meteor.call('PollItems/toggleDisabled', pollItem._id, !pollItem.disabled); 

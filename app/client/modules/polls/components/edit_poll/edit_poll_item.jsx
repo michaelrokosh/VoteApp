@@ -127,8 +127,7 @@ class EditPollItem extends React.Component {
             <select 
               className="chart-type-select" 
               value={ pollItem.chartType } 
-              onChange={ this.handleChartTypeChange.bind(this) }
-            >
+              onChange={ this.handleChartTypeChange.bind(this) }>
               <option value="" disabled>Choose a chart type</option>
               <option value="pie" data-icon="images/sample-1.jpg" className="circle">Pie</option>
               <option value="bars" data-icon="images/office.jpg" className="circle">Bars</option>
