@@ -2,6 +2,7 @@ import React from 'react';
 
 import EditPool from '../../containers/edit_poll.js';
 
+
 class EditPollPage extends React.Component {
   render() {
     return (

@@ -16,7 +16,7 @@ class NewPoll extends React.Component {
 
                         <form onSubmit={ createPoll }>
                             <FormErrors errors={errors} />
-                            <FormInput hasError={errors.email} name="PollName" type="text" label="Poll name" />
+                            <FormInput hasError={errors.email} name="pollname" type="text" label="Poll name" />
                             <div className="pull-left">
                                 <Tooltipped position="bottom" text="Private/public poll">
                                   <span>

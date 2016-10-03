@@ -6,7 +6,19 @@ class FormInput extends React.Component {
   }
 
   render() {
-    const { type, label, name, placeholder, value, onKeyUp, onKeyDown, onKeyPress, onBlur, onChange } = this.props;
+    const { 
+      type, 
+      label, 
+      name, 
+      placeholder, 
+      value, 
+      onKeyUp, 
+      onKeyDown, 
+      onKeyPress, 
+      onBlur, 
+      onChange 
+    } = this.props;
+
     let { className } = this.props
     let inputType;
 
@@ -21,9 +33,10 @@ class FormInput extends React.Component {
             <textarea 
               type={ type } 
               className={ className } 
-              name={ name.toLowerCase() } 
+              name={ name } 
               placeholder={ placeholder } 
-              onChange={ onChange } value={ value } 
+              onChange={ onChange } 
+              value={ value } 
               onKeyUp={ onKeyUp } 
               onKeyDown={ onKeyDown } 
               onKeyPress={ onKeyPress } 
@@ -35,7 +48,7 @@ class FormInput extends React.Component {
             <textarea 
               type={ type } 
               className={ className } 
-              name={ name.toLowerCase() } 
+              name={ name } 
               placeholder={ placeholder } 
               defaultValue={ value } 
               onKeyUp={ onKeyUp } 
@@ -52,7 +65,7 @@ class FormInput extends React.Component {
             <input 
               type={ type } 
               className={ className } 
-              name={ name.toLowerCase() } 
+              name={ name } 
               placeholder={ placeholder } 
               onChange={ onChange } 
               value={ value } 
@@ -67,7 +80,7 @@ class FormInput extends React.Component {
             <input 
               type={ type } 
               className={ className } 
-              name={ name.toLowerCase() } 
+              name={ name } 
               placeholder={ placeholder } 
               defaultValue={ value } 
               onKeyUp={ onKeyUp } 
@@ -82,7 +95,7 @@ class FormInput extends React.Component {
 
     return (
       <div>
-        { label === "none" ? "" : <label htmlFor={ name.toLowerCase() } className="control-label">{ label }</label> }
+        { label === "none" ? "" : <label htmlFor={ name } className="control-label">{ label }</label> }
         { inputType }
       </div>
     )

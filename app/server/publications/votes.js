@@ -15,6 +15,7 @@ export default () => {
   Meteor.publish('votesByPollItemId', function (pollItemId) {
     check(pollItemId, String);
     const pollItem = PollItems.findOne({ _id: pollItemId });
+    
     if (this.userId !== pollItem.userId) {
       this.ready();
     }

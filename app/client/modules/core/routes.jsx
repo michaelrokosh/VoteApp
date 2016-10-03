@@ -7,6 +7,7 @@ import UserSignUpPage from '../auth/components/user_sign_up/user_sign_up_page.js
 import HomePage from '../core/components/public/home_page.jsx';
 import NewPoll from '../polls/containers/new_poll.js';
 import EditPollPage from '../polls/components/edit_poll/edit_poll_page.jsx';
+import PollViewPage from '../polls/components/poll_view/poll_view_page.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
     const MainLayoutCtx = injectDeps(MainLayout);
@@ -56,6 +57,22 @@ export default function (injectDeps, {FlowRouter}) {
         }
     });
     
+    // FlowRouter.route("/polls/:_id", {
+    //     name: "Poll",
+    //     action() {
+    //         mount(MainLayoutCtx, { 
+    //             content: <PollViewPage />
+    //         });
+    //     }
+    // });
+    
+    FlowRouter.route("/:username/polls/", {
+        name: "UserPolls",
+        action() {
+            mount(<PublicPolls />);
+        }
+    });
+
     // FlowRouter.route("/polls", {
     //     name: "PublicPolls",
     //     subscriptions(params) {
@@ -77,22 +94,7 @@ export default function (injectDeps, {FlowRouter}) {
     //     }
     // });
 
-    // FlowRouter.route("/:username/polls/", {
-    //     name: "UserPolls",
-    //     subscriptions(params) {
-    //         this.register('polls', Meteor.subscribe('userPollsByUsername', params.username));
-    //     },
-    //     action(params) {
-    //         mount(<C.PublicPolls userId={ params._id } />);
-    //     }
-    // });
 
-    // FlowRouter.route("/polls/:_id", {
-    //     name: "Poll",
-    //     action(params) {
-    //         mount(<C.PollViewPage pollId={ params._id } />);
-    //     }
-    // });
 
 
     // FlowRouter.route("/polls/:_id/preview", {
