@@ -3,7 +3,7 @@ import React from 'react';
 import FormErrors from '../../../core/components/general/form_errors.jsx';
 import FormInput from '../../../core/components/general/form_input.jsx';
 import Tooltipped from '../../../core/components/general/tooltipped.jsx';
-import EditPollItemOptions from './edit_poll_item_options.jsx';
+import EditPollItemOption from '../../containers/edit_poll_item_option.js';
 
 class EditPollItem extends React.Component {
   constructor(props) {
@@ -46,24 +46,41 @@ class EditPollItem extends React.Component {
   renderPollItemOption(option, index) {
       return (
         <div key={ index }>
-          <EditPollItemOptions pollItemOption={ option } index={ index + 1 }/>
+          <EditPollItemOption pollItemOption={ option } index={ index + 1 }/>
         </div>
       )
   }
+  
+  handleDescriptionKeyUp(e) {
+      const { handleDescriptionKeyUp, pollItem} = this.props;
+      handleDescriptionKeyUp(e, pollItem._id)
+  }
+
+  updateDescription(e) {
+      const { updateDescription, pollItem } = this.props;
+      updateDescription(e, pollItem._id)
+  }
+
+  handleChartTypeChange(e) {
+    const { handleChartTypeChange, pollItem } = this.props;
+    handleChartTypeChange(e, pollItem._id);
+  }
+
+  toggleDisabled(e) {
+    const { toggleDisabled, pollItem } = this.props;
+    toggleDisabled(e, pollItem);
+  }
+
 
   render() {
     const { 
       pollItemOptions, 
       votes, 
       pollItem,
-      updateDescription,
-      handleDescriptionKeyUp,
       removePollItem,
       addPollItemOption,
       toggleActive,
-      toggleDisabled,
-      toggleShowResult,
-      handleChartTypeChange 
+      toggleShowResults,
     } = this.props;
 
     const  errors = {}
@@ -99,15 +116,19 @@ class EditPollItem extends React.Component {
               name="Description" 
               label="Description" 
               hasError={ !!errors.description } 
-              onKeyUp={ handleDescriptionKeyUp } 
-              onBlur={ updateDescription } 
+              onKeyUp={ this.handleDescriptionKeyUp.bind(this) } 
+              onBlur={ this.updateDescription.bind(this) } 
               value={ pollItem.description } 
               placeholder="Enter your description here"
             />
           </div>
           <div className="chart-type">
             <label>Chart type</label>
-            <select className="chart-type-select" value={ pollItem.chartType } onChange={ handleChartTypeChange }>
+            <select 
+              className="chart-type-select" 
+              value={ pollItem.chartType } 
+              onChange={ this.handleChartTypeChange.bind(this) }
+            >
               <option value="" disabled>Choose a chart type</option>
               <option value="pie" data-icon="images/sample-1.jpg" className="circle">Pie</option>
               <option value="bars" data-icon="images/office.jpg" className="circle">Bars</option>
@@ -120,7 +141,7 @@ class EditPollItem extends React.Component {
                   <input 
                     type="checkbox" 
                     id={ "disabled-checkbox-" + pollItem._id } 
-                    onChange={ toggleDisabled } 
+                    onChange={ this.toggleDisabled.bind(this) } 
                     checked={ pollItem.disabled } 
                   />
                   <label htmlFor={ "disabled-checkbox-" + pollItem._id }>Disabled</label>
@@ -133,7 +154,7 @@ class EditPollItem extends React.Component {
                   <input 
                     type="checkbox" 
                     id={ "show-results-checkbox-" + pollItem._id } 
-                    onChange={ toggleShowResult } 
+                    onChange={ toggleShowResults.bind(null, pollItem) } 
                     checked={ pollItem.showResults } 
                   />
                   <label htmlFor={ "show-results-checkbox-" + pollItem._id }>Show Results</label>
@@ -149,7 +170,11 @@ class EditPollItem extends React.Component {
               <Tooltipped position="bottom" text="Visibility">
                 <label>
                   Off
-                  <input type="checkbox" onChange={ toggleActive } checked={ this.props.pollItem.active }/>
+                  <input 
+                    type="checkbox" 
+                    onChange={ toggleActive.bind(null, pollItem) } 
+                    checked={ pollItem.active }
+                  />
                   <span className="lever"></span>
                   On
                 </label>
@@ -157,7 +182,10 @@ class EditPollItem extends React.Component {
             </div>
             <div className="control-buttons">
               <Tooltipped position="bottom" text="Add new option">
-                <a onClick={ addPollItemOption } className="btn btn-small waves-effect waves-light add-option-btn">
+                <a 
+                  onClick={ addPollItemOption.bind(null, pollItem._id) } 
+                  className="btn btn-small waves-effect waves-light add-option-btn"
+                >
                   <i className="material-icons">add</i>
                 </a>
               </Tooltipped>

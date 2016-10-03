@@ -19,12 +19,6 @@ PollItemOption = React.createClass({
     } 
   },
 
-  removePollItem(e) {
-    e.preventDefault();
-
-    Meteor.call('PollItemOptions/removeById', this.props.pollItem._id);
-    return;
-  },
 
   removePollItemOption(e) {
     e.preventDefault();

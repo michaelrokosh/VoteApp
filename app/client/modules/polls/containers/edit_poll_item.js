@@ -16,16 +16,16 @@ export const composer = (props, onData) => {
 }
 
 export const depsMapper = (context, actions) => ({
-	updateText: actions.EditPoll.updateText,
-	handleKeyUp: actions.EditPoll.handleKeyUp,
-	updateDescription: actions.EditPoll.updateDescription,
-	handleDescriptionKeyUp: actions.EditPoll.handleDescriptionKeyUp,
-	removePollItem: actions.EditPoll.removePollItem,
-	addPollItemOption: actions.EditPoll.addPollItemOption,
-	toggleActive: actions.EditPoll.toggleActive,
-	toggleDisabled: actions.EditPoll.toggleDisabled,
-	toggleShowResults: actions.toggleShowResults,
-	handleChartTypeChange: actions.EditPoll.handleChartTypeChange,
+	updateText: actions.EditPollItem.updateText,
+	handleKeyUp: actions.EditPollItem.handleKeyUp,
+	updateDescription: actions.EditPollItem.updateDescription,
+	handleDescriptionKeyUp: actions.EditPollItem.handleDescriptionKeyUp,
+	removePollItem: actions.EditPollItem.removePollItem,
+	addPollItemOption: actions.EditPollItem.addPollItemOption,
+	toggleActive: actions.EditPollItem.toggleActive,
+	toggleDisabled: actions.EditPollItem.toggleDisabled,
+	toggleShowResults: actions.EditPollItem.toggleShowResults,
+	handleChartTypeChange: actions.EditPollItem.handleChartTypeChange,
 	context: () => context
 })
 
