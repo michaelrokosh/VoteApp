@@ -1,9 +1,11 @@
 import React from 'react';
 
+import PollItemView from '../../containers/poll_item_view.js';
+
 class PollView extends React.Component {
   render() {
-    const { isUser, poll, activePollItems, pollItemOptions } = this.data;
-    
+    const { isUser, poll, activePollItems, pollItemOptions } = this.props;
+
     let infoContainer;
 
     if (activePollItems.length === 0) {

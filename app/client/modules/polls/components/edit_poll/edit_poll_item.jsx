@@ -32,16 +32,16 @@ class EditPollItem extends React.Component {
   }
 
   
-  renderVotes(vote, index) {
-    const pollItemOption = PollItemOptions.findOne({ _id: vote.pollItemOptionId });
-    return (
-      <li className="collection-item avatar" key={ index }>
-        <i className="material-icons circle grey">done</i>
-        <span className="title">{ pollItemOption && pollItemOption.text }</span>
-        <p>{ vote.email } - { moment(vote.createdAt).fromNow() }</p>
-      </li>
-    )
-  }
+  // renderVotes(vote, index) {
+  //   const pollItemOption = PollItemOptions.findOne({ _id: vote.pollItemOptionId });
+  //   return (
+  //     <li className="collection-item avatar" key={ index }>
+  //       <i className="material-icons circle grey">done</i>
+  //       <span className="title">{ pollItemOption && pollItemOption.text }</span>
+  //       <p>{ vote.email } - { moment(vote.createdAt).fromNow() }</p>
+  //     </li>
+  //   )
+  // }
 
   renderPollItemOption(option, index) {
       return (
@@ -213,7 +213,7 @@ class EditPollItem extends React.Component {
           <div className="modal-content">
             <h4>Votes</h4>
             <ul className="collection">
-              { votes.map(this.renderVotes) }
+              { /*votes.map(this.renderVotes) */}
             </ul>
           </div>
         </div>

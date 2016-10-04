@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import Votes from '../../lib/collections/votes.jsx';
+import Polls from '../../lib/collections/polls.jsx';
 import PollItemOptions from '../../lib/collections/poll_item_options.jsx';
 import PollItems from '../../lib/collections/poll_items.jsx';
 

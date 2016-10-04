@@ -87,14 +87,14 @@ export default function (injectDeps, {FlowRouter, Meteor}) {
         }
     });
 
-    // FlowRouter.route("/polls/:_id", {
-    //     name: "Poll",
-    //     action() {
-    //         mount(MainLayoutCtx, { 
-    //             content: <PollViewPage />
-    //         });
-    //     }
-    // });
+    FlowRouter.route("/polls/:_id", {
+        name: "Poll",
+        action() {
+            mount(MainLayoutCtx, { 
+                content: <PollViewPage />
+            });
+        }
+    });
     
 
 
