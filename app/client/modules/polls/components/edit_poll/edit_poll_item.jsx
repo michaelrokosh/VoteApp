@@ -32,16 +32,24 @@ class EditPollItem extends React.Component {
   }
 
   
-  // renderVotes(vote, index) {
-  //   const pollItemOption = PollItemOptions.findOne({ _id: vote.pollItemOptionId });
-  //   return (
-  //     <li className="collection-item avatar" key={ index }>
-  //       <i className="material-icons circle grey">done</i>
-  //       <span className="title">{ pollItemOption && pollItemOption.text }</span>
-  //       <p>{ vote.email } - { moment(vote.createdAt).fromNow() }</p>
-  //     </li>
-  //   )
-  // }
+  renderVotes(vote, index) {
+    const { pollItemOptions } = this.props;
+    console.log(index);
+    let pollItemOption;
+    pollItemOptions.forEach((item) => {
+      if(item._id == vote.pollItemOptionId) {
+        pollItemOption = item;
+      }
+    });
+
+    return (
+      <li className="collection-item avatar" key={ index }>
+        <i className="material-icons circle grey">done</i>
+        <span className="title">{ pollItemOption && pollItemOption.text }</span>
+        <p>{ vote.email } - { moment(vote.createdAt).fromNow() }</p>
+      </li>
+    )
+  }
 
   renderPollItemOption(option, index) {
       return (
@@ -189,8 +197,7 @@ class EditPollItem extends React.Component {
                 </a>
               </Tooltipped>
               <Tooltipped position="bottom" text="Show votes">
-                <a 
-                  onClick={ this.getVotes } 
+                <a
                   className="btn-floating btn-small waves-effect waves-light modal-trigger" 
                   href={ "#showVotes" + pollItem._id }>
                   <i className="material-icons">supervisor_account</i>
@@ -213,7 +220,7 @@ class EditPollItem extends React.Component {
           <div className="modal-content">
             <h4>Votes</h4>
             <ul className="collection">
-              { /*votes.map(this.renderVotes) */}
+              { votes.map(this.renderVotes.bind(this)) }
             </ul>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import marked from 'marked';
 
 import PollItemOptionView from '../../containers/poll_item_option_view.js';
 import PollItemChartWrapper from '../../containers/poll_item_chart_wrapper.js';
@@ -7,11 +8,12 @@ class PollItemView extends React.Component {
   render() {
     const { pollItem, preview, pollItemOptions } = this.props;
 
-
+    const description = marked(pollItem.description || "")
+    console.log(description);
     return (
       <div className="poll-item">
         <h5>{ pollItem.text }</h5>
-        { pollItem.description || "" }
+        <div className="poll-item-description" dangerouslySetInnerHTML={{__html: description}} />
         <PollItemChartWrapper pollItemId={ pollItem._id }/>
         {
           pollItemOptions.map((option, i) => {

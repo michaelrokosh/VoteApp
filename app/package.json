@@ -15,6 +15,7 @@
     "bcrypt": "^0.8.7",
     "highcharts": "^5.0.0",
     "mantra-core": "^1.7.0",
+    "marked": "^0.3.6",
     "react": "^15.3.2",
     "react-addons-create-fragment": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",
@@ -24,7 +25,10 @@
     "react-addons-test-utils": "^15.3.2",
     "react-addons-transition-group": "^15.3.2",
     "react-addons-update": "^15.3.2",
+    "react-components-markdown": "^0.2.0",
     "react-dom": "^15.3.2",
+    "react-markdown-to-html": "^1.0.11",
+    "react-marked": "^0.3.1",
     "react-mounter": "^1.2.0"
   }
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import DemoPollPage from '../../containers/demo_poll_page.js';
+
 class HomePage extends React.Component {
   render() {
     return (
@@ -15,11 +17,11 @@ class HomePage extends React.Component {
             <div className="col s12 m5">
               <div className="relative">
                 <div className="fade"></div>
-                <Poll pollId="demoPoll" />
+                <DemoPollPage pollId="demoPoll" />
               </div>
             </div>
             <div className="col s12 m5 offset-m2">
-             <Poll pollId="demoPoll" preview={ true } />*/
+             <DemoPollPage pollId="demoPoll" preview={ true } />
             </div>
           </div>
         </div>

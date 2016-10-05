@@ -2,14 +2,17 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 import EditPoll from '../components/edit_poll/edit_poll.jsx';
 
-export const composer = ({ context }, onData) => {
-	const { Meteor, Collections, LocalState } = context();
+export const composer = (props, onData) => {
+	const { Meteor, Collections, LocalState } = props.context();
 
 	LocalState.setDefault('AddNewPollItemErrors', {});
 	const errors = LocalState.get('AddNewPollItemErrors');
 
-    const pollId = FlowRouter.getParam('_id');
-	
+    let pollId = FlowRouter.getParam('_id');
+    if(!pollId) {
+    	pollId  = props.pollId;
+    }
+
 	const pollHandle = Meteor.subscribe('poll', pollId);
     const pollItemsHandle = Meteor.subscribe('pollItems', pollId);
     const pollItemOptionsHandle = Meteor.subscribe('pollItemOptionsByPollId', pollId);
