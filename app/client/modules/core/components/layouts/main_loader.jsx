@@ -1,6 +1,6 @@
 import React from 'react';
 
-MainLoader = React.createClass({
+class MainLoader extends React.Component {
   render() {
     return (
       <div id="mainLoader" className="container text-center">
@@ -48,4 +48,6 @@ MainLoader = React.createClass({
       </div>
     );
   }
-});
+}
+
+export default MainLoader;

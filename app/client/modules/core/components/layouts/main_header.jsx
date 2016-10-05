@@ -1,5 +1,5 @@
 import React from 'react';
-import LoaderLine from './loader_line.jsx';
+import LoaderLine from '../../containers/loader_line.js';
 
 class MainHeader extends React.Component {
   componentDidMount() {

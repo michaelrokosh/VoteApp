@@ -1,6 +1,7 @@
 import { useDeps, composeWithTracker, composeAll } from 'mantra-core';
 
 import PieChart from '../components/pie_chart.jsx';
+import MainLoader from '../../core/components/layouts/main_loader.jsx';
 
 export const composer = (props, onData) => {
 	const { Collections } = props.context();
@@ -16,6 +17,6 @@ export const depsMapper = (context) => ({
 });
 
 export default composeAll (
-	composeWithTracker(composer),
+	composeWithTracker(composer, MainLoader),
 	useDeps(depsMapper)
 )(PieChart);

@@ -2,15 +2,15 @@ import { Meteor } from 'meteor/meteor';
 import Polls from '../../lib/collections/polls.jsx';
 
 export default () => {
-  Meteor.publish('poll', function (pollId) {
+  Meteor.publish('polls.poll', function (pollId) {
     return Polls.find({ _id: pollId });
   });
 
-  Meteor.publish('polls', function () {
+  Meteor.publish('polls.polls', function () {
     return Polls.find({ isPrivate: false });
   });
 
-  Meteor.publish('userPollsByUsername', function (username) {
+  Meteor.publish('polls.userPollsByUsername', function (username) {
     const user = Meteor.users.findOne({ username: username });
     check(user, Object);
     check(user._id, String);

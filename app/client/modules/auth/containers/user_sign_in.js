@@ -1,6 +1,7 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 import UserSignIn from '../components/user_sign_in/user_sign_in.jsx';
+import MainLoader from '../../core/components/layouts/main_loader.jsx';
 
 export const composer = ({context}, onData) => {
 	const { LocalState } = context();
@@ -16,6 +17,6 @@ export const depsMapper = (context, actions) => ({
 });
 
 export default composeAll (
-	composeWithTracker(composer), 
+	composeWithTracker(composer, MainLoader), 
 	useDeps(depsMapper)
 )(UserSignIn);

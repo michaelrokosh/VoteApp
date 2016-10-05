@@ -9,7 +9,7 @@ class PollItemView extends React.Component {
     const { pollItem, preview, pollItemOptions } = this.props;
 
     const description = marked(pollItem.description || "")
-    console.log(description);
+
     return (
       <div className="poll-item">
         <h5>{ pollItem.text }</h5>

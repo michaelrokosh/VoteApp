@@ -34,7 +34,7 @@ class EditPollItem extends React.Component {
   
   renderVotes(vote, index) {
     const { pollItemOptions } = this.props;
-    console.log(index);
+
     let pollItemOption;
     pollItemOptions.forEach((item) => {
       if(item._id == vote.pollItemOptionId) {

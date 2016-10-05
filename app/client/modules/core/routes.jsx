@@ -6,7 +6,7 @@ import ChartLayout from './components/layouts/chart_layout.jsx';
 
 import UserSignInPage from '../auth/components/user_sign_in/user_sign_in_page.jsx';
 import UserSignUpPage from '../auth/components/user_sign_up/user_sign_up_page.jsx';
-import HomePage from '../core/components/public/home_page.jsx';
+import HomePage from '../home/components/home_page.jsx';
 import NewPoll from '../polls/containers/new_poll.js';
 import EditPollPage from '../polls/components/edit_poll/edit_poll_page.jsx';
 import PollViewPage from '../polls/components/poll_view/poll_view_page.jsx';

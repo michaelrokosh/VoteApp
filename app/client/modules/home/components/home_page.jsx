@@ -1,6 +1,8 @@
 import React from 'react';
 
-Home = React.createClass({
+import DemoPollPage from '../containers/demo_poll_page.js';
+
+class HomePage extends React.Component {
   render() {
     return (
       <div>
@@ -15,15 +17,17 @@ Home = React.createClass({
             <div className="col s12 m5">
               <div className="relative">
                 <div className="fade"></div>
-                <C.Poll pollId="demoPoll" />
+                <DemoPollPage pollId="demoPoll" />
               </div>
             </div>
             <div className="col s12 m5 offset-m2">
-              <C.Poll pollId="demoPoll" preview={ true } />
+             <DemoPollPage pollId="demoPoll" preview={ true } />
             </div>
           </div>
         </div>
       </div>
     )
   }
-});
+}
+
+export default HomePage;

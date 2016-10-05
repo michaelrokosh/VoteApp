@@ -6,7 +6,7 @@ export const composer = (props, onData) => {
 	const { Meteor, FlowRouter, Collections } = props.context();
 	const pollItemId = props.pollItem._id;
 
-	if(Meteor.subscribe('votesByPollItemId', pollItemId).ready()) {
+	if(Meteor.subscribe('votes.votesByPollItemId', pollItemId).ready()) {
      	const votes = Collections.Votes.find({ pollItemId: pollItemId }, { sort: { createdAt: 1 } }).fetch();
     	const pollItemOptions = Collections.PollItemOptions.find({ pollItemId: pollItemId }).fetch();
   	    const pollItem = Collections.PollItems.findOne({ _id: pollItemId })

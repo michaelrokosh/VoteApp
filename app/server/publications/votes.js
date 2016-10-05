@@ -3,7 +3,7 @@ import Votes from '../../lib/collections/votes.jsx';
 import PollItems from '../../lib/collections/poll_items.jsx';
 
 export default () => {
-  Meteor.publish('vote', function (pollItemOptionId) {
+  Meteor.publish('votes.vote', function (pollItemOptionId) {
     check(pollItemOptionId, String);
 
     return Votes.find({ 
@@ -12,7 +12,7 @@ export default () => {
     });
   });
 
-  Meteor.publish('votesByPollItemId', function (pollItemId) {
+  Meteor.publish('votes.votesByPollItemId', function (pollItemId) {
     check(pollItemId, String);
     const pollItem = PollItems.findOne({ _id: pollItemId });
     

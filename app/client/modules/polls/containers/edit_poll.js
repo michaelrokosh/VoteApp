@@ -1,6 +1,7 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 import EditPoll from '../components/edit_poll/edit_poll.jsx';
+import MainLoader from '../../core/components/layouts/main_loader.jsx';
 
 export const composer = (props, onData) => {
 	const { Meteor, Collections, LocalState } = props.context();
@@ -13,9 +14,9 @@ export const composer = (props, onData) => {
     	pollId  = props.pollId;
     }
 
-	const pollHandle = Meteor.subscribe('poll', pollId);
-    const pollItemsHandle = Meteor.subscribe('pollItems', pollId);
-    const pollItemOptionsHandle = Meteor.subscribe('pollItemOptionsByPollId', pollId);
+	const pollHandle = Meteor.subscribe('polls.poll', pollId);
+    const pollItemsHandle = Meteor.subscribe('pollItems.pollItems', pollId);
+    const pollItemOptionsHandle = Meteor.subscribe('pollItemOptions.pollItemOptionsByPollId', pollId);
 
     if(pollHandle.ready() && pollItemsHandle.ready() && pollItemOptionsHandle.ready()) {
     	const poll = Collections.Polls.findOne({ _id: pollId });
@@ -32,6 +33,6 @@ export const depsMapper = (context, actions) => ({
 });
 
 export default composeAll (
-	composeWithTracker(composer),
+	composeWithTracker(composer, MainLoader),
 	useDeps(depsMapper)
 )(EditPoll);

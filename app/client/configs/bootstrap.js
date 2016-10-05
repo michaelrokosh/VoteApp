@@ -20,6 +20,7 @@ export default () => {
       '#6D4C41',
       '#757575'
     ];
+    
     Highcharts.setOptions({
       colors: HIGHCHARTS_COLORS,
       chart: {

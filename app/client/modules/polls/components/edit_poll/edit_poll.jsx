@@ -62,7 +62,7 @@ class EditPoll extends React.Component {
         <Tooltipped position="left" text="Preview">
           <a 
             className="btn-floating btn-large waves-effect waves-light preview-btn" 
-            href={ FlowRouter.path('PollPreview', { _id: poll._id }) } 
+            href={ FlowRouter.path('Poll', { _id: poll._id }) } 
             target="_blank">
             <i className="material-icons">visibility</i>
           </a>
