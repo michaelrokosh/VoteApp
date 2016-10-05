@@ -11,7 +11,7 @@ class PollItemChartWrapper extends React.Component {
       isUser,
       params
     } = this.props;
-    
+
     let chartComponent;
 
     if (pollItem.chartType === 'bars') {

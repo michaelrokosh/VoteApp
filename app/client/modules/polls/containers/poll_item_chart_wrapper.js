@@ -4,13 +4,27 @@ import PollItemChartWrapper from '../components/poll_view/poll_item_chart_wrappe
 
 export const composer = (props, onData) => {
 	const { Collections } = props.context();
-	const { pollItemId } = props;
+	const { pollItemId, isChartPreview } = props;
 
-	const pollItem = Collections.PollItems.findOne({ _id: pollItemId });
-	const pollItemOptions = Collections.PollItemOptions.find({ pollItemId: pollItemId }).fetch();
-	const isuser = Meteor.user() ? true : false;
+	//для того, щоб не робити лишню підписку 
+	if(isChartPreview) {
+		const pollItemHandle = Meteor.subscribe('pollItem', pollItemId);
+		const pollItemOptionsHandle = Meteor.subscribe('pollItemOptionsByPollItemId', pollItemId);
+		
+		if(pollItemHandle.ready() || pollItemOptionsHandle.ready()) {
+			const pollItem = Collections.PollItems.findOne({ _id: pollItemId });
+			const pollItemOptions = Collections.PollItemOptions.find({ pollItemId: pollItemId }).fetch();
+			const isuser = Meteor.user() ? true : false;
 
-	onData(null, { pollItem, pollItemOptions, isuser })
+			onData(null, { pollItem, pollItemOptions, isuser });		
+		}
+	} else {
+		const pollItem = Collections.PollItems.findOne({ _id: pollItemId });
+		const pollItemOptions = Collections.PollItemOptions.find({ pollItemId: pollItemId }).fetch();
+		const isuser = Meteor.user() ? true : false;
+
+		onData(null, { pollItem, pollItemOptions, isuser })
+	}
 }
 
 export const depsMapper = (context) => ({
