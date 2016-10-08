@@ -1,18 +1,21 @@
 import { createApp } from 'mantra-core';
 import initContext from './configs/context';
 
-import bootstrap from './configs/bootstrap.js';
+import { bootstrap } from './modules/core/bootstrap.js';
 
 import coreModule from './modules/core';
-import authModule from './modules/auth';
+import usersModule from './modules/users';
 import pollsModule from './modules/polls';
 
-const context = initContext();
 bootstrap();
 
+const context = initContext();
+
+
 const app = createApp(context);
+
 app.loadModule(pollsModule);
 app.loadModule(coreModule);
-app.loadModule(authModule);
+app.loadModule(usersModule);
 
 app.init()

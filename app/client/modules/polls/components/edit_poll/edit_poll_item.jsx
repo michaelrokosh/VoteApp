@@ -3,7 +3,7 @@ import React from 'react';
 import FormErrors from '../../../core/components/general/form_errors.jsx';
 import FormInput from '../../../core/components/general/form_input.jsx';
 import Tooltipped from '../../../core/components/general/tooltipped.jsx';
-import EditPollItemOption from '../../containers/edit_poll_item_option.js';
+import EditPollItemOption from '../../containers/edit_poll/edit_poll_item_option.js';
 
 class EditPollItem extends React.Component {
   constructor(props) {
@@ -89,6 +89,7 @@ class EditPollItem extends React.Component {
       addPollItemOption,
       toggleActive,
       toggleShowResults,
+      getPath
     } = this.props;
 
     const  errors = {}
@@ -205,7 +206,7 @@ class EditPollItem extends React.Component {
               </Tooltipped>
               <Tooltipped position="bottom" text="Open the chart">
                 <a 
-                  href={ FlowRouter.path('Chart', { pollId: pollItem.pollId, pollItemId: pollItem._id }) } 
+                  href={ getPath('Chart', { pollId: pollItem.pollId, pollItemId: pollItem._id }) } 
                   className="btn btn-small waves-effect grey waves-light" 
                   target="_blank">
                   <i className="material-icons">open_in_new</i>

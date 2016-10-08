@@ -29,6 +29,7 @@
     "react-dom": "^15.3.2",
     "react-markdown-to-html": "^1.0.11",
     "react-marked": "^0.3.1",
-    "react-mounter": "^1.2.0"
+    "react-mounter": "^1.2.0",
+    "underscore": "^1.8.3"
   }
 }

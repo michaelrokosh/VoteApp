@@ -3,11 +3,12 @@ import { Migrations } from 'meteor/percolate:migrations';
 import { Accounts } from 'meteor/accounts-base';
 import PollItems from '../../lib/collections/poll_items.jsx';
 import PollItemOptions from '../../lib/collections/poll_item_options.jsx';
+import Votes from '../../lib/collections/votes.jsx';
 
 export default () => {
   Meteor.startup(() => {
     Migrations.migrateTo('latest');
-    
+
     if (Meteor.users.find().count() === 0) {
       Accounts.createUser({
         email: "qwe@qwe.qwe",

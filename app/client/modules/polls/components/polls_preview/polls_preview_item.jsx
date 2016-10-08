@@ -8,7 +8,8 @@ class PollsPreviewItem extends React.Component {
       poll, 
       userId, 
       index,
-      togglePrivatePoll
+      togglePrivatePoll,
+      getPath
     } = this.props;
 
     let privateToggleContainer;
@@ -29,7 +30,7 @@ class PollsPreviewItem extends React.Component {
         </Tooltipped>
       );
 
-      editButton = <a href={ FlowRouter.path('EditPoll', { _id: poll._id }) }>Edit</a>;
+      editButton = <a href={ getPath('EditPoll', { _id: poll._id }) }>Edit</a>;
     }
 
     return (
@@ -43,7 +44,7 @@ class PollsPreviewItem extends React.Component {
             </div>
           </div>
           <div className="card-action">
-            <a href={ FlowRouter.path('Poll', { _id: poll._id }) }>Open</a>
+            <a href={ getPath('Poll', { _id: poll._id }) }>Open</a>
             { editButton }
             { privateToggleContainer }
           </div>

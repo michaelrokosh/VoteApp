@@ -14,6 +14,7 @@ export const composer = ({context}, onData) => {
 
 export const depsMapper = (context, actions) => ({
 	HandleLogout: actions.auth.HandleLogout,
+	getPath: actions.router.getPath,
 	context: () => context
 })
 

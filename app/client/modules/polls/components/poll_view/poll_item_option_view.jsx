@@ -1,17 +1,16 @@
 import React from 'react';
 
+import { HIGHCHARTS_COLORS } from '../../../core/bootstrap.js';
+
 class PollItemOptionView extends React.Component {
-  vote() {
-    // if (this.props.preview) {
-    //   alert('You can\'n vote in the preview mode');
-    //   return;
-    // }
-
-    Meteor.call('vote', this.props.pollItemOption._id);
-  }
-
   render() {
-    const { pollItemOption, index, pollItem, vote } = this.props;
+    const { 
+      pollItemOption, 
+      index, 
+      pollItem, 
+      vote,
+      voteAction 
+    } = this.props;
 
     const buttonStyle = {
       backgroundColor: HIGHCHARTS_COLORS[index] || HIGHCHARTS_COLORS[index - HIGHCHARTS_COLORS.length]
@@ -29,7 +28,7 @@ class PollItemOptionView extends React.Component {
         className={ buttonClass } 
         style={ buttonStyle } 
         disabled={ pollItem.disabled } 
-        onClick={ this.vote.bind(this) }>
+        onClick={ voteAction.bind(null, pollItemOption._id) }>
         { buttonIcon }{ buttonLabel }
       </button>
     );

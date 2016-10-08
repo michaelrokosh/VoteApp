@@ -3,6 +3,9 @@ import PollItems from './poll_items.jsx';
 import Polls from './polls.jsx';
 import Votes from './votes.jsx';
 
+import { pollsAllows } from './polls.jsx';
+
+pollsAllows();
 
 export default {
 	PollItemOptions,

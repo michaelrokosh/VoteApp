@@ -1,5 +1,6 @@
 import React from 'react';
-import LoaderLine from '../../containers/loader_line.js';
+
+//import LoaderLine from '../../containers/loader_line.js';
 
 class MainHeader extends React.Component {
   componentDidMount() {
@@ -15,30 +16,30 @@ class MainHeader extends React.Component {
     let myPolls;
     let userProfile;
     let publicPolls;
-    let { user, HandleLogout } = this.props;
-    
+    let { user, HandleLogout, getPath } = this.props;
+
     if(user) {
       newPoll = (
-        <li><a href={ FlowRouter.path('NewPoll') }>New Poll</a></li>
+        <li><a href={ getPath('NewPoll') }>New Poll</a></li>
       )
       myPolls = (
-        <li><a href={ FlowRouter.path('UserPolls', { username: user.username }) }>My Polls</a></li>
+        <li><a href={ getPath('UserPolls', { username: user.username }) }>My Polls</a></li>
       )
       publicPolls = (
-        <li><a href={ FlowRouter.path('PublicPolls') }>Public Polls</a></li>
+        <li><a href={ getPath('PublicPolls') }>Public Polls</a></li>
       )
       userProfile = (
-        <li><a href={ FlowRouter.path('UserProfile', { username: user.username }) }>Profile</a></li>
+        <li><a href={ getPath('UserProfile', { username: user.username }) }>Profile</a></li>
       )
       loginButton = (
         <li><a onClick={ HandleLogout }>Logout</a></li>
       )
     } else {
       loginButton = (
-        <li><a href={ FlowRouter.path('SignIn') }>Sign In</a></li>
+        <li><a href={ getPath('SignIn') }>Sign In</a></li>
       )
       signUpButton = (
-        <li><a href={ FlowRouter.path('SignUp') }>Sign Up</a></li>
+        <li><a href={ getPath('SignUp') }>Sign Up</a></li>
       )
     }
 

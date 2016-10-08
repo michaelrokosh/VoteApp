@@ -1,7 +1,7 @@
 import React from 'react';
 
-import PollView from '../../polls/containers/poll_view.js';
-import EditPoll from '../../polls/containers/edit_poll.js';
+import PollView from '../../polls/containers/poll_view/poll_view.js';
+import EditPoll from '../../polls/containers/edit_poll/edit_poll.js';
 
 class DemoPollPage extends React.Component {
   render() {

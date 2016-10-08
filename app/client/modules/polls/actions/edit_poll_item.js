@@ -1,7 +1,7 @@
 export default {
 	updateText({ Meteor }, e, pollItemId) { 
     	const updatedText = e.target.value;
-   		Meteor.call('PollItems/updateText', pollItemId, updatedText);
+   		Meteor.call('pollItems.updateText', pollItemId, updatedText);
   	},
 
 	handleKeyUp({}, e, pollItemId) {
@@ -12,7 +12,7 @@ export default {
 
  	updateDescription({ Meteor },  e, pollItemId) {
    	const updatedDescription = e.target.value;
-    Meteor.call('PollItems/updateDescription', pollItemId, updatedDescription);
+    Meteor.call('pollItems.updateDescription', pollItemId, updatedDescription);
   },
 
   handleDescriptionKeyUp({}, e, pollItemId) {
@@ -22,26 +22,26 @@ export default {
   },
 
 	removePollItem({ Meteor }, pollItemId) {
-  	Meteor.call('PollItems/removeById', pollItemId);
+  	Meteor.call('pollItems.removeById', pollItemId);
 	},
 
 	addPollItemOption({ Meteor }, pollItemId) {
-  	Meteor.call('PollItemOptions/insert', pollItemId);
+  	Meteor.call('pollItemOptions.insert', pollItemId);
 	},
 
 	toggleActive({ Meteor }, pollItem) {
-  	Meteor.call('PollItems/toggleActive', pollItem._id, !pollItem.active); 
+  	Meteor.call('pollItems.toggleActive', pollItem._id, !pollItem.active); 
 	},
 
   toggleDisabled({ Meteor }, e, pollItem) {
-  	Meteor.call('PollItems/toggleDisabled', pollItem._id, !pollItem.disabled); 
+  	Meteor.call('pollItems.toggleDisabled', pollItem._id, !pollItem.disabled); 
   },
 
   toggleShowResults({ Meteor }, pollItem) {
-     Meteor.call('PollItems/toggleShowResults', pollItem._id, !pollItem.showResults); 
+     Meteor.call('pollItems.toggleShowResults', pollItem._id, !pollItem.showResults); 
   },
 
   handleChartTypeChange({ Meteor }, e, pollItemId) {
-      Meteor.call('PollItems/updateChartType', pollItemId, e.target.value);
+      Meteor.call('pollItems.updateChartType', pollItemId, e.target.value);
   }
 }

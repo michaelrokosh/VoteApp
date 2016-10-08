@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PollItemView from '../../containers/poll_item_view.js';
+import PollItemView from '../../containers/poll_view/poll_item_view.js';
 
 class PollView extends React.Component {
   render() {

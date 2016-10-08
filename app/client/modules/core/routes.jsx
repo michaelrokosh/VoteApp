@@ -4,15 +4,15 @@ import { mount } from 'react-mounter';
 import MainLayout from './components/layouts/main_layout.jsx';
 import ChartLayout from './components/layouts/chart_layout.jsx';
 
-import UserSignInPage from '../auth/components/user_sign_in/user_sign_in_page.jsx';
-import UserSignUpPage from '../auth/components/user_sign_up/user_sign_up_page.jsx';
+import UserSignInPage from '../users/components/user_sign_in/user_sign_in_page.jsx';
+import UserSignUpPage from '../users/components/user_sign_up/user_sign_up_page.jsx';
 import HomePage from '../home/components/home_page.jsx';
-import NewPoll from '../polls/containers/new_poll.js';
+import NewPoll from '../polls/containers/new_poll/new_poll.js';
 import EditPollPage from '../polls/components/edit_poll/edit_poll_page.jsx';
 import PollViewPage from '../polls/components/poll_view/poll_view_page.jsx';
-import PollsPreview from '../polls/containers/polls_preview.js';
-import UserProfilePage from '../user/components/user_profile_page.jsx';
-import PollItemChartWrapper from '../polls/containers/poll_item_chart_wrapper.js';
+import PollsPreview from '../polls/containers/polls_preview/polls_preview.js';
+import UserProfilePage from '../users/components/user_profile_page.jsx';
+import PollItemChartWrapper from '../polls/containers/poll_view/poll_item_chart_wrapper.js';
 
 export default function (injectDeps, {FlowRouter, Meteor}) {
     const MainLayoutCtx = injectDeps(MainLayout);
@@ -102,10 +102,7 @@ export default function (injectDeps, {FlowRouter, Meteor}) {
     
     FlowRouter.route("/polls/:pollId/:pollItemId/chart", {
         name: "Chart",
-        subscriptions(params) {
-            this.register('pollItems', Meteor.subscribe('pollItems', params.pollId));
-            this.register('pollItemOptions', Meteor.subscribe('pollItemOptionsByPollItemId', params.pollItemId));
-        },
+        
         action(params, queryParams) {
             mount(ChartLayoutCtx, {
                 content: <PollItemChartWrapper 
@@ -116,11 +113,4 @@ export default function (injectDeps, {FlowRouter, Meteor}) {
             });
         }
     });
-
-    // FlowRouter.route("/polls/:_id/preview", {
-    //     name: "PollPreview",
-    //     action(params) {
-    //         mount(<C.PollPage pollId={ params._id } preview={ true } />);
-    //     }
-    // });
 }

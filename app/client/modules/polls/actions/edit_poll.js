@@ -1,5 +1,5 @@
 export default {
-	addNewPollItem({Meteor, LocalState}, e, poll, pollItems) {
+	addNewPollItem({ Meteor, LocalState }, e, poll, pollItems) {
 		e.preventDefault();
 	 
 	    const question = e.target.question.value;
@@ -24,7 +24,7 @@ export default {
 	      });
 	    }
 
-	    Meteor.call('addNewPollItem', poll._id, question, options, (err, res) => {
+	    Meteor.call('pollItems.insert', poll._id, question, options, (err, res) => {
 	      if (err) {
 	       	errors.methodErr = err.reason;
 	       	LocalState.set('AddNewPollItemErrors', errors)
@@ -33,6 +33,6 @@ export default {
 	},
 
 	togglePrivatePoll({ Meteor }, pollId) {
-      Meteor.call('Polls/togglePrivate', pollId);
+      Meteor.call('polls.togglePrivate', pollId);
     }
 }

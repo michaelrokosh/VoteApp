@@ -7,7 +7,7 @@ import PollItems from '../../lib/collections/poll_items.jsx';
 
 export default () => {
 	Meteor.methods({
-	  vote: (pollItemOptionId) => {
+	  'votes.vote'(pollItemOptionId) {
 	    const pollItemOption = PollItemOptions.findOne({ _id: pollItemOptionId});
 	    const poll = Polls.findOne({ _id: pollItemOption.pollId });
 	    const pollItem = PollItems.findOne({ _id: pollItemOption.pollItemId });
@@ -24,18 +24,6 @@ export default () => {
 	        createdAt: new Date
 	      });
 	    });
-	  },
-
-	  getVotes: (pollItemId) => {
-	    const votes = Votes.find({ pollItemId: pollItemId }, { sort: { createdAt: -1 } }).fetch();
-	    let mappedVotes = _.map(votes, function (vote) {
-	      let voter = Meteor.users.findOne({ _id: vote.userId });
-	      vote.voter = voter;
-	      vote.pollItemOption = PollItemOptions.findOne({ _id: vote.pollItemOptionId });
-	      return vote;
-	    });
-
-	    return mappedVotes;
 	  }
 	});
 
@@ -49,7 +37,7 @@ export default () => {
 	      }
 	    },
 
-	    removed: function (oldDoc) {
+	    removed(oldDoc) {
 	      if (!initializing) {
 	        Polls.update({ _id: oldDoc.pollId }, { $inc: { votesTotal: -1 }});
 	        PollItemOptions.update({ _id: oldDoc.pollItemOptionId }, { $inc: { votes: -1 }});

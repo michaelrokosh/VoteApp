@@ -1,5 +1,5 @@
 export default {
-	createPoll({Collections, FlowRouter, LocalState, Meteor}, e) {
+	createPoll({ Collections, FlowRouter, LocalState, Meteor }, e) {
 		e.preventDefault();
     const pollName = e.target.pollname.value;
     const isPrivate = e.target.togglePrivatePoll.checked;

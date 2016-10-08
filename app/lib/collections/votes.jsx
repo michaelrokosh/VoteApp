@@ -1,29 +1,8 @@
+import { Mongo } from 'meteor/mongo';
+
+import VoteSchema from './schemas/votes.js';
+
 const Votes = new Mongo.Collection('votes');
-
-Schemas.Vote = new SimpleSchema({
-  userId: {
-    type: String,
-    denyUpdate: true
-  },
-  pollId: {
-    type: String,
-    denyUpdate: true
-  },
-  pollItemId: {
-    type: String,
-    denyUpdate: true
-  },
-  pollItemOptionId: {
-    type: String,
-    denyUpdate: true
-  },
-  createdAt: {
-    type: Date,
-    denyUpdate: true
-  }
-});
-
-Votes.attachSchema(Schemas.Vote);
-
+Votes.attachSchema(VoteSchema);
 
 export default Votes;

@@ -2,7 +2,7 @@ export default {
 	updateText({ Meteor }, e, pollItemId) {
 	  const updatedText = e.target.value;
 
-	  Meteor.call('PollItemOptions/updateText', pollItemId, updatedText);
+	  Meteor.call('pollItemOptions.updateText', pollItemId, updatedText);
   },
 
  	handleKeyUp({}, e, pollItemId) {
@@ -12,6 +12,10 @@ export default {
   },
   	
   removePollItemOption({ Meteor }, pollItemId) {
-  	Meteor.call('PollItemOptions/removeById', pollItemId);
+  	Meteor.call('pollItemOptions.removeById', pollItemId);
+  },
+
+  voteAction({ Meteor }, pollItemOptionId) {
+    Meteor.call('votes.vote', pollItemOptionId);
   }
 }

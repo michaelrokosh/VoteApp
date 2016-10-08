@@ -6,7 +6,7 @@ import Polls from '../../lib/collections/polls.jsx';
 
 export default () => {
 	Meteor.methods({
-	  'PollItemOptions/insert': (pollItemId, text) => {
+	  'pollItemOptions.insert'(pollItemId, text) {
 	    check(pollItemId, Match.Optional(String));
 	    check(text, Match.Optional(String));
 	    const pollItem = PollItems.findOne({ _id: pollItemId });
@@ -32,7 +32,7 @@ export default () => {
 	    });
 	  },
 
-	  'PollItemOptions/removeById': (pollItemOptionId) => {
+	  'pollItemOptions.removeById'(pollItemOptionId) {
 	    check(pollItemOptionId, String);
 
 	    const option = PollItemOptions.findOne({ _id: pollItemOptionId });
@@ -48,7 +48,7 @@ export default () => {
 	    }
 	  },
 
-	  'PollItemOptions/updateText': (pollItemOptionId, updatedText) => {
+	  'pollItemOptions.updateText'(pollItemOptionId, updatedText) {
 	    check(pollItemOptionId, String);
 	    check(updatedText, String);
 

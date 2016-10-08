@@ -1,8 +1,8 @@
 import React from 'react';
 import marked from 'marked';
 
-import PollItemOptionView from '../../containers/poll_item_option_view.js';
-import PollItemChartWrapper from '../../containers/poll_item_chart_wrapper.js';
+import PollItemOptionView from '../../containers/poll_view/poll_item_option_view.js';
+import PollItemChartWrapper from '../../containers/poll_view/poll_item_chart_wrapper.js';
 
 class PollItemView extends React.Component {
   render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import UserSignInOrSignUp from '../../../auth/components/user_sign_in_or_sign_up.jsx';
-import PollView from '../../containers/poll_view.js';
+import UserSignInOrSignUp from '../../../users/components/user_sign_in_or_sign_up.jsx';
+import PollView from '../../containers/poll_view/poll_view.js';
 
 class PollViewPage extends React.Component {
   render() {

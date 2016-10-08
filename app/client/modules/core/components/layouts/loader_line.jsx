@@ -1,22 +1,22 @@
-import React from 'react';
+// import React from 'react';
 
-class LoaderLine extends React.Component {
-  render() {
-    const { isLoading } = this.props;
-    let className;
+// class LoaderLine extends React.Component {
+//   render() {
+//     const { isLoading } = this.props;
+//     let className;
 
-    if (isLoading) {
-      loaderClass = 'loading';
-    } else {
-      loaderClass = 'loaded';
-    }
+//     if (isLoading) {
+//       loaderClass = 'loading';
+//     } else {
+//       loaderClass = 'loaded';
+//     }
 
-    return (
-      <div id="loader" className={ loaderClass }>
+//     return (
+//       <div id="loader" className={ loaderClass }>
         
-      </div>
-    )
-  }
-}
+//       </div>
+//     )
+//   }
+// }
 
-export default LoaderLine;
+// export default LoaderLine;

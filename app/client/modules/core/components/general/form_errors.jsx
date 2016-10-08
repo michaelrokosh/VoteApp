@@ -1,4 +1,5 @@
 import React from 'react';
+import { _ } from 'meteor/underscore';
 
 class FormErrors extends React.Component {
     render() {

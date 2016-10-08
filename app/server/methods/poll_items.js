@@ -7,7 +7,7 @@ import Votes from '../../lib/collections/votes.jsx';
 
 export default () => {
 	Meteor.methods({
-	  addNewPollItem(pollId, text, options) {
+	  'pollItems.insert'(pollId, text, options) {
 	    check(pollId, String);
 	    check(text, String);
 	    check(options, Match.Optional([{
@@ -40,7 +40,7 @@ export default () => {
 	    });
 	  },
 
-	  'PollItems/updateText': (pollItemId, updatedText) => {
+	  'pollItems.updateText'(pollItemId, updatedText) {
 	    check(pollItemId, String);
 	    check(updatedText, String);
 
@@ -57,7 +57,7 @@ export default () => {
 	    PollItems.update({ _id: pollItemId }, { $set: { text: updatedText } }, { autoConvert: false });
 	  },
 
-	  'PollItems/updateDescription': (pollItemId, updatedDescription) => {
+	  'pollItems.updateDescription'(pollItemId, updatedDescription) {
 	    check(pollItemId, String);
 	    check(updatedDescription, String);
 
@@ -74,7 +74,7 @@ export default () => {
 	    PollItems.update({ _id: pollItemId }, { $set: { description: updatedDescription } }, { autoConvert: false });
 	  },
 
-	  'PollItems/toggleActive': (pollItemId, setActive) => {
+	  'pollItems.toggleActive'(pollItemId, setActive) {
 	    const pollItem = PollItems.findOne({ _id: pollItemId });
 	    const poll = Polls.findOne({ _id: pollItem.pollId });
 
@@ -85,7 +85,7 @@ export default () => {
 	    }
 	  },
 
-	  'PollItems/toggleDisabled': (pollItemId, setDisabled) => {
+	  'pollItems.toggleDisabled'(pollItemId, setDisabled) {
 	    const pollItem = PollItems.findOne({ _id: pollItemId });
 	    const poll = Polls.findOne({ _id: pollItem.pollId });
 
@@ -96,7 +96,7 @@ export default () => {
 	    }
 	  },
 
-	  'PollItems/toggleShowResults': (pollItemId, setShowResults) => {
+	  'pollItems.toggleShowResults'(pollItemId, setShowResults) {
 	    const pollItem = PollItems.findOne({ _id: pollItemId });
 	    const poll = Polls.findOne({ _id: pollItem.pollId });
 
@@ -107,7 +107,7 @@ export default () => {
 	    }
 	  },
 
-	  'PollItems/removeById': (pollItemId) => {
+	  'pollItems.removeById'(pollItemId) {
 	    const pollItem = PollItems.findOne({ _id: pollItemId });
 	    const poll = Polls.findOne({ _id: pollItem.pollId });
 
@@ -123,7 +123,7 @@ export default () => {
 	    }
 	  },
 
-	  'PollItems/updateChartType': function (pollItemId, type) {
+	  'pollItems.updateChartType'(pollItemId, type) {
 	    check(pollItemId, String);
 	    if (type !== 'pie' && type !== 'bars') {
 	      throw new Meteor.Error('unknown-chart-type');

@@ -10,6 +10,6 @@ export default function() {
 		FlowRouter,
 		Accounts,
 		Collections,
-		LocalState: new ReactiveDict()
+		LocalState: new ReactiveDict(),
 	}
 }

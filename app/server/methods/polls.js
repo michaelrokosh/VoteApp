@@ -4,7 +4,7 @@ import Polls from '../../lib/collections/polls.jsx';
 
 export default () => {
 	Meteor.methods({
-	  'Polls/togglePrivate': (pollId) => {
+	  'polls.togglePrivate'(pollId) {
 	    check(pollId, String);
 
 	    const poll = Polls.findOne({ _id: pollId });

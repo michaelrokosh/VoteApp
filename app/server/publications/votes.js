@@ -44,17 +44,5 @@ export default () => {
     self.onStop(function () {
       subHandle.stop();
     });
-
-    // const votes = Votes.find({ pollItemId: pollItemId });
-    // const self = this;
-    // console.log('self', self)
-    // votes.forEach((vote) => {
-    //   const voter = Meteor.users.findOne({ _id: vote.userId });
-    //   // console.log('voter', voter);
-    // });
-
-    // this.ready();
-    
-    // return Votes.find({ pollItemId: pollItemId });
   });
 }

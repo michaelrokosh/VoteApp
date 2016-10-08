@@ -6,10 +6,12 @@ import MainLoader from '../../core/components/layouts/main_loader.jsx';
 export const composer = (props, onData) => {
 	const { Meteor, Collections } = props.context();
 	const userId = Meteor.userId();
+
 	const pollHandle = Meteor.subscribe('polls.poll', props.pollId);
 	if(pollHandle.ready()) {
 		const poll = Collections.Polls.findOne({ _id: props.pollId });
-		onData(null, { userId, poll })
+   		
+   		onData(null, { userId, poll })
 	}
 }
 
