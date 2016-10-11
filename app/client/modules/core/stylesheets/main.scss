@@ -1,0 +1,156 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#main {
+  min-height: calc(100vh - 64px);
+  padding: 30px 0;
+}
+
+// NAVBAR
+.navbar {
+  margin-bottom: 0px;
+}
+
+select {
+  display: inline-block;
+}
+
+#demoChart {
+  min-width: 310px; 
+  height: 400px; 
+  margin: 0 auto;
+}
+
+#mainLoader {
+  padding: 10%;
+}
+
+nav .nav-wrapper {
+  margin-top: 4px;
+}
+
+nav .brand-logo {
+  padding: 0 10px;
+
+  span {
+    display: inline-block;
+    line-height: 64px;
+    vertical-align: top;
+    margin-left: 16px;
+    font-size: 26px;
+  }
+  i {
+    display: inline-block;
+  }
+}
+
+.poll-item {
+ .vote-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .control-buttons, .control-checkboxes p {
+    display: inline-block;
+  }
+}
+
+.poll-item .control-checkboxes p {
+  margin-right: 20px;
+}
+
+.poll-item .control-buttons a {
+  margin-bottom: 10px;
+  margin-right: 10px;
+  &.btn {
+    padding: 0 1.5rem;
+  }
+}
+
+.poll-item .control-buttons a:last-of-type {
+  margin-right: 0;
+}
+
+.preview-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.poll-item-option, .poll-item-question {
+  position: relative;
+  padding-right: 30px;
+}
+
+.poll-item-option input, .poll-item-question input {
+  padding-right: 30px;
+}
+
+.remove-poll-item-option, .poll-item .remove-poll-item {
+  position: absolute;
+  right: 0;
+  bottom: 28px;
+  color: #9E9E9E;
+  cursor: pointer;
+}
+
+.remove-poll-item-option:hover, .remove-poll-item:hover {
+  color: #F44336;
+}
+
+.chart {
+  height: 100vh;
+}
+
+.poll-item .chart {
+  height: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.relative {
+  position: relative;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.fade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 999;
+}
+
+.small.created-at {
+  color: #9E9E9E;
+}
+
+.poll-item-description {
+  width: 100%;
+  img {
+    max-width: 100%;
+  }
+}

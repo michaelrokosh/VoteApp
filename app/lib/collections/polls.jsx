@@ -1,50 +1,21 @@
-Polls = new Mongo.Collection('polls');
+import { Mongo } from 'meteor/mongo';
 
-Polls.allow({ 
-  insert: function (userId, doc) {
-    if (!userId) return false;
-    return true;
-  }
-});
+import PollSchema from './schemas/polls.js';
 
-Schemas.Poll = new SimpleSchema({
-  userId: {
-    type: String,
-    denyUpdate: true
-  },
-  name: {
-    type: String
-  },
-  votesTotal: {
-    type: Number,
-    min: 0
-  },
-  isPrivate: {
-    type: Boolean
-  },
-  createdAt: {
-    type: Date,
-    min: 0,
-    denyUpdate: true
-  }
-});
+const Polls = new Mongo.Collection('polls');
 
-Polls.attachSchema(Schemas.Poll);
-
-Meteor.methods({
-  'Polls/togglePrivate': (pollId) => {
-    check(pollId, String);
-
-    const poll = Polls.findOne({ _id: pollId });
-
-    if (!poll) {
-      throw new Meteor.Error('not-found');
+export const pollsAllows = () => {
+  Polls.allow({ 
+    insert: function (userId, doc) {
+      if (!userId) {
+        return false
+      } else {
+        return true;
+      }
     }
+  });
+}
 
-    if (Meteor.userId() !== poll.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
+Polls.attachSchema(PollSchema);
 
-    Polls.update({ _id: pollId }, { $set: { isPrivate: !poll.isPrivate } });
-  }
-});
+export default Polls;
