@@ -45,6 +45,17 @@ nav .brand-logo {
   }
 }
 
+.poll-item-toggle {
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+
+  .material-icons {
+    margin-top: 13px;
+  }
+}
+
 .poll-item {
  .vote-btn {
     width: 100%;

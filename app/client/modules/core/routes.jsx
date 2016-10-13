@@ -119,7 +119,7 @@ export default function (injectDeps, {FlowRouter, Meteor}) {
     FlowRouter.route("/poll-item/:pollItemId", {
         name: "PollItem",
         action() {
-            mount(MainLayoutCtx, { 
+            mount(ChartLayoutCtx, { 
                 content: <PollItemPage />
             });
         }
