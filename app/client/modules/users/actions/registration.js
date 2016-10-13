@@ -1,11 +1,5 @@
 export default {
-	signUp({ Meteor, LocalState }, e) {
-		e.preventDefault();
-
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        const username = e.target.username.value;
-        const repeatPassword = e.target.confirmpassword.value;
+	signUp({ Meteor, APP_ERRORS }, email, username, password, repeatPassword) {
         const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         const errors = {};
@@ -28,7 +22,7 @@ export default {
             errors.repeatPassword = "These passwords don't match. Try again?";
         }
 
-        LocalState.set('SignUpErros', errors);
+        APP_ERRORS.set('SignUp', errors);
 
         if (! _.isEmpty(errors)) {
             return;
@@ -41,7 +35,7 @@ export default {
         }, (err) => {
             if (err) {
                 errors.serverResponse = err.reason;
-                LocalState.set('SignUpErros', errors)
+                APP_ERRORS.set('SignUp', errors)
                 return;
             } else {
                 FlowRouter.go('Home');

@@ -14,13 +14,16 @@ class EditPollItem extends React.Component {
   }
 
   handleKeyUp(e) {
-    const { handleKeyUp, pollItem } = this.props;
-    handleKeyUp(e, pollItem._id);
+    if(e.which === 13) {
+      this.updateText(e);
+    }
   }
 
   updateText(e) {
     const { updateText, pollItem } = this.props;
-    updateText(e, pollItem._id);
+    const updatedText = e.target.value;
+    
+    updateText(updatedText, pollItem._id);
   }
 
   componentDidMount() {
@@ -41,7 +44,6 @@ class EditPollItem extends React.Component {
         pollItemOption = item;
       }
     });
-
     return (
       <li className="collection-item avatar" key={ index }>
         <i className="material-icons circle grey">done</i>
@@ -60,25 +62,24 @@ class EditPollItem extends React.Component {
   }
   
   handleDescriptionKeyUp(e) {
-      const { handleDescriptionKeyUp, pollItem} = this.props;
-      handleDescriptionKeyUp(e, pollItem._id)
+      if(e.which === 13) {
+        this.updateDescription(e);
+      }
   }
 
   updateDescription(e) {
       const { updateDescription, pollItem } = this.props;
-      updateDescription(e, pollItem._id)
+      const updatedDescription = e.target.value;
+
+      updateDescription(updatedDescription, pollItem._id)
   }
 
   handleChartTypeChange(e) {
     const { handleChartTypeChange, pollItem } = this.props;
-    handleChartTypeChange(e, pollItem._id);
-  }
+    const chartType = e.target.value;
 
-  toggleDisabled(e) {
-    const { toggleDisabled, pollItem } = this.props;
-    toggleDisabled(e, pollItem);
+    handleChartTypeChange(chartType, pollItem._id);
   }
-
 
   render() {
     const { 
@@ -89,7 +90,8 @@ class EditPollItem extends React.Component {
       addPollItemOption,
       toggleActive,
       toggleShowResults,
-      getPath
+      getPath,
+      toggleDisabled
     } = this.props;
 
     const  errors = {}
@@ -104,15 +106,15 @@ class EditPollItem extends React.Component {
               name="Question" 
               type="text" 
               label="Question" 
-              onKeyUp={ this.handleKeyUp.bind(this) } 
-              onBlur={ this.updateText.bind(this) } 
+              onKeyUp={ e => this.handleKeyUp(e) } 
+              onBlur={ e => this.updateText(e) } 
               value={ pollItem.text } 
               placeholder="Enter your question here"
             />
             <Tooltipped position="bottom" text="Remove this question">
               <i 
                 className="remove-poll-item material-icons dp48" 
-                onClick={ removePollItem.bind(null, pollItem._id) }>
+                onClick={ () => removePollItem(pollItem._id) }>
                 delete
               </i>
             </Tooltipped>
@@ -125,8 +127,8 @@ class EditPollItem extends React.Component {
               name="Description" 
               label="Description" 
               hasError={ !!errors.description } 
-              onKeyUp={ this.handleDescriptionKeyUp.bind(this) } 
-              onBlur={ this.updateDescription.bind(this) } 
+              onKeyUp={ e => this.handleDescriptionKeyUp(e) } 
+              onBlur={ e => this.updateDescription(e) } 
               value={ pollItem.description } 
               placeholder="Enter your description here"
             />
@@ -136,7 +138,7 @@ class EditPollItem extends React.Component {
             <select 
               className="chart-type-select" 
               value={ pollItem.chartType } 
-              onChange={ this.handleChartTypeChange.bind(this) }>
+              onChange={ e => this.handleChartTypeChange(e) }>
               <option value="" disabled>Choose a chart type</option>
               <option value="pie" data-icon="images/sample-1.jpg" className="circle">Pie</option>
               <option value="bars" data-icon="images/office.jpg" className="circle">Bars</option>
@@ -149,7 +151,7 @@ class EditPollItem extends React.Component {
                   <input 
                     type="checkbox" 
                     id={ "disabled-checkbox-" + pollItem._id } 
-                    onChange={ this.toggleDisabled.bind(this) } 
+                    onChange={ () => toggleDisabled(pollItem) } 
                     checked={ pollItem.disabled } 
                   />
                   <label htmlFor={ "disabled-checkbox-" + pollItem._id }>Disabled</label>
@@ -162,7 +164,7 @@ class EditPollItem extends React.Component {
                   <input 
                     type="checkbox" 
                     id={ "show-results-checkbox-" + pollItem._id } 
-                    onChange={ toggleShowResults.bind(null, pollItem) } 
+                    onChange={ () => toggleShowResults(pollItem) } 
                     checked={ pollItem.showResults } 
                   />
                   <label htmlFor={ "show-results-checkbox-" + pollItem._id }>Show Results</label>
@@ -180,7 +182,7 @@ class EditPollItem extends React.Component {
                   Off
                   <input 
                     type="checkbox" 
-                    onChange={ toggleActive.bind(null, pollItem) } 
+                    onChange={ () => toggleActive(pollItem) } 
                     checked={ pollItem.active }
                   />
                   <span className="lever"></span>
@@ -191,7 +193,7 @@ class EditPollItem extends React.Component {
             <div className="control-buttons">
               <Tooltipped position="bottom" text="Add new option">
                 <a 
-                  onClick={ addPollItemOption.bind(null, pollItem._id) } 
+                  onClick={ () => addPollItemOption(pollItem._id) } 
                   className="btn btn-small waves-effect waves-light add-option-btn"
                 >
                   <i className="material-icons">add</i>
@@ -209,9 +211,17 @@ class EditPollItem extends React.Component {
                   href={ getPath('Chart', { pollId: pollItem.pollId, pollItemId: pollItem._id }) } 
                   className="btn btn-small waves-effect grey waves-light" 
                   target="_blank">
+                  <i className="material-icons">trending_up</i>
+                </a>
+              </Tooltipped>
+               <Tooltipped position="bottom" text="Open the poll item">
+                <a 
+                  href={ getPath('PollItem', { pollItemId: pollItem._id }) } 
+                  className="btn btn-small waves-effect grey waves-light" 
+                  target="_blank">
                   <i className="material-icons">open_in_new</i>
                 </a>
-              </Tooltipped>            
+              </Tooltipped>             
             </div>
            
           </div>
@@ -221,7 +231,7 @@ class EditPollItem extends React.Component {
           <div className="modal-content">
             <h4>Votes</h4>
             <ul className="collection">
-              { votes.map(this.renderVotes.bind(this)) }
+              { votes.map( (vote, index) => this.renderVotes(vote, index) ) }
             </ul>
           </div>
         </div>

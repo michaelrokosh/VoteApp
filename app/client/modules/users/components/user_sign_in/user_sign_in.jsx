@@ -4,8 +4,18 @@ import FormInput from '../../../core/components/general/form_input.jsx';
 import FormErrors from '../../../core/components/general/form_errors.jsx';
 
 class UserSignIn extends React.Component {
+    signIn(e) {
+        e.preventDefault();
+        const { signIn } = this.props;
+        
+        const emailOrUsername = e.target[0].value;
+        const password = e.target[1].value;
+        
+        signIn(emailOrUsername, password);
+    }
+
     render() {
-        const { signIn, errors } = this.props;
+        const { errors } = this.props;
 
         return (
             <div className="container-fluid">
@@ -13,7 +23,7 @@ class UserSignIn extends React.Component {
                     <div className="col s12 m12">
                         <h1>Sign In</h1>
 
-                        <form onSubmit={ signIn }>
+                        <form onSubmit={ e => this.signIn(e) }>
                             <FormErrors errors={ errors } />
                             <FormInput hasError={ !!errors.emailOrUsername  } name="EmailOrUsername" type="text" label="Email/Username" />
                             <FormInput hasError={ !!errors.password } name="Password" type="password" label="Password" />

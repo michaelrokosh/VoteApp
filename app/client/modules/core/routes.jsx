@@ -12,7 +12,9 @@ import EditPollPage from '../polls/components/edit_poll/edit_poll_page.jsx';
 import PollViewPage from '../polls/components/poll_view/poll_view_page.jsx';
 import PollsPreview from '../polls/containers/polls_preview/polls_preview.js';
 import UserProfilePage from '../users/components/user_profile_page.jsx';
-import PollItemChartWrapper from '../polls/containers/poll_view/poll_item_chart_wrapper.js';
+import PollItemChartWrapper from '../polls/containers/poll_item_page/poll_item_chart_wrapper.js';
+import PollItemPage from '../polls/containers/poll_item_page/poll_item_page.js';
+
 
 export default function (injectDeps, {FlowRouter, Meteor}) {
     const MainLayoutCtx = injectDeps(MainLayout);
@@ -110,6 +112,15 @@ export default function (injectDeps, {FlowRouter, Meteor}) {
                             params={ queryParams } 
                             isChartPreview={true}
                          />
+            });
+        }
+    });
+
+    FlowRouter.route("/poll-item/:pollItemId", {
+        name: "PollItem",
+        action() {
+            mount(MainLayoutCtx, { 
+                content: <PollItemPage />
             });
         }
     });

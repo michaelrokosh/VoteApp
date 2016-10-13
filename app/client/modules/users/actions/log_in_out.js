@@ -4,14 +4,8 @@ export default {
 	    FlowRouter.go('Home');
 	},
 
-	signIn({ Meteor, LocalState }, e) {
-        e.preventDefault();
-
-        const emailOrUsername = e.target[0].value;
-        const password = e.target[1].value;
-
+	signIn({ Meteor, APP_ERRORS }, emailOrUsername, password) {
         const errors = {};
-
         if (!emailOrUsername) {
             errors.emailOrUsername = "Email/username is required"
         }
@@ -20,7 +14,7 @@ export default {
             errors.password = "Password required"
         }
 
-      	LocalState.set('SignInErrors', errors);
+        APP_ERRORS.set('SignIn', errors);
 
         if (! _.isEmpty(errors)) {
             return;
@@ -28,8 +22,8 @@ export default {
 
         Meteor.loginWithPassword(emailOrUsername, password, (err) => {
             if (err) {
-            	errors.serverErr = err.reason;
-               	LocalState.set('SignInErrors', errors);
+                errors.serverErr = err.reason;
+                APP_ERRORS.set('SignIn', errors);
                 return;
             } else {
                 FlowRouter.go('Home');

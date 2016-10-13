@@ -1,24 +1,10 @@
 export default {
-	updateText({ Meteor }, e, pollItemId) { 
-    	const updatedText = e.target.value;
-   		Meteor.call('pollItems.updateText', pollItemId, updatedText);
-  	},
-
-	handleKeyUp({}, e, pollItemId) {
-	    if (e.which === 13) {
-	      this.updateText(e, pollItemId);
-	    }
-	},
-
- 	updateDescription({ Meteor },  e, pollItemId) {
-   	const updatedDescription = e.target.value;
-    Meteor.call('pollItems.updateDescription', pollItemId, updatedDescription);
+	updateText({ Meteor }, updatedText, pollItemId) { 
+   	Meteor.call('pollItems.updateText', pollItemId, updatedText);
   },
 
-  handleDescriptionKeyUp({}, e, pollItemId) {
-  	if (e.which === 13) {
-     		this.updateDescription(e, pollItemId);
-   	}
+ 	updateDescription({ Meteor },  updatedDescription, pollItemId) {
+    Meteor.call('pollItems.updateDescription', pollItemId, updatedDescription);
   },
 
 	removePollItem({ Meteor }, pollItemId) {
@@ -33,7 +19,7 @@ export default {
   	Meteor.call('pollItems.toggleActive', pollItem._id, !pollItem.active); 
 	},
 
-  toggleDisabled({ Meteor }, e, pollItem) {
+  toggleDisabled({ Meteor }, pollItem) {
   	Meteor.call('pollItems.toggleDisabled', pollItem._id, !pollItem.disabled); 
   },
 
@@ -41,7 +27,7 @@ export default {
      Meteor.call('pollItems.toggleShowResults', pollItem._id, !pollItem.showResults); 
   },
 
-  handleChartTypeChange({ Meteor }, e, pollItemId) {
-      Meteor.call('pollItems.updateChartType', pollItemId, e.target.value);
+  handleChartTypeChange({ Meteor }, chartType, pollItemId) {
+      Meteor.call('pollItems.updateChartType', pollItemId, chartType);
   }
 }

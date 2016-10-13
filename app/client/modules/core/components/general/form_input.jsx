@@ -1,10 +1,6 @@
 import React from 'react';
 
 class FormInput extends React.Component {
-  shouldComponentUpdate() {
-    return true;
-  }
-
   render() {
     const { 
       type, 

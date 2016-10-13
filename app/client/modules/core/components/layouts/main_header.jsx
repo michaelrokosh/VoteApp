@@ -16,7 +16,7 @@ class MainHeader extends React.Component {
     let myPolls;
     let userProfile;
     let publicPolls;
-    let { user, HandleLogout, getPath } = this.props;
+    let { user, handleLogout, getPath } = this.props;
 
     if(user) {
       newPoll = (
@@ -32,7 +32,7 @@ class MainHeader extends React.Component {
         <li><a href={ getPath('UserProfile', { username: user.username }) }>Profile</a></li>
       )
       loginButton = (
-        <li><a onClick={ HandleLogout }>Logout</a></li>
+        <li><a onClick={ handleLogout }>Logout</a></li>
       )
     } else {
       loginButton = (
@@ -45,7 +45,6 @@ class MainHeader extends React.Component {
 
     return (
       <nav>
-        <LoaderLine />
         <div className="nav-wrapper green darken-1">
           <div className="row">
             <div className="col s12">

@@ -11,7 +11,7 @@ class PollsPreviewItem extends React.Component {
       togglePrivatePoll,
       getPath
     } = this.props;
-
+  
     let privateToggleContainer;
     let editButton;
 

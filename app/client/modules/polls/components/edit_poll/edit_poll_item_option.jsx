@@ -6,15 +6,16 @@ import FormErrors from '../../../core/components/general/form_errors.jsx'
 
 class EditPollItemOption extends React.Component {
   handleKeyUp(e) {
-    const { handleKeyUp, pollItemOption } = this.props;
-
-    handleKeyUp(e, pollItemOption._id)
+      if(e.which === 13) {
+        this.updateText(e);
+      }
   }
 
   updateText(e) {
-    const { updateText, pollItemOption } = this.props;
-
-    updateText(e, pollItemOption._id);
+    const {  updateText, pollItemOption } = this.props;
+    const updatedText = e.target.value;
+    
+    updateText(updatedText, pollItemOption._id);
   }
 
   render() {
@@ -32,14 +33,14 @@ class EditPollItemOption extends React.Component {
           className="poll-item-option" 
           placeholder="Option label" 
           label={ index.toString() } 
-          onKeyUp={ this.handleKeyUp.bind(this) } 
-          onBlur={ this.updateText.bind(this) } 
+          onKeyUp={ e => this.handleKeyUp(e) } 
+          onBlur={ e => this.updateText(e) } 
           value={ pollItemOption.text }
         />
         <Tooltipped position="bottom" text="Remove this option">
           <i 
             className="remove-poll-item-option material-icons dp48" 
-            onClick={ removePollItemOption.bind(null, pollItemOption._id) }>
+            onClick={ () => removePollItemOption(pollItemOption._id) }>
             delete
           </i>
         </Tooltipped>

@@ -3,10 +3,8 @@ import { useDeps, composeWithTracker, composeAll } from 'mantra-core';
 import PollsPreview from '../../components/polls_preview/polls_preview.jsx'
 import MainLoader from '../../../core/components/layouts/main_loader.jsx';
 
-export const composer = (props, onData) => {
-	const { Meteor, FlowRouter, Collections } = props.context();
-	const { type } = props;
-
+export const composer = ({ context, type }, onData) => {
+	const { Meteor, FlowRouter, Collections } = context();
 
 	if(type === 'userPolls') {
 		let selector = {};

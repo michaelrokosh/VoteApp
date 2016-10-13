@@ -1,15 +1,15 @@
-import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
+import { useDeps, composeWithTracker, composeAll } from 'mantra-core';
 
 import DemoPollPage from '../components/demo_poll_page.jsx';
 import MainLoader from '../../core/components/layouts/main_loader.jsx';
 
-export const composer = (props, onData) => {
-	const { Meteor, Collections } = props.context();
+export const composer = ({ context, pollId } , onData) => {
+	const { Meteor, Collections } = context();
 	const userId = Meteor.userId();
 
-	const pollHandle = Meteor.subscribe('polls.poll', props.pollId);
+	const pollHandle = Meteor.subscribe('polls.poll', pollId);
 	if(pollHandle.ready()) {
-		const poll = Collections.Polls.findOne({ _id: props.pollId });
+		const poll = Collections.Polls.findOne({ _id: pollId });
    		
    		onData(null, { userId, poll })
 	}

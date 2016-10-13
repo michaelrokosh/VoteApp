@@ -3,9 +3,9 @@ import { useDeps, composeWithTracker, composeAll } from 'mantra-core';
 import PieChart from '../components/pie_chart.jsx';
 import MainLoader from '../../core/components/layouts/main_loader.jsx';
 
-export const composer = (props, onData) => {
-	const { Collections } = props.context();
-	const { pollItemId } = props;
+export const composer = ({ context, pollItemId }, onData) => {
+	const { Collections } = context();
+
 	const pollItemOptions = Collections.PollItemOptions.find({ pollItemId: pollItemId }).fetch();
 	const pollItem = Collections.PollItems.findOne({ _id: pollItemId })
 

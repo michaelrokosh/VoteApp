@@ -15,15 +15,19 @@ class EditPoll extends React.Component {
   }
 
   addNewPollItem(e) {
+    e.preventDefault();
+    
     const { poll, pollItems, addNewPollItem } = this.props;
-    addNewPollItem(e, poll, pollItems)
+    const question = e.target.question.value;
+    const pollItemOptions = e.target.getElementsByClassName('poll-item-option');
+    
+    addNewPollItem(question, poll, pollItems, pollItemOptions)
   }
 
   render() {
     const { 
       poll, 
       pollItems, 
-      isReady, 
       addNewPollItem, 
       errors,
       getPath 
@@ -36,7 +40,7 @@ class EditPoll extends React.Component {
         { pollItems.map(this.renderPollItem) }
         
         <h4>Add new question</h4>
-        <form onSubmit={ this.addNewPollItem.bind(this) }>
+        <form onSubmit={ e => this.addNewPollItem(e) }>
           <FormErrors errors={ errors } />
           <FormInput 
             hasError={ !!errors.question }  

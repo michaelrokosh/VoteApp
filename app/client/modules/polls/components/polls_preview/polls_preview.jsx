@@ -4,7 +4,12 @@ import PollsPreviewItem from './polls_preview_item.jsx';
 
 class PollsPreview extends React.Component {
 	render() {
-		const { polls, userId, togglePrivatePoll } = this.props;
+		const { 
+			polls, 
+			userId, 
+			togglePrivatePoll, 
+			getPath
+		} = this.props;
 	    let infoContainer;
 
 	    if (polls.length === 0) {
@@ -28,6 +33,7 @@ class PollsPreview extends React.Component {
 	              				key={ poll._id }
 	              				index={ i }
 	              				togglePrivatePoll={ togglePrivatePoll }
+	              				getPath={ getPath }
 	              			/>
 	              		)
 	              	})

@@ -7,11 +7,7 @@ const Polls = new Mongo.Collection('polls');
 export const pollsAllows = () => {
   Polls.allow({ 
     insert: function (userId, doc) {
-      if (!userId) {
-        return false
-      } else {
-        return true;
-      }
+      return !!userId;
     }
   });
 }
