@@ -45,6 +45,7 @@ nav .brand-logo {
   }
 }
 
+
 .poll-item-toggle {
   height: 50px;
   text-align: center;
@@ -104,8 +105,18 @@ nav .brand-logo {
   color: #9E9E9E;
   cursor: pointer;
 }
+.edit-poll-header {
+  position: relative;
+  .remove-poll {
+    position: absolute;
+    right: 0;
+    bottom: 50px;
+    color: #9E9E9E;
+    cursor: pointer;
+  }
+}
 
-.remove-poll-item-option:hover, .remove-poll-item:hover {
+.remove-poll-item-option:hover, .remove-poll-item:hover, .remove-poll:hover {
   color: #F44336;
 }
 

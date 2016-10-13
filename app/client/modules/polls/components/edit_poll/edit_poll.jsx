@@ -23,6 +23,21 @@ class EditPoll extends React.Component {
     
     addNewPollItem(question, poll, pollItems, pollItemOptions)
   }
+  
+  updateNameKeyUp(e) {
+    if(e.which === 13) {
+      this.updateName(e);  
+    }
+  }
+
+  updateName(e) {
+    e.preventDefault();
+
+    const { updateName, poll } = this.props;
+    const updatedName = e.target.value;
+
+    updateName(updatedName, poll._id);
+  }
 
   render() {
     const { 
@@ -30,13 +45,46 @@ class EditPoll extends React.Component {
       pollItems, 
       addNewPollItem, 
       errors,
-      getPath 
+      getPath,
+      togglePrivatePoll ,
     } = this.props;
 
     return (
       <div className="editable-poll">
-        <h2 className="text-center">{ poll.name }</h2>
+         <div className="edit-poll-header">
+          <h4>Poll settings</h4>
+          <FormInput 
+              hasError={ !!errors.pollName }  
+              name="pollName" 
+              type="text" 
+              label="Poll name" 
+              className="poll-name"
+              value={ poll.name }
+              onKeyUp= { e => this.updateNameKeyUp(e) }
+              onBlur={ e => this.updateName(e) }
+          />
+          <Tooltipped position="bottom" text="Remove this poll">
+            <i 
+              className="remove-poll material-icons dp48" 
+              onClick={ () => removePollItemOption(pollItemOption._id) }>
+              delete
+            </i>
+          </Tooltipped>
 
+           <Tooltipped position="bottom" text="Private/public poll">
+              <span>
+                <input 
+                  type="checkbox" 
+                  id={ "togglePrivatePoll" + poll._id } 
+                  onChange={ togglePrivatePoll.bind(null, poll._id) } 
+                  checked={ poll.isPrivate } 
+                />
+                <label htmlFor={ "togglePrivatePoll" + poll._id }>Private</label>
+              </span>
+          </Tooltipped>
+        </div>
+        <br/>
+        <h4>Qestions</h4>
         { pollItems.map(this.renderPollItem) }
         
         <h4>Add new question</h4>

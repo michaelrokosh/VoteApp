@@ -101,7 +101,7 @@ class EditPollItem extends React.Component {
     } = this.props;
 
     const  errors = {}
-    console.log(pollItem)
+    
     return (
       <div>
         <div className="card white poll-item-toggle" onClick={ () => this.toggleEdit() }>

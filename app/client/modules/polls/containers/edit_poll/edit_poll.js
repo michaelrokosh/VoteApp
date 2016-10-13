@@ -30,6 +30,8 @@ export const composer = (props, onData) => {
 export const depsMapper = (context, actions) => ({
 	addNewPollItem: actions.editPoll.addNewPollItem,
     getPath: actions.router.getPath,
+    togglePrivatePoll: actions.editPoll.togglePrivatePoll,
+    updateName: actions.editPoll.updateName,
 	context: () => context
 });
 

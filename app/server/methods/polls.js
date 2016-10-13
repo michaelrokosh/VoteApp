@@ -1,6 +1,6 @@
-import { Meteor } from 'meteor/meteor';
-
 import Polls from '../../lib/collections/polls.jsx';
+
+import helpers from '../lib/helpers.js';
 
 export default () => {
 	Meteor.methods({
@@ -8,16 +8,28 @@ export default () => {
 	    check(pollId, String);
 
 	    const poll = Polls.findOne({ _id: pollId });
+	    helpers.checkPoll(poll);
 
-	    if (!poll) {
-	      throw new Meteor.Error('not-found');
-	    }
+	    Polls.update({ _id: pollId }, { 
+	    	$set: { 
+	    		isPrivate: !poll.isPrivate 
+	    	} 
+	    });
+	  },
 
-	    if (Meteor.userId() !== poll.userId) {
-	      throw new Meteor.Error('not-authorized');
-	    }
+	  'polls.updateName'(updatedName, pollId) {
+		console.log(updatedName)
+	  	check(pollId, String);
+	  	check(updatedName, String);
 
-	    Polls.update({ _id: pollId }, { $set: { isPrivate: !poll.isPrivate } });
+	  	const poll = Polls.findOne(pollId);
+	  	helpers.checkPoll(poll);
+
+	  	Polls.update({_id: pollId}, {
+	  		$set: {
+	  			name: updatedName
+	  		}
+	  	})
 	  }
 	});
 }

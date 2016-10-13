@@ -29,5 +29,13 @@ export default {
 
 	togglePrivatePoll({ Meteor }, pollId) {
       Meteor.call('polls.togglePrivate', pollId);
+    },
+
+    updateName({ Meteor }, updatedName, pollId) {
+    	Meteor.call('polls.updateName', updatedName, pollId, (err) => {
+    		if(err) {
+    			console.log(err);
+    		}
+    	});
     }
 }

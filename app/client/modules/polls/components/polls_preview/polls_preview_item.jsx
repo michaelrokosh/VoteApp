@@ -22,7 +22,7 @@ class PollsPreviewItem extends React.Component {
             <input 
               type="checkbox" 
               id={ "togglePrivatePoll" + poll._id } 
-              onChange={ togglePrivatePoll.bind(null, poll._id) } 
+              onChange={ () => togglePrivatePoll(poll._id) } 
               checked={ poll.isPrivate } 
             />
             <label htmlFor={ "togglePrivatePoll" + poll._id }>Private</label>
