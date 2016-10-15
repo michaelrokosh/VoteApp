@@ -1,18 +1,24 @@
 import React from 'react';
 
-import PollsPreview from '../../polls/containers/polls_preview/polls_preview.js';
-import FormInput from '../../core/components/general/form_input.jsx';
-import FormErrors from '../../core/components/general/form_errors.jsx';
+import PollsPreview from '../../../polls/containers/polls_preview/polls_preview.js';
+import FormInput from '../../../core/components/general/form_input.jsx';
+import FormErrors from '../../../core/components/general/form_errors.jsx';
+import AddAvatar from './add_avatar_window.jsx';
 
 class UserProfilePage extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      passwordChanged: false
+      passwordChanged: false,
+      openAddAvatarForm: false
     }
   }
   
+  toggleAddAvatarForm() {
+    this.setState({openAddAvatarForm: !this.state.openAddAvatarForm})
+  }
+
   changeEmailKeyUp(e) {
     if(e.which === 13) {
       this.changeEmail(e);
@@ -58,7 +64,9 @@ class UserProfilePage extends React.Component {
     const { 
       user, 
       changePassErrors,
-      changeEmailAndNameErrors
+      changeEmailAndNameErrors,
+      changeAvatar,
+      avatar
     } = this.props;
 
     return (
@@ -68,9 +76,13 @@ class UserProfilePage extends React.Component {
             <div className="container">
               <div className="row">
                 <div className="col s4 m2 offset-m5 offset-s4" title="Change avatar">
-                  <img className="user-avatar" src=""/>
+                  <img className="user-avatar" src={ avatar.imageURL } onClick={ () => this.toggleAddAvatarForm() }/>
                 </div>
               </div>
+              <AddAvatar 
+                isOpen={ this.state.openAddAvatarForm } 
+                changeAvatar={ changeAvatar }
+              />
               <div className="row">
                 <div className="col s12 m8 offset-m2">  
                       <FormErrors errors={ changeEmailAndNameErrors } />
@@ -113,7 +125,6 @@ class UserProfilePage extends React.Component {
                             this.state.passwordChanged ? 
                               <p style={{color: '#43A047'}}>Your password changed!</p>:null
                           }
-                          
                           <input type="submit" className="btn btn-default"/>
                       </form>
                   </div>

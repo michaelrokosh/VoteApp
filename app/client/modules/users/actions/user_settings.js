@@ -74,5 +74,33 @@ export default {
         		APP_ERRORS.set('ChangeEmailAndName', errors);
         	}
         })
+	},
+
+	changeAvatar({ Meteor }, imageFile) {
+		function getImageURL(file, callback) {
+			let encodedImage = {};
+			
+			function readerOnload(e) {
+	    		const base64 = btoa(e.target.result);
+	    		const imageURL = 'data:' + encodedImage.imageType + ';base64,' + base64;
+	    		callback(imageURL);
+			}
+
+			const reader = new FileReader();
+	  		encodedImage.filetype = file.type;
+	  		encodedImage.size = file.size;
+	  		encodedImage.filename = file.name;
+
+			reader.onload = readerOnload;
+		  	reader.readAsBinaryString(file);	
+		}
+
+		getImageURL(imageFile, (url) => {
+			Meteor.call('avatars.change', url, (err) => {
+				if(err) {
+					console.log(err);
+				}
+			})
+		})
 	}
 }
