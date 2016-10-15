@@ -1,6 +1,22 @@
 export default {
-	updateName({ Meteor, Accounts }, updatedName) {
-		console.log(Accounts)
+	updateName({ Meteor, APP_ERRORS }, updatedName) {
+		const errors = {};
+		if(!updatedName) {
+			errors.username = 'Username is required!'
+		}
+
+        APP_ERRORS.set('ChangeEmailAndName', errors);
+        
+        if(!_.isEmpty(errors)) {
+        	return;
+        }
+
+		Meteor.call('users.changeName', updatedName, (err) => {
+			if(err) {
+				errors.accountsErr = err.reason;
+        		APP_ERRORS.set('ChangeEmailAndName', errors);
+			}
+		})	
 	},
 
 	changePassword({ APP_ERRORS, Accounts }, oldPass, newPass, confirmPass, callback) {

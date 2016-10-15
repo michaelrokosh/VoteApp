@@ -55,7 +55,11 @@ class UserProfilePage extends React.Component {
   }
 
   render() {
-    const { user, errors} = this.props;
+    const { 
+      user, 
+      changePassErrors,
+      changeEmailAndNameErrors
+    } = this.props;
 
     return (
       <div className="container">
@@ -69,6 +73,7 @@ class UserProfilePage extends React.Component {
               </div>
               <div className="row">
                 <div className="col s12 m8 offset-m2">  
+                      <FormErrors errors={ changeEmailAndNameErrors } />
                       <FormInput 
                           name="username"
                           type="text"
@@ -88,7 +93,7 @@ class UserProfilePage extends React.Component {
                         
                         <h5>Change password</h5>
                         <form onSubmit={ e => this.changePassword(e) }>
-                          <FormErrors errors={ errors } />
+                          <FormErrors errors={ changePassErrors } />
                           <FormInput 
                             name="oldPassword"
                             type="password"

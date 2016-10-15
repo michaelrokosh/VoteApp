@@ -11,6 +11,15 @@ export default () => {
 
 			Accounts.addEmail(userId, newEmail);
 			Accounts.removeEmail(userId, oldEmail);
+		},
+
+		'users.changeName'(newName) {
+			const userId = this.userId;
+
+			check(newName, String);
+			check(userId, String);
+
+			Accounts.setUsername(userId, newName);
 		}
 	});
 }

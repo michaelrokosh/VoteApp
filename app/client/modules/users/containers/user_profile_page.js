@@ -13,7 +13,6 @@ export const composer = ({ context }, onData) => {
 	const changePassErrors = APP_ERRORS.get('ChangePassword');
 	
 	if(user) {
-		console.log(user);
 		onData(null, { user, changePassErrors, changeEmailAndNameErrors })
 	}
 }
