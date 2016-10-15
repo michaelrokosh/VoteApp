@@ -46,7 +46,8 @@ class EditPoll extends React.Component {
       addNewPollItem, 
       errors,
       getPath,
-      togglePrivatePoll ,
+      togglePrivatePoll,
+      removePoll
     } = this.props;
 
     return (
@@ -66,7 +67,7 @@ class EditPoll extends React.Component {
           <Tooltipped position="bottom" text="Remove this poll">
             <i 
               className="remove-poll material-icons dp48" 
-              onClick={ () => removePollItemOption(pollItemOption._id) }>
+              onClick={ () => removePoll(poll._id) }>
               delete
             </i>
           </Tooltipped>
@@ -84,7 +85,10 @@ class EditPoll extends React.Component {
           </Tooltipped>
         </div>
         <br/>
-        <h4>Qestions</h4>
+        { 
+          pollItems.length ?
+           <h4>Qestions</h4>: null
+        }
         { pollItems.map(this.renderPollItem) }
         
         <h4>Add new question</h4>

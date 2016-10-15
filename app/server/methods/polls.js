@@ -30,6 +30,15 @@ export default () => {
 	  			name: updatedName
 	  		}
 	  	})
+	  },
+
+	  'polls.remove'(pollId) {
+	  	check(pollId, String);
+
+	  	const poll = Polls.findOne(pollId);
+	  	helpers.checkPoll(poll);
+
+	  	Polls.remove(pollId);
 	  }
 	});
 }

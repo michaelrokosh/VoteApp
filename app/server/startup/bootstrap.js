@@ -8,7 +8,7 @@ import Votes from '../../lib/collections/votes.jsx';
 export default () => {
   Meteor.startup(() => {
     Migrations.migrateTo('latest');
-
+    console.log(Accounts);
     if (Meteor.users.find().count() === 0) {
       Accounts.createUser({
         email: "qwe@qwe.qwe",

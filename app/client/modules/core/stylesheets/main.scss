@@ -26,9 +26,12 @@ select {
   padding: 10%;
 }
 
-// nav .nav-wrapper {
-//   margin-top: 4px;
-// }
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
 nav .brand-logo {
   padding: 0 10px;
@@ -44,7 +47,6 @@ nav .brand-logo {
     display: inline-block;
   }
 }
-
 
 .poll-item-toggle {
   height: 50px;

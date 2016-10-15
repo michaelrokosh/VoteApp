@@ -101,7 +101,7 @@ class EditPollItem extends React.Component {
     } = this.props;
 
     const  errors = {}
-    
+  
     return (
       <div>
         <div className="card white poll-item-toggle" onClick={ () => this.toggleEdit() }>
@@ -115,7 +115,7 @@ class EditPollItem extends React.Component {
               </Tooltipped>
         </div>
         { 
-          this.state.toggleEdit ?
+          pollItem.pollId === "demoPoll" || this.state.toggleEdit ?
           <div className="poll-item">
             <form>
               <FormErrors errors={ errors } />

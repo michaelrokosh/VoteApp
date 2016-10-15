@@ -11,7 +11,7 @@ import NewPoll from '../polls/containers/new_poll/new_poll.js';
 import EditPollPage from '../polls/components/edit_poll/edit_poll_page.jsx';
 import PollViewPage from '../polls/components/poll_view/poll_view_page.jsx';
 import PollsPreview from '../polls/containers/polls_preview/polls_preview.js';
-import UserProfilePage from '../users/components/user_profile_page.jsx';
+import UserProfilePage from '../users/containers/user_profile_page.js';
 import PollItemChartWrapper from '../polls/containers/poll_item_page/poll_item_chart_wrapper.js';
 import PollItemPage from '../polls/containers/poll_item_page/poll_item_page.js';
 
@@ -86,9 +86,9 @@ export default function (injectDeps, {FlowRouter, Meteor}) {
 
     FlowRouter.route("/:username", {
         name: "UserProfile",
-        action(params) {
+        action() {
             mount(MainLayoutCtx, {
-                content: <UserProfilePage username={ params.username } />
+                content: <UserProfilePage />
             })
         }
     });
