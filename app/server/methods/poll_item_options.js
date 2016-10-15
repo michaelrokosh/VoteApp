@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 
 import PollItemOptions from '../../lib/collections/poll_item_options.jsx';
 import PollItems from '../../lib/collections/poll_items.jsx';

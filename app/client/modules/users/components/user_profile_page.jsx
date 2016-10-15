@@ -12,6 +12,19 @@ class UserProfilePage extends React.Component {
       passwordChanged: false
     }
   }
+  
+  changeEmailKeyUp(e) {
+    if(e.which === 13) {
+      this.changeEmail(e);
+    }
+  }
+
+  changeEmail(e) {
+    const { changeEmail } = this.props;
+    const newEmail = e.target.value;
+
+    changeEmail(newEmail);
+  }
 
   changePassword(e) {
     e.preventDefault();
@@ -69,6 +82,8 @@ class UserProfilePage extends React.Component {
                           type="email"
                           label="E-mail"
                           value={ user.emails[0].address }
+                          onKeyUp={ e => this.changeEmailKeyUp(e) }
+                          onBlur={ e => this.changeEmail(e) }
                         />
                         
                         <h5>Change password</h5>

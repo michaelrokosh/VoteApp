@@ -7,16 +7,21 @@ export const composer = ({ context }, onData) => {
 	const user = Meteor.user();
 	
 	APP_ERRORS.setDefault('ChangePassword', {});
-	const errors = APP_ERRORS.get('ChangePassword');
+	APP_ERRORS.setDefault('ChangeEmailAndName', {});
+
+	const changeEmailAndNameErrors = APP_ERRORS.get('ChangeEmailAndName'); 
+	const changePassErrors = APP_ERRORS.get('ChangePassword');
 	
 	if(user) {
-		onData(null, { user, errors })
+		console.log(user);
+		onData(null, { user, changePassErrors, changeEmailAndNameErrors })
 	}
 }
 
 export const depsMapper = (context, actions) => ({
 	updateName: actions.userSettings.updateName,
 	changePassword: actions.userSettings.changePassword,
+	changeEmail: actions.userSettings.changeEmail,
 	context: () => context
 })
 
