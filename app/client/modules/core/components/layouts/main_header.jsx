@@ -16,7 +16,9 @@ class MainHeader extends React.Component {
     let myPolls;
     let userProfile;
     let publicPolls;
-    let { user, handleLogout, getPath } = this.props;
+    let anonPolls;
+
+    const { user, handleLogout, getPath } = this.props;
 
     if(user) {
       newPoll = (
@@ -35,6 +37,9 @@ class MainHeader extends React.Component {
         <li><a onClick={ handleLogout }>Logout</a></li>
       )
     } else {
+      anonPolls = (
+        <li><a href={ getPath('PollsWithoutRegistration') }>Polls</a></li>
+      )
       loginButton = (
         <li><a href={ getPath('SignIn') }>Sign In</a></li>
       )
@@ -42,7 +47,7 @@ class MainHeader extends React.Component {
         <li><a href={ getPath('SignUp') }>Sign Up</a></li>
       )
     }
-
+  
     return (
       <nav>
         <div className="nav-wrapper green darken-1">
@@ -60,6 +65,7 @@ class MainHeader extends React.Component {
                 { myPolls }
                 { publicPolls }
                 { userProfile }
+                { anonPolls }
                 { loginButton }
                 { signUpButton }
               </ul>
@@ -68,6 +74,7 @@ class MainHeader extends React.Component {
                 { myPolls }
                 { publicPolls }
                 { userProfile }
+                { anonPolls }
                 { loginButton }
                 { signUpButton }
               </ul>

@@ -7,13 +7,14 @@ export const composer = ({ context }, onData) => {
 	const { APP_ERRORS } = context();
 
 	APP_ERRORS.setDefault('CreatePoll', {});
-	const errors = APP_ERRORS.get('CreatePollErrors');
+	const errors = APP_ERRORS.get('CreatePoll');
 	
 	onData(null, { errors });
 }
 
 export const depsMapper = (context, actions) => ({
 	createPoll: actions.newPoll.createPoll,
+	clearErrors: actions.appErrors.clearErrors,
 	context: () => context
 })
 

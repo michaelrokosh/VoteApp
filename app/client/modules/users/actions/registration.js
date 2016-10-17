@@ -34,10 +34,11 @@ export default {
             password: password
         }, (err) => {
             if (err) {
-                errors.serverResponse = err.reason;
+                errors.accountsErr = err.reason;
                 APP_ERRORS.set('SignUp', errors)
                 return;
             } else {
+                Meteor.call('avatars.change', 'http://icookgood.ru/users/media/avatar/7/');
                 FlowRouter.go('Home');
             }
         });

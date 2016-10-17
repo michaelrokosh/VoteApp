@@ -9,7 +9,7 @@ export default () => {
     PollItems.remove({ pollId: 'demoPoll' });
     PollItemOptions.remove({ pollId: 'demoPoll' });
 
-    if (!Polls.findOne({ _id: 'demoPoll' })) {
+    if (!Polls.findOne('demoPoll')) {
       Polls.insert({
         _id: 'demoPoll',
         userId: 'demoUser',

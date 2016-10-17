@@ -24,7 +24,7 @@ class EditPollItemOption extends React.Component {
       index,
       removePollItemOption
     } = this.props;
-
+   
     return (
       <div className="poll-item-option">
         <FormInput 

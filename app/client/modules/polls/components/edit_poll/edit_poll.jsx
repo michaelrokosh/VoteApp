@@ -6,6 +6,11 @@ import Tooltipped from '../../../core/components/general/tooltipped.jsx';
 import EditPollItem from '../../containers/edit_poll/edit_poll_item.js';
 
 class EditPoll extends React.Component {
+  componentWillUnmount() {
+    const { clearErrors } = this.props;
+    clearErrors();
+  }
+
   renderPollItem(pollItem, index) {
     return (
       <div key={ index }>

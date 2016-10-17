@@ -14,7 +14,7 @@ class FormInput extends React.Component {
       onBlur, 
       onChange 
     } = this.props;
-
+  
     let { className } = this.props
     let inputType;
 

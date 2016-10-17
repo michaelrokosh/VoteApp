@@ -15,6 +15,11 @@ class UserProfilePage extends React.Component {
     }
   }
   
+  componentWillUnmount() {
+    const { clearErrors } = this.props;
+    clearErrors();
+  }
+
   toggleAddAvatarForm() {
     this.setState({openAddAvatarForm: !this.state.openAddAvatarForm})
   }

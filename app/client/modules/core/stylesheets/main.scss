@@ -53,6 +53,15 @@ nav .brand-logo {
   text-align: center;
   line-height: 50px;
   cursor: pointer;
+  
+  &:hover .toogle-triangle {
+    color: #000;
+  }
+  
+  .toogle-triangle {
+    font-size: 20px;
+    color: #9E9E9E;
+  }
 
   .material-icons {
     margin-top: 13px;

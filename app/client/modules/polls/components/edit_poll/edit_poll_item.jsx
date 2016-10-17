@@ -12,6 +12,11 @@ class EditPollItem extends React.Component {
         toggleEdit: false
       }
   }
+  
+  componentWillUnmount() {
+    const { clearErrors } = this.props;
+    clearErrors();
+  }
 
   handleKeyUp(e) {
     if(e.which === 13) {
@@ -97,11 +102,10 @@ class EditPollItem extends React.Component {
       toggleActive,
       toggleShowResults,
       getPath,
-      toggleDisabled
+      toggleDisabled,
+      errors
     } = this.props;
-
-    const  errors = {}
-  
+    
     return (
       <div>
         <div className="card white poll-item-toggle" onClick={ () => this.toggleEdit() }>
@@ -113,6 +117,11 @@ class EditPollItem extends React.Component {
                     delete
                   </i>
               </Tooltipped>
+            <span className="toogle-triangle right">
+              {
+                !this.state.toggleEdit ? '▼' : '▲'
+              }
+            </span>
         </div>
         { 
           pollItem.pollId === "demoPoll" || this.state.toggleEdit ?

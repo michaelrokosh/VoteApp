@@ -5,6 +5,11 @@ import FormInput from '../../../core/components/general/form_input.jsx';
 import Tooltipped from '../../../core/components/general/tooltipped.jsx';
 
 class NewPoll extends React.Component {
+    componentWillUnmount() {
+        const { clearErrors } = this.props;
+        clearErrors();
+    }
+
     createPoll(e) {
         e.preventDefault();
         const { createPoll } = this.props;

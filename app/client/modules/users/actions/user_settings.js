@@ -39,7 +39,7 @@ export default {
 
      	Accounts.changePassword(oldPass, newPass, (err) => {
      		if(err) {
-     			err.accountsErr = err.reason;
+     			errors.accountsErr = err.reason;
 				APP_ERRORS.set('ChangePassword', errors);
      		} else {
      			callback(true);

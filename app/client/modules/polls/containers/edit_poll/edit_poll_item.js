@@ -3,7 +3,7 @@ import { useDeps, composeWithTracker, composeAll } from 'mantra-core';
 import EditPollItem from '../../components/edit_poll/edit_poll_item.jsx';
 
 export const composer = ({ context, pollItem } , onData) => {
-	const { Meteor, FlowRouter, Collections } = context();
+	const { Meteor, FlowRouter, Collections, APP_ERRORS } = context();
 	const pollItemId = pollItem._id;
 
 	if(Meteor.subscribe('votes.votesByPollItemId', pollItemId).ready()) {
@@ -11,7 +11,10 @@ export const composer = ({ context, pollItem } , onData) => {
     	const pollItemOptions = Collections.PollItemOptions.find({ pollItemId: pollItemId }).fetch();
   	    const pollItem = Collections.PollItems.findOne({ _id: pollItemId })
 
-		onData(null, { votes, pollItemOptions, pollItem });
+  	    APP_ERRORS.setDefault('EditPollItem', {});
+  	    const errors = APP_ERRORS.get('EditPollItem');
+
+		onData(null, { votes, pollItemOptions, pollItem, errors });
 	}    
 }
 
@@ -27,6 +30,7 @@ export const depsMapper = (context, actions) => ({
 	toggleShowResults: actions.editPollItem.toggleShowResults,
 	handleChartTypeChange: actions.editPollItem.handleChartTypeChange,
     getPath: actions.router.getPath,
+    clearErrors: actions.appErrors.clearErrors,
 	context: () => context
 })
 

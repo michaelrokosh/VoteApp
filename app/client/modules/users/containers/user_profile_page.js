@@ -16,7 +16,7 @@ export const composer = ({ context }, onData) => {
 		const avatarHandle = Meteor.subscribe('avatars.userAvatar', user._id);
 	
 		if(avatarHandle.ready()) {
-			const avatar = Collections.Avatars.findOne({userId: user._id});
+			let avatar = Collections.Avatars.findOne({userId: user._id});
 
 			onData(null, { user, avatar, changePassErrors, changeEmailAndNameErrors })
 		}
@@ -28,6 +28,7 @@ export const depsMapper = (context, actions) => ({
 	changePassword: actions.userSettings.changePassword,
 	changeEmail: actions.userSettings.changeEmail,
 	changeAvatar: actions.userSettings.changeAvatar,
+	clearErrors: actions.appErrors.clearErrors,
 	context: () => context
 })
 

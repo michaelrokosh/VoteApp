@@ -124,4 +124,13 @@ export default function (injectDeps, {FlowRouter, Meteor}) {
             });
         }
     });
+
+    FlowRouter.route("/anonymous-polls", {
+        name: "PollsWithoutRegistration",
+        action() {
+            mount(MainLayoutCtx, {
+                content: <PollsWithoutRegistrationPage />
+            })
+        }
+    })
 }

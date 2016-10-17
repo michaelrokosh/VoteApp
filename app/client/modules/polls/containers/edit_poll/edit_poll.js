@@ -33,6 +33,7 @@ export const depsMapper = (context, actions) => ({
     togglePrivatePoll: actions.editPoll.togglePrivatePoll,
     updateName: actions.editPoll.updateName,
     removePoll: actions.editPoll.removePoll,
+    clearErrors: actions.appErrors.clearErrors,
 	context: () => context
 });
 
