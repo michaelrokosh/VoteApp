@@ -1,9 +1,7 @@
 import router from './router';
-import appErrors from './app_errors.js';
 
 const actions = {
-	router,
-	appErrors
+	router
 }
 
 export default actions;

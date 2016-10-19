@@ -11,10 +11,10 @@ import NewPoll from '../polls/containers/new_poll/new_poll.js';
 import EditPollPage from '../polls/components/edit_poll/edit_poll_page.jsx';
 import PollViewPage from '../polls/components/poll_view/poll_view_page.jsx';
 import PollsPreview from '../polls/containers/polls_preview/polls_preview.js';
-import UserProfilePage from '../users/containers/user_profile_page.js';
+import EditUserProfile from '../users/containers/edit_user_profile.js';
 import PollItemChartWrapper from '../polls/containers/poll_item_page/poll_item_chart_wrapper.js';
 import PollItemPage from '../polls/containers/poll_item_page/poll_item_page.js';
-
+import UserProfilePage from '../users/containers/user_profile_page.js'
 
 export default function (injectDeps, {FlowRouter, Meteor}) {
     const MainLayoutCtx = injectDeps(MainLayout);
@@ -84,8 +84,18 @@ export default function (injectDeps, {FlowRouter, Meteor}) {
         }
     });
 
+    FlowRouter.route("/:username/edit", {
+        name: "EditUserProfile",
+        action() {
+            mount(MainLayoutCtx, {
+                content: <EditUserProfile />
+            })
+        }
+    });
+
+
     FlowRouter.route("/:username", {
-        name: "UserProfile",
+        name: "UserProfilePage",
         action() {
             mount(MainLayoutCtx, {
                 content: <UserProfilePage />

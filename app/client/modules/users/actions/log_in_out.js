@@ -1,10 +1,13 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 export default {
 	handleLogout({ Meteor, FlowRouter }) {
 	    Meteor.logout();
 	    FlowRouter.go('Home');
 	},
 
-	signIn({ Meteor, APP_ERRORS }, emailOrUsername, password) {
+	signIn({ Meteor, LocalState, Notificator }, emailOrUsername, password) {
         const errors = {};
         if (!emailOrUsername) {
             errors.emailOrUsername = "Email/username is required"
@@ -14,16 +17,13 @@ export default {
             errors.password = "Password required"
         }
 
-        APP_ERRORS.set('SignIn', errors);
-
         if (! _.isEmpty(errors)) {
             return;
         }
 
         Meteor.loginWithPassword(emailOrUsername, password, (err) => {
             if (err) {
-                errors.serverErr = err.reason;
-                APP_ERRORS.set('SignIn', errors);
+                Notificator.error(err.reason);
                 return;
             } else {
                 FlowRouter.go('Home');

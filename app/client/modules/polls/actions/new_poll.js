@@ -1,14 +1,7 @@
 export default {
-	createPoll({ Collections, FlowRouter, APP_ERRORS, Meteor }, pollName, isPrivate) {
-    const errors = {};
-
-    if (!pollName) {
-        errors.pollName = "Poll name required"
-    }
-
-    APP_ERRORS.set('CreatePoll', errors);
-
-    if (! _.isEmpty(errors)) {
+	createPoll({ Collections, FlowRouter, LocalState, Meteor, Notificator }, pollName, isPrivate) {
+    if(!pollName) {
+      Notificator.error('Poll name is reqired!');
       return;
     }
 
@@ -20,8 +13,7 @@ export default {
       createdAt: new Date
     }, (err, _id) => {
         if (err) {
-          errors.insertErr = err.reason;
-          APP_ERRORS.set('CreatePoll', errors);
+          Notificator.error(err.reason);
           return;
         } else {
             FlowRouter.go('EditPoll', { _id: _id});

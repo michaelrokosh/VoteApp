@@ -3,7 +3,7 @@ import Collections from '../../lib/collections';
 import { FlowRouter } from 'meteor/kadira:flow-router-ssr';
 import { Accounts } from 'meteor/accounts-base';
 import { ReactiveDict } from 'meteor/reactive-dict';
-
+import Notificator  from '../modules/core/helpers/notificator.js';
 
 export default function() {
 	return {
@@ -11,6 +11,7 @@ export default function() {
 		FlowRouter,
 		Accounts,
 		Collections,
-		APP_ERRORS: new ReactiveDict(),
+		LocalState: new ReactiveDict(),
+		Notificator
 	}
 }

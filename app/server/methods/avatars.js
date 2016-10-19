@@ -3,7 +3,7 @@ import Avatars from '../../lib/collections/avatars.jsx';
 
 export default () => {
 	Meteor.methods({
-		'avatars.change'(imageURL) {
+		'avatars.setAvatar'(imageURL) {
 			const userId = this.userId;
 		
 			check(imageURL, String);

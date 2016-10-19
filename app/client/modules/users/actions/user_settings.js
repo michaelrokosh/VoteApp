@@ -1,53 +1,42 @@
 export default {
-	updateName({ Meteor, APP_ERRORS }, updatedName) {
-		const errors = {};
-		if(!updatedName) {
-			errors.username = 'Username is required!'
+	setUsername({ Meteor, Notificator }, updatedName) {
+		if(updatedName === Meteor.user().username) {
+			return;
 		}
 
-        APP_ERRORS.set('ChangeEmailAndName', errors);
-        
-        if(!_.isEmpty(errors)) {
-        	return;
-        }
+		if(!updatedName) {
+			Notificator.error('Username is required!');
+			return;
+		}
 
-		Meteor.call('users.changeName', updatedName, (err) => {
+		Meteor.call('users.setUsername', updatedName, (err) => {
 			if(err) {
-				errors.accountsErr = err.reason;
-        		APP_ERRORS.set('ChangeEmailAndName', errors);
+				Notificator.error(err.reason)
+			} else {
+				Notificator.succes('Your name has changed')
 			}
 		})	
 	},
 
-	changePassword({ APP_ERRORS, Accounts }, oldPass, newPass, confirmPass, callback) {
-		const errors = {};
-		
+	setPassword({ LocalState, Accounts, Notificator }, oldPass, newPass, confirmPass) {
 		if(!newPass || !oldPass || !confirmPass) {
-			errors.emptyField = "Please, fill all fileds!"
+			Notificator.error('Please, fill all fileds!');
 		}
 
 		if(newPass !== confirmPass) {
-			errors.repeatPassword = "These passwords don't match. Try again?"
+			Notificator.error("These passwords don't match. Try again?")
 		}
-
-		APP_ERRORS.set('ChangePassword', errors);
-
-        if (! _.isEmpty(errors)) {
-            return;
-        }
-
 
      	Accounts.changePassword(oldPass, newPass, (err) => {
      		if(err) {
-     			errors.accountsErr = err.reason;
-				APP_ERRORS.set('ChangePassword', errors);
+     			Notificator.error(err.reason);
      		} else {
-     			callback(true);
+     			Notificator.succes('Your password has changed!')
      		}
      	})
 	},
 
-	changeEmail({ Meteor, APP_ERRORS },  newEmail) {
+	setEmail({ Meteor, Notificator },  newEmail) {
 		const oldEmail = Meteor.user().emails[0].address;
         const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		const errors = {};
@@ -68,7 +57,7 @@ export default {
         	return;
         }
 
-        Meteor.call('users.changeEmail', oldEmail, newEmail,(err) => {
+        Meteor.call('users.setEmail', oldEmail, newEmail,(err) => {
         	if(err) {
         		errors.email = err.reason;
         		APP_ERRORS.set('ChangeEmailAndName', errors);
@@ -76,7 +65,7 @@ export default {
         })
 	},
 
-	changeAvatar({ Meteor }, imageFile) {
+	setAvatar({ Meteor }, imageFile) {
 		function getImageURL(file, callback) {
 			let encodedImage = {};
 			
@@ -96,7 +85,7 @@ export default {
 		}
 
 		getImageURL(imageFile, (url) => {
-			Meteor.call('avatars.change', url, (err) => {
+			Meteor.call('avatars.setAvatar', url, (err) => {
 				if(err) {
 					console.log(err);
 				}

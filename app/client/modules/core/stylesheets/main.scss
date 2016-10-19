@@ -16,6 +16,16 @@ select {
   display: inline-block;
 }
 
+.notificator {
+  position: fixed;
+  right: 30px;
+  
+  .notification-item {
+    padding: 5px;
+    font-size: 17px;
+  }
+}
+
 #demoChart {
   min-width: 310px; 
   height: 400px; 

@@ -1,77 +1,54 @@
 import React from 'react';
 
-import PollsPreview from '../../../polls/containers/polls_preview/polls_preview.js';
-import FormInput from '../../../core/components/general/form_input.jsx';
-import FormErrors from '../../../core/components/general/form_errors.jsx';
+import FormInput from '../../../../core/components/general/form_input.jsx';
+import FormErrors from '../../../../core/components/general/form_errors.jsx';
 import AddAvatar from './add_avatar_window.jsx';
+import Tooltipped from '../../../../core/components/general/tooltipped.jsx';
 
-class UserProfilePage extends React.Component {
+class EditUserProfile extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      passwordChanged: false,
       openAddAvatarForm: false
     }
   }
   
-  componentWillUnmount() {
-    const { clearErrors } = this.props;
-    clearErrors();
-  }
-
   toggleAddAvatarForm() {
     this.setState({openAddAvatarForm: !this.state.openAddAvatarForm})
   }
 
-  changeEmailKeyUp(e) {
-    if(e.which === 13) {
-      this.changeEmail(e);
-    }
-  }
-
-  changeEmail(e) {
-    const { changeEmail } = this.props;
+  setEmail(e) {
+    const { setEmail } = this.props;
     const newEmail = e.target.value;
 
-    changeEmail(newEmail);
+    setEmail(newEmail);
   }
 
-  changePassword(e) {
+  setPassword(e) {
     e.preventDefault();
     
-    const { changePassword } = this.props;
+    const { setPassword } = this.props;
     const oldPassword = e.target.oldpassword.value;
     const newPassword = e.target.newpassword.value;
     const repeatPassword = e.target.repeatpassword.value;
   
-    changePassword(oldPassword, newPassword, repeatPassword, (res) => {
-      if(res) {
-        this.setState({passwordChanged: true});
-      }
-    });
+    setPassword(oldPassword, newPassword, repeatPassword);
   }
 
-  updateNameKeyUp(e) {
-    if(e.which === 13) {
-      this.updateName(e);
-    }
-  }
-
-  updateName(e) {
-    const { updateName } = this.props;
+  setUsername(e) {
+    const { setUsername } = this.props;
     const updatedName = e.target.value;
     
-    updateName(updatedName);
+    setUsername(updatedName);
   }
 
   render() {
     const { 
       user, 
-      changePassErrors,
-      changeEmailAndNameErrors,
-      changeAvatar,
-      avatar
+      setAvatar,
+      avatar,
+      getPath
     } = this.props;
 
     return (
@@ -86,31 +63,27 @@ class UserProfilePage extends React.Component {
               </div>
               <AddAvatar 
                 isOpen={ this.state.openAddAvatarForm } 
-                changeAvatar={ changeAvatar }
+                changeAvatar={ setAvatar }
               />
               <div className="row">
                 <div className="col s12 m8 offset-m2">  
-                      <FormErrors errors={ changeEmailAndNameErrors } />
                       <FormInput 
                           name="username"
                           type="text"
                           label="Your name"
                           value={ user.username }
-                          onKeyUp={ e => this.updateNameKeyUp(e) }
-                          onBlur={ e => this.updateName(e) }
+                          onBlur={ e => this.setUsername(e) }
                         />
                         <FormInput 
                           name="email"
                           type="email"
                           label="E-mail"
                           value={ user.emails[0].address }
-                          onKeyUp={ e => this.changeEmailKeyUp(e) }
-                          onBlur={ e => this.changeEmail(e) }
+                          onBlur={ e => this.setEmail(e) }
                         />
                         
                         <h5>Change password</h5>
-                        <form onSubmit={ e => this.changePassword(e) }>
-                          <FormErrors errors={ changePassErrors } />
+                        <form onSubmit={ e => this.setPassword(e) }>
                           <FormInput 
                             name="oldPassword"
                             type="password"
@@ -126,12 +99,16 @@ class UserProfilePage extends React.Component {
                             type="password"
                             label="Confirm password"
                           />
-                          {
-                            this.state.passwordChanged ? 
-                              <p style={{color: '#43A047'}}>Your password changed!</p>:null
-                          }
                           <input type="submit" className="btn btn-default"/>
                       </form>
+                       <Tooltipped position="left" text="Preview">
+                          <a 
+                            className="btn-floating btn-large waves-effect waves-light preview-btn" 
+                            href={getPath('UserProfilePage', { username: user.username })}
+                            target="_blank">
+                            <i className="material-icons">visibility</i>
+                          </a>
+                       </Tooltipped>
                   </div>
                 </div>
               </div>
@@ -142,8 +119,4 @@ class UserProfilePage extends React.Component {
   }
 }
 
-UserProfilePage.PropTypes = {
-   username: React.PropTypes.string
-}
-
-export default UserProfilePage;
+export default EditUserProfile;

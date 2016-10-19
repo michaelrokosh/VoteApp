@@ -31,7 +31,7 @@ class MainHeader extends React.Component {
         <li><a href={ getPath('PublicPolls') }>Public Polls</a></li>
       )
       userProfile = (
-        <li><a href={ getPath('UserProfile', { username: user.username }) }>Profile</a></li>
+        <li><a href={ getPath('EditUserProfile', { username: user.username }) }>Profile</a></li>
       )
       loginButton = (
         <li><a onClick={ handleLogout }>Logout</a></li>

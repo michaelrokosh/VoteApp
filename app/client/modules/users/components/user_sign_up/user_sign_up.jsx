@@ -3,12 +3,7 @@ import React from 'react';
 import FormInput from '../../../core/components/general/form_input.jsx';
 import FormErrors from '../../../core/components/general/form_errors.jsx';
 
-class UserSignUp extends React.Component {
-    componentWillUnmount() {
-        const { clearErrors } = this.props;
-        clearErrors();
-    }
-    
+class UserSignUp extends React.Component {  
     signUp(e) {
         e.preventDefault();
         const { signUp } = this.props;
@@ -22,7 +17,6 @@ class UserSignUp extends React.Component {
     }
 
     render() {
-        const { errors } = this.props;
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -30,11 +24,10 @@ class UserSignUp extends React.Component {
                         <h1>Sign Up</h1>
 
                         <form onSubmit={ e => this.signUp(e) }>
-                            <FormErrors errors={ errors } />
-                            <FormInput hasError={ !!errors.email } name="Email" type="email" label="Email" />
-                            <FormInput hasError={ !!errors.username } name="Username" type="text" label="Username (other users will see it)" />
-                            <FormInput hasError={ !!errors.password } name="Password" type="password" label="Password" />
-                            <FormInput hasError={!!errors.repeatPassword} name="ConfirmPassword" type="password" label="Confirm your password" />
+                            <FormInput name="Email" type="email" label="Email" />
+                            <FormInput name="Username" type="text" label="Username (other users will see it)" />
+                            <FormInput name="Password" type="password" label="Password" />
+                            <FormInput  name="ConfirmPassword" type="password" label="Confirm your password" />
                             <input type="submit" className="btn btn-default"/>
                         </form>
                     </div>

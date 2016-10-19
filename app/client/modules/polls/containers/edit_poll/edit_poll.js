@@ -4,10 +4,7 @@ import EditPoll from '../../components/edit_poll/edit_poll.jsx';
 import MainLoader from '../../../core/components/layouts/main_loader.jsx';
 
 export const composer = (props, onData) => {
-	const { Meteor, Collections, APP_ERRORS } = props.context();
-
-	APP_ERRORS.setDefault('AddNewPollItem', {});
-	const errors = APP_ERRORS.get('AddNewPollItem');
+	const { Meteor, Collections } = props.context()
 
     let pollId = FlowRouter.getParam('_id');
     if(!pollId) {
@@ -23,7 +20,7 @@ export const composer = (props, onData) => {
     	const pollItems = Collections.PollItems.find({ pollId: pollId }).fetch();
     	const pollItemOptions = Collections.PollItemOptions.find({ pollId: pollId }).fetch();
 
-       	onData(null, { poll, pollItems, pollItemOptions, errors });
+       	onData(null, { poll, pollItems, pollItemOptions });
     }
 }
 
@@ -33,7 +30,6 @@ export const depsMapper = (context, actions) => ({
     togglePrivatePoll: actions.editPoll.togglePrivatePoll,
     updateName: actions.editPoll.updateName,
     removePoll: actions.editPoll.removePoll,
-    clearErrors: actions.appErrors.clearErrors,
 	context: () => context
 });
 

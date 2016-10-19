@@ -1,15 +1,7 @@
 export default {
-	addNewPollItem({ Meteor, APP_ERRORS }, question, poll, pollItems , pollItemOptions) {
-	    const errors = {};
-
-	    if (!question) {
-	      errors.question = "Question required"
-	    }
-
-	    APP_ERRORS.set('AddNewPollItem', errors);
-
-	    if (! _.isEmpty(errors)) {
-	      return;
+	addNewPollItem({ Meteor, LocalState, Notificator }, question, poll, pollItems , pollItemOptions) {
+	    if(!question) {
+	    	Notificator.error('Qestion is reqired!')
 	    }
 
 	    let options = [];
@@ -21,8 +13,7 @@ export default {
 
 	    Meteor.call('pollItems.insert', poll._id, question, options, (err, res) => {
 	      if (err) {
-	       	errors.methodErr = err.reason;
-	       	APP_ERRORS.set('AddNewPollItem', errors)
+	       	Notificator.error(err.reason);
 	      }
 	    });
 	},

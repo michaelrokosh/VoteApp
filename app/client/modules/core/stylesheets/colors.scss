@@ -6,6 +6,18 @@
   background-color: #43A047;
 }
 
+.notificator {
+  .error {
+    color: red;
+  }
+  .succes {
+    color: #43A047; 
+  }
+  .warning {
+    color: #FAC300;
+  }
+}
+
 .switch label input[type=checkbox]:checked + .lever {
   background-color: #A0D7A2;
 }

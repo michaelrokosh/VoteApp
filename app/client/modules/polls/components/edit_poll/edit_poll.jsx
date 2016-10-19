@@ -6,9 +6,11 @@ import Tooltipped from '../../../core/components/general/tooltipped.jsx';
 import EditPollItem from '../../containers/edit_poll/edit_poll_item.js';
 
 class EditPoll extends React.Component {
-  componentWillUnmount() {
-    const { clearErrors } = this.props;
-    clearErrors();
+  constructor() {
+    super();
+    this.state = {
+      errors: {}
+    }
   }
 
   renderPollItem(pollItem, index) {
@@ -40,7 +42,11 @@ class EditPoll extends React.Component {
 
     const { updateName, poll } = this.props;
     const updatedName = e.target.value;
-
+    
+    if (!question) {
+      this.setState({errors: 'Question required'});
+      return;
+    }
     updateName(updatedName, poll._id);
   }
 
@@ -49,18 +55,18 @@ class EditPoll extends React.Component {
       poll, 
       pollItems, 
       addNewPollItem, 
-      errors,
       getPath,
       togglePrivatePoll,
       removePoll
     } = this.props;
 
+    const { errors } = this.state;
     return (
       <div className="editable-poll">
          <div className="edit-poll-header">
           <h4>Poll settings</h4>
-          <FormInput 
-              hasError={ !!errors.pollName }  
+          <FormErrors errors={ errors } />
+          <FormInput   
               name="pollName" 
               type="text" 
               label="Poll name" 
@@ -98,16 +104,13 @@ class EditPoll extends React.Component {
         
         <h4>Add new question</h4>
         <form onSubmit={ e => this.addNewPollItem(e) }>
-          <FormErrors errors={ errors } />
-          <FormInput 
-            hasError={ !!errors.question }  
+          <FormInput  
             name="question" 
             type="text" 
             label="Question" 
             placeholder="Are oranges better than tangerines?" 
           />
-          <FormInput 
-            hasError={ !!errors.question } 
+          <FormInput  
             name="1" 
             type="text" 
             className="poll-item-option" 
@@ -115,7 +118,6 @@ class EditPoll extends React.Component {
             placeholder="Yes" 
           />
           <FormInput 
-            hasError={ !!errors.question } 
             name="2" 
             type="text" 
             className="poll-item-option" 

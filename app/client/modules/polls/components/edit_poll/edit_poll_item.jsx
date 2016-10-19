@@ -12,11 +12,6 @@ class EditPollItem extends React.Component {
         toggleEdit: false
       }
   }
-  
-  componentWillUnmount() {
-    const { clearErrors } = this.props;
-    clearErrors();
-  }
 
   handleKeyUp(e) {
     if(e.which === 13) {
@@ -102,10 +97,9 @@ class EditPollItem extends React.Component {
       toggleActive,
       toggleShowResults,
       getPath,
-      toggleDisabled,
-      errors
+      toggleDisabled
     } = this.props;
-    
+
     return (
       <div>
         <div className="card white poll-item-toggle" onClick={ () => this.toggleEdit() }>
@@ -127,10 +121,8 @@ class EditPollItem extends React.Component {
           pollItem.pollId === "demoPoll" || this.state.toggleEdit ?
           <div className="poll-item">
             <form>
-              <FormErrors errors={ errors } />
               <div className="poll-item-question">
-                <FormInput 
-                  hasError={ !!errors.question } 
+                <FormInput  
                   name="Question" 
                   type="text" 
                   label="Question" 
@@ -147,7 +139,6 @@ class EditPollItem extends React.Component {
                   className="materialize-textarea" 
                   name="Description" 
                   label="Description" 
-                  hasError={ !!errors.description } 
                   onKeyUp={ e => this.handleDescriptionKeyUp(e) } 
                   onBlur={ e => this.updateDescription(e) } 
                   value={ pollItem.description } 

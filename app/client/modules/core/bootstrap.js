@@ -1,5 +1,8 @@
 import { Meteor } from 'meteor/meteor';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Highcharts from 'highcharts';
+import NotificatorComponent from './components/layouts/notificator/notificator_component.jsx';
 
 export const HIGHCHARTS_COLORS = [
   '#43A047', 
@@ -20,9 +23,8 @@ export const HIGHCHARTS_COLORS = [
   '#757575'
 ];
 
-export const bootstrap = () => {
+export const bootstrap = () => {    
   Meteor.startup(function () {
-    
     Highcharts.setOptions({
       colors: HIGHCHARTS_COLORS,
       chart: {
