@@ -18,7 +18,7 @@ class NotificatorComponent extends React.Component {
 		});
 	}
 	
-	clearErrors() {
+	clearNotification() {
 		setTimeout(function() {
 			this.setState({notification: null})
 		}.bind(this), 2000)
@@ -31,7 +31,7 @@ class NotificatorComponent extends React.Component {
 			return null;
 		}
 
-		this.clearErrors();
+		this.clearNotification();
 		return (
 			<div className="notificator">
 				<div className="card notification-item">
