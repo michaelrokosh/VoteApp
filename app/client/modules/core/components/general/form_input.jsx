@@ -7,86 +7,42 @@ class FormInput extends React.Component {
       label, 
       name, 
       placeholder, 
-      value, 
-      onKeyUp, 
-      onKeyDown, 
-      onKeyPress, 
-      onBlur, 
-      onChange 
+      value,
+      hasError,  
+      onBlur,
+      className 
     } = this.props;
-  
-    let { className } = this.props
-    let inputType;
 
-    if (this.props.hasError) {
-      className += " has-error";
+    let classNameCtx = new String(className);
+    let inputType;
+    if(hasError) {
+      classNameCtx += " has-error";
+    }
+    
+    if(type === 'text') {
+      inputType = (
+          <input
+            type={ type }
+            defaultValue={ value }
+            placeholder={ placeholder }
+            onBlur={ onBlur }  
+            className={ classNameCtx }
+            name={ name.toLowerCase() }
+          />
+      )
     }
 
-    switch (type) {
-      case "textarea":
-        if (onChange) {
-          inputType = (
-            <textarea 
-              type={ type } 
-              className={ className } 
-              name={ name.toLowerCase() } 
-              placeholder={ placeholder } 
-              onChange={ onChange } 
-              value={ value } 
-              onKeyUp={ onKeyUp } 
-              onKeyDown={ onKeyDown } 
-              onKeyPress={ onKeyPress } 
-              onBlur={ onBlur }>
-            </textarea>
-          );
-        } else {
-          inputType = (
-            <textarea 
-              type={ type } 
-              className={ className } 
-              name={ name.toLowerCase() } 
-              placeholder={ placeholder } 
-              defaultValue={ value } 
-              onKeyUp={ onKeyUp } 
-              onKeyDown={ onKeyDown } 
-              onKeyPress={ onKeyPress } 
-              onBlur={ onBlur }>
-            </textarea>
-          );
-        }
-        break;
-      default:
-        if (onChange) {
-          inputType = (
-            <input 
-              type={ type } 
-              className={ className } 
-              name={ name.toLowerCase() } 
-              placeholder={ placeholder } 
-              onChange={ onChange } 
-              value={ value } 
-              onKeyUp={ onKeyUp } 
-              onKeyDown={ onKeyDown } 
-              onKeyPress={ onKeyPress } 
-              onBlur={ onBlur }
-            />
-          );
-        } else {
-          inputType = (
-            <input 
-              type={ type } 
-              className={ className } 
-              name={ name.toLowerCase() } 
-              placeholder={ placeholder } 
-              defaultValue={ value } 
-              onKeyUp={ onKeyUp } 
-              onKeyDown={ onKeyDown } 
-              onKeyPress={ onKeyPress } 
-              onBlur={ onBlur }
-            />
-          );
-        }
-        break;
+    if (type === 'textarea') {
+      inputType = (
+        <textarea 
+            type={ type }
+            defaultValue={ value }
+            placeholder={ placeholder }
+            onBlur={ onBlur }  
+            className={ classNameCtx }
+            name={ name.toLowerCase() }>
+         </textarea> 
+      )
     }
 
     return (

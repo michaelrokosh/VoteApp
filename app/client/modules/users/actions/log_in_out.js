@@ -8,17 +8,12 @@ export default {
 	},
 
 	signIn({ Meteor, LocalState, Notificator }, emailOrUsername, password) {
-        const errors = {};
         if (!emailOrUsername) {
-            errors.emailOrUsername = "Email/username is required"
+            Notificator.error("Email/username is required");
         }
 
         if (!password) {
-            errors.password = "Password required"
-        }
-
-        if (! _.isEmpty(errors)) {
-            return;
+            Notificator.error("Password required");
         }
 
         Meteor.loginWithPassword(emailOrUsername, password, (err) => {

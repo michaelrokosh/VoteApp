@@ -117,7 +117,7 @@ class EditPollItem extends React.Component {
               }
             </span>
         </div>
-        { 
+        {
           pollItem.pollId === "demoPoll" || this.state.toggleEdit ?
           <div className="poll-item">
             <form>

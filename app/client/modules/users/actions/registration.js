@@ -5,25 +5,25 @@ export default {
         const errors = {};
 
         if (!email) {
-            Notificator.warning("Email required");
+            Notificator.error("Email required");
             return;
         } else if (!emailPattern.test(email)) {
-            errors.email = "Email is not valid";
+            Notificator.error("Email is not valid");
             return;
         }
 
         if (!username) {
-            errors.username = "Username required";
+            Notificator.error("Username required");
             return;
         }
 
         if (!password) {
-            errors.password = "Password required";
+            Notificator.error("Password required");
             return;
         }
 
         if (!repeatPassword || repeatPassword !== password) {
-            errors.repeatPassword = "These passwords don't match. Try again?";
+            Notificator.error("These passwords don't match. Try again?");
             return;
         }
 
@@ -35,7 +35,6 @@ export default {
             password: password
         }, (err) => {
             if(err) {
-                console.log(err)
                 Notificator.error(err.reason)
                 return;
             } else {

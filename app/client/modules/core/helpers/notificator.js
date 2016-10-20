@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NotificatorComponent from '../components/layouts/notificator/notificator_component.jsx';
+import NotificatorComponent from '../components/layouts/notificator_component.jsx';
 
 export default {
 	_notificator: undefined,

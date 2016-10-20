@@ -46,26 +46,23 @@ export default {
 		}
 
 		if (!newEmail) {
-            errors.email = "Email required";
+            Notificator.error("Email required");
+        	return;
         } else if (!emailPattern.test(newEmail)) {
-            errors.email = "Email is not valid";
-        }
-
-        APP_ERRORS.set('ChangeEmailAndName', errors);
-        
-        if(!_.isEmpty(errors)) {
+            Notificator.error("Email is not valid");
         	return;
         }
 
         Meteor.call('users.setEmail', oldEmail, newEmail,(err) => {
         	if(err) {
-        		errors.email = err.reason;
-        		APP_ERRORS.set('ChangeEmailAndName', errors);
+        		Notificator.error(err.reason);
+        	} else {
+        		Notificator.succes('Your email has changed!')
         	}
         })
 	},
 
-	setAvatar({ Meteor }, imageFile) {
+	setAvatar({ Meteor, Notificator }, imageFile) {
 		function getImageURL(file, callback) {
 			let encodedImage = {};
 			
@@ -87,7 +84,7 @@ export default {
 		getImageURL(imageFile, (url) => {
 			Meteor.call('avatars.setAvatar', url, (err) => {
 				if(err) {
-					console.log(err);
+					Notificator.error(err.reason);
 				}
 			})
 		})

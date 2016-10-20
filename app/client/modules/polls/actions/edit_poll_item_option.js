@@ -1,13 +1,25 @@
 export default {
-	updateText({ Meteor }, updatedText, pollItemId) {
-	  Meteor.call('pollItemOptions.updateText', pollItemId, updatedText);
+	updateText({ Meteor, Notificator }, updatedText, pollItemId) {
+	  Meteor.call('pollItemOptions.updateText', pollItemId, updatedText, (err) => {
+      if(err) {
+        Notificator.error(err.reason);
+      }
+    });
   },
   	
-  removePollItemOption({ Meteor }, pollItemId) {
-  	Meteor.call('pollItemOptions.removeById', pollItemId);
+  removePollItemOption({ Meteor, Notificator }, pollItemId) {
+  	Meteor.call('pollItemOptions.removeById', pollItemId, (err) => {
+      if(err) {
+        Notificator.error(err.reason);
+      }
+    });
   },
 
-  voteAction({ Meteor }, pollItemOptionId) {
-    Meteor.call('votes.vote', pollItemOptionId);
+  voteAction({ Meteor, Notificator }, pollItemOptionId) {
+    Meteor.call('votes.vote', pollItemOptionId, (err) => {
+      if(err) {
+        Notificator.error(err.reason);
+      }
+    });
   }
 }

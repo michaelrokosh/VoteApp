@@ -1,13 +1,14 @@
 import React from 'react';
 
-import NotificationItem from './notification_item.jsx';
 
 class NotificatorComponent extends React.Component {
 	constructor() {
 		super();
 
+		this.clearErrors = this.clearErrors.bind(this)
+
 		this.state = {
-			notification: {}
+			notification: null
 		}
 	}
 
@@ -16,13 +17,26 @@ class NotificatorComponent extends React.Component {
 			notification: notification
 		});
 	}
+	
+	clearErrors() {
+		setTimeout(function() {
+			this.setState({notification: null})
+		}.bind(this), 2000)
+	}
 
 	render() {
 		const { notification } = this.state;
 	
+		if(!notification) {
+			return null;
+		}
+
+		this.clearErrors();
 		return (
 			<div className="notificator">
-				<NotificationItem key={ notification.text } type={ notification.type } text={ notification.text } />
+				<div className="card notification-item">
+					<span className={ notification.type }>{ notification.text }</span>
+				</div>
 			</div>
 		)
 	}
