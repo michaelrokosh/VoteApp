@@ -4,7 +4,7 @@ C.Home = React.createClass({
       <div>
         <div className="jumbotron">
           <div className="container">
-            <h1 className="text-center">VoteApp</h1>
+            <h1 className="text-center">Voterify</h1>
             <p className="text-center">A reactive voting app that makes all the difference</p>
           </div>
         </div>

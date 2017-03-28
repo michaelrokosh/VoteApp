@@ -42,8 +42,8 @@ C.BarsChart = React.createClass({
 
     let chartProps = {
       credits: {
-        text: 'VoteApp.xyz',
-        href: 'http://voteapp.xyz'
+        text: 'Voterify',
+        href: 'http://voterify.co'
       },
       chart: {
         plotBackgroundColor: null,

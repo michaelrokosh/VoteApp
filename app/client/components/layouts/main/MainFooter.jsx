@@ -20,7 +20,7 @@ C.MainFooter = React.createClass({
             </div>
             <div className="footer-copyright">
               <div className="container">
-              © 2016 VoteApp
+              © 2016 Voterify
               <a className="grey-text text-lighten-4 right" href="http://jssolutionsdev.com" target="_blank">JSSolutions</a>
               </div>
             </div>

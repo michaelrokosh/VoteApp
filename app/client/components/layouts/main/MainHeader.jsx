@@ -12,7 +12,7 @@ C.MainHeader = React.createClass({
 
   componentDidMount() {
     $(".button-collapse").sideNav({
-      closeOnClick: true 
+      closeOnClick: true
     });
   },
 
@@ -58,7 +58,7 @@ C.MainHeader = React.createClass({
             <div className="col s12">
               <a href="/" className="brand-logo">
                 <i className="material-icons dp48">thumbs_up_down</i>
-                <span className="hide-on-med-and-down">VoteApp</span>
+                <span className="hide-on-med-and-down">Voterify</span>
               </a>
               <a href="#" data-activates="mobileSidebar" className="button-collapse">
                 <i className="material-icons">menu</i>
